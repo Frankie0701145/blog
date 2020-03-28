@@ -1,26 +1,90 @@
+ 
+    <div class='shadow'>
+      <div class='container-lg  align-items-center'>
+        <div class="d-flex flex-row p-4 justify-content-between  align-items-center p-1" id="navWrapper">
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Navbar</a>
-  
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+
+            <div class="">
+                <a class=''><img src='assets/images/soko.png'></a>
+            </div>
+            
+            <div class="bd-highlight  d-flex ">
+
+              <div class='d-flex'>
+
+                  <div class='d-none'>
+                    <input mat-input placeholder='Search for Blog d-none'/>
+                  </div>
+
+                  <div>
+                    <a mat-button>
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+                    </a>
+                  </div>
+                  <div class='d-sm-block d-md-none d-lg-none '>
+                    <a mat-button class='' (click)="sidenav.toggle()">
+                        <mat-icon >
+                            menu
+                        </mat-icon>
+                    </a>
+                  </div>
+
+              </div>
+
+
+              <div class='d-none d-md-block d-lg-block '>
+                <a mat-button>  
+                  Blogs
+                </a>
+                <a mat-button>  
+                  Add Blogs
+                </a>
+                <a mat-button href='/login'>
+                  Login
+                </a>
+              </div>
+
+            </div>
+
+        </div>
+      </div>
     </div>
-  </nav>
+  
+  
+    <mat-sidenav-container>  
+      
+      <mat-sidenav #sidenav  mode='over' class='bg-light' opened='false' autoFocus='true'>
+        <div class="d-flex flex-row justify-content-end">
+            <a mat-button (click)="sidenav.toggle()"><mat-icon>keyboard_backspace</mat-icon></a>
+        </div>
+        <div class='d-flex flex-wrap'>
+            
+                <a mat-button class='border-bottom p-2 col-12'>
+                    <span >  Blogs</span>   
+                </a>
+                <a mat-button class='border-bottom p-2 col-12'>  
+                  <span>Add Blogs</span>   
+                </a>
+
+                <a mat-button class='border-bottom p-2 col-12'>
+                    <span>Login</span>
+                </a>
+            
+         
+        </div>
+        <!-- <div class="nav flex-column nav-pills p-4 border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+        </div> -->
+      </mat-sidenav>
+  
+      <mat-sidenav-content style="height: 88vh;"> 
+        <router-outlet></router-outlet>
+      </mat-sidenav-content> 
+    </mat-sidenav-container>
+
+
+
