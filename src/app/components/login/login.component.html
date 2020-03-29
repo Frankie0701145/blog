@@ -1,0 +1,49 @@
+
+
+<div id="loginWrapper" class="container-fluid">
+    <div class="row">
+        <div id="left" class="col-sm-0 col-lg-6 d-none d-lg-block">
+            
+        </div>
+        <div id="right" class="col-sm-12 col-lg-6">
+            <div id="formWrapper" class=" container">
+
+                <!-- <form onC> -->
+                <div class="row pb-4">
+                    <span class="offset-5">Login to proceed</span>
+                </div>
+
+                <div class=" row pb-4">
+                    <mat-icon class="icon offset-2">email</mat-icon>
+                    <mat-form-field appearance="legacy" class="col-8">  
+                        <mat-label class="">Email</mat-label>
+                        <input matInput placeholder="Email">   
+                        
+                    </mat-form-field>
+                </div>
+                <div class="row pb-4">
+                    <mat-icon class="icon offset-2">https</mat-icon>
+                    <mat-form-field appearance="legacy" class="col-8">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </a>
+                    </mat-form-field>
+                </div>
+
+                <div class="row ">
+                    <div class="col-8" id="submitBtnWrapper">
+                        <button class="btn  btn-lg btn-block" id="loginBtn">Submit</button>
+                    </div>
+                   
+                </div>
+                <!-- </form> -->
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
