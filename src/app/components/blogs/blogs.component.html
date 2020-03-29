@@ -17,9 +17,11 @@
               </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button>Comment</button>
-                <button mat-button>Like</button>
-              </mat-card-actions>
+                <button mat-button (click)='openCommentDialog()'>
+                  <mat-icon>comment</mat-icon>
+                </button>
+   
+            </mat-card-actions>
         </mat-card>
 
         <mat-card class="example-card col-md-7 offset-md-2">

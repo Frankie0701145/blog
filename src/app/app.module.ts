@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {LoginComponent} from './components/login/login.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
+import { CommentsComponent } from './components/blogs/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BlogsComponent } from './components/blogs/blogs.component';
     NavbarComponent,
     LoginComponent,
     AddBlogComponent,
-    BlogsComponent
+    BlogsComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { BlogsComponent } from './components/blogs/blogs.component';
     AngularMaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CommentsComponent]
 })
 export class AppModule { }

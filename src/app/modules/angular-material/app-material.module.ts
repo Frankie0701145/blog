@@ -7,7 +7,8 @@ import {
   MatButtonModule,
   MatInputModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule
 } from '@angular/material'
 
 
@@ -20,7 +21,8 @@ import {
     MatButtonModule,
     MatInputModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class AngularMaterialModule { }
