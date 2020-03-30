@@ -1,6 +1,6 @@
 
 
-export interface IERRORMESSAGE {
+export interface IErrorMessage {
     statusCode: string,
     message: string
 }   

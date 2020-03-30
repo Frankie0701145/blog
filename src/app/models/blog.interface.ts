@@ -1,6 +1,6 @@
 
 
-export interface IBLOG {
+export interface IBlog {
     id: string
     title: string
     photoUrl: string

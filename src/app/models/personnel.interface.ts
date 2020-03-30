@@ -1,5 +1,5 @@
 
 
-export interface IPERSONNEL {
+export interface IPersonnel {
     id: string
 }   
