@@ -8,7 +8,7 @@
         <div id="right" class="col-sm-12 col-lg-6">
             <div id="formWrapper" class=" container">
 
-                <!-- <form onC> -->
+            <form [formGroup]="blogForm" (ngSubmit)="onSubmit(blogForm.value)">
                 <div class="row pb-4">
                     <span class="offset-5">Login to proceed</span>
                 </div>
@@ -17,7 +17,7 @@
                     <mat-icon class="icon offset-2">email</mat-icon>
                     <mat-form-field appearance="legacy" class="col-8">  
                         <mat-label class="">Email</mat-label>
-                        <input matInput placeholder="Email">   
+                        <input matInput placeholder="Email" formControlName="email" required>   
                         
                     </mat-form-field>
                 </div>
@@ -25,7 +25,7 @@
                     <mat-icon class="icon offset-2">https</mat-icon>
                     <mat-form-field appearance="legacy" class="col-8">
                         <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="image" required>
                         <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </a>
@@ -38,7 +38,7 @@
                     </div>
                    
                 </div>
-                <!-- </form> -->
+            </form>
             </div>
         </div>
         
