@@ -43,6 +43,9 @@ export class AddBlogComponent implements OnInit {
     }
   }
   onSubmit(blogData){
+    if (this.blogForm.invalid) {
+      return;
+    }
     let dummyImagesUrl: string[] = [
       "https://lets-share.nyc3.digitaloceanspaces.com/chain-1812013_1280.jpg",
       "https://lets-share.nyc3.digitaloceanspaces.com/girl-1868930_1280.jpg",
