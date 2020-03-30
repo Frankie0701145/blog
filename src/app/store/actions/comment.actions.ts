@@ -19,13 +19,13 @@ export class GetComments implements Action {
 
 export class GetCommentsSuccess implements Action {
     public readonly type = ECommentActions.GetCommentsSuccess
-    constructor(public payload: ISuccessMessage ){}
+    constructor(public payload: IComment[] ){}
 }
 
-export class GetCommentsError implements Action {
-    public readonly type = ECommentActions.GetCommentsError
-    constructor(public payload: IErrorMessage ){}
-}
+// export class GetCommentsError implements Action {
+//     public readonly type = ECommentActions.GetCommentsError
+//     constructor(public payload: IErrorMessage ){}
+// }
 
 //Create Comment
 export class CreateComment implements Action {
@@ -38,11 +38,11 @@ export class CreateCommentSuccess implements Action {
     constructor(public payload: ISuccessMessage ){}
 }
 
-export class CreateCommentError implements Action {
-    public readonly type = ECommentActions.CreateCommentError
-    constructor(public payload: IErrorMessage ){}
-}
+// export class CreateCommentError implements Action {
+//     public readonly type = ECommentActions.CreateCommentError
+//     constructor(public payload: IErrorMessage ){}
+// }
 
 
-export type BlogActions = GetComments | GetCommentsSuccess | GetCommentsError | CreateComment | CreateCommentSuccess | CreateCommentError;
+export type CommentActions = GetComments | GetCommentsSuccess | CreateComment | CreateCommentSuccess;
 

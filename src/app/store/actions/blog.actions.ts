@@ -19,12 +19,12 @@ export class GetBlogs implements Action {
 
 export class GetBlogsSuccess implements Action {
     public readonly type = EBlogActions.GetBlogsSuccess
-    constructor(public payload: ISuccessMessage){}
+    constructor(public payload: IBlog[]){}
 }
-export class GetBlogsError implements Action {
-    public readonly type = EBlogActions.GetBlogsError
-    constructor(public payload: IErrorMessage){}
-}
+// export class GetBlogsError implements Action {
+//     public readonly type = EBlogActions.GetBlogsError
+//     constructor(public payload: IErrorMessage){}
+// }
 
 //Create Blog
 export class CreateBlog implements Action {
@@ -35,10 +35,10 @@ export class CreateBlogSuccess implements Action {
     public readonly type = EBlogActions.CreateBlogSuccess
     constructor(public payload: ISuccessMessage){}
 }
-export class CreateBlogError implements Action {
-    public readonly type = EBlogActions.CreateBlogError
-    constructor(public payload: IErrorMessage){}
-}
+// export class CreateBlogError implements Action {
+//     public readonly type = EBlogActions.CreateBlogError
+//     constructor(public payload: IErrorMessage){}
+// }
 
-export type BlogActions = GetBlogs | GetBlogsSuccess | GetBlogsError | CreateBlog | CreateBlogSuccess | CreateBlogError;
+export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess;
 

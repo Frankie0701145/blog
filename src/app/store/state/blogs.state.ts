@@ -4,6 +4,6 @@ export interface IBlogsState {
     blogs: IBlog[]
 } 
 
-export const initialIBlogState: IBlogsState = {
+export const initialIBlogsState: IBlogsState = {
     blogs: []
 }
