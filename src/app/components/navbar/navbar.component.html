@@ -46,7 +46,7 @@
                       <a mat-button [routerLink]="'/add_blog'">  
                         Add Blogs
                       </a>
-                      <a mat-button [routerLink]="'/logout'">
+                      <a mat-button [routerLink]="'/logout'" (click)="logout()">
                         Logout
                       </a>
                   </ng-template>
@@ -77,7 +77,7 @@
                 <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='!loggedIn'>
                     <span>Login</span>
                 </a>  
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='loggedIn'>
+                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='loggedIn' (click)="logout()">
                   <span>Logout</span>
               </a>  
         </div>
