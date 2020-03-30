@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects'
 
 import { AppRoutingModule } from './modules/routing/app-routing.module';
 import {AngularMaterialModule} from './modules/angular-material/app-material.module';
@@ -11,6 +13,9 @@ import {LoginComponent} from './components/login/login.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { CommentsComponent } from './components/blogs/comments/comments.component';
+
+import {appReducers} from './store/reducers/app.reducer';
+import {BlogEffects} from './store/effects/blog.effects';
 
 
 @NgModule({
@@ -27,7 +32,9 @@ import { CommentsComponent } from './components/blogs/comments/comments.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([BlogEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],
