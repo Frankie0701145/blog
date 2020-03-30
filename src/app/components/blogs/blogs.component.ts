@@ -5,6 +5,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
 import { GetBlogs } from 'src/app/store/actions/blog.actions';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
+import { selectNewBlogList } from 'src/app/store/selectors/newBlog.selector';
 
 @Component({
   selector: 'app-blogs',
@@ -13,6 +14,7 @@ import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 })
 export class BlogsComponent implements OnInit {
   blogs$ = this._store.pipe(select(selectBlogList));
+  newBlogs$ = this._store.pipe(select(selectNewBlogList));
   
   constructor(
     private dialog: MatDialog,
@@ -24,7 +26,6 @@ export class BlogsComponent implements OnInit {
   }
 
   openCommentDialog(){
-    console.log('Clicked the component')
     const dialogConfig = new MatDialogConfig();
     dialogConfig.maxHeight = "500px";
     dialogConfig.maxWidth = "500px";

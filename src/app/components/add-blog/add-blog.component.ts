@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { CreateBlog } from 'src/app/store/actions/blog.actions';
+import { IAppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-add-blog',
@@ -14,9 +17,8 @@ export class AddBlogComponent implements OnInit {
   uploadedFilePath: string = null;
 
   constructor(
-    
-    private formBuilder: FormBuilder
-
+    private formBuilder: FormBuilder,
+    private _store: Store<IAppState>
   ) { 
 
     this.blogForm = this.formBuilder.group({
@@ -51,9 +53,11 @@ export class AddBlogComponent implements OnInit {
     let data = {
       title: blogData.title,
       photoUrl: photoUrl,
-      body: blogData.body
+      body: blogData.body,
+      id: "10",
+      commentNo: 4
     }
-    console.log(data);
+    this._store.dispatch(new CreateBlog(data));
   }
 
 }

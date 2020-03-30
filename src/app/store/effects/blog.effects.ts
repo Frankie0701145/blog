@@ -3,11 +3,12 @@ import {Effect, Actions,ofType} from '@ngrx/effects'
 import { BlogService } from 'src/app/services/blog.service';
 import { IAppState } from '../state/app.state';
 import { Store,select } from '@ngrx/store';
-import {switchMap, map} from 'rxjs/operators';
+import {switchMap, map, tap} from 'rxjs/operators';
 import { GetBlogs, EBlogActions, GetBlogsSuccess, CreateBlog, CreateBlogSuccess } from '../actions/blog.actions';
 import { of } from 'rxjs';
 import { IBlog } from 'src/app/models/blog.interface';
-
+import {AddNewBlog} from '../actions/newBlog.actions';
+import {Router } from '@angular/router'
 
 @Injectable()
 export class BlogEffects{
@@ -25,13 +26,15 @@ export class BlogEffects{
         map(action => action),
         switchMap((action)=> this._blogService.postBlog(action.payload)),
         switchMap((blogHttp: IBlog)=>{
-            return of(new CreateBlogSuccess(blogHttp))
-        })
+            return of(new AddNewBlog(blogHttp))
+        }),
+        tap(()=>this.route.navigate(['/blogs']))
     )
 
     constructor(
         private _blogService: BlogService,
         private _action$: Actions,
-        private _store: Store<IAppState>
+        private _store: Store<IAppState>,
+        private route: Router
     ){}
 }
