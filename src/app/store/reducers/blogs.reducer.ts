@@ -11,6 +11,13 @@ export const blogsReducer = (
                 ...state,
                 blogs: action.payload
             }
+        case EBlogActions.CreateBlogSuccess: 
+                console.log(action.payload);
+                console.log("Inside the CreateBlogsSuccess")
+                return{
+                    ...state,
+                    blogs: [action.payload,...state.blogs]
+                }
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import {IBlog} from '../../models/blog.interface';
-import {IErrorMessage} from '../../models/errorMessage.interface';
-import {ISuccessMessage} from '../../models/successMessage.interface'
+// import {IErrorMessage} from '../../models/errorMessage.interface';
+// import {ISuccessMessage} from '../../models/successMessage.interface'
 
 export enum EBlogActions {
     GetBlogs = '[Blogs] Get Blogs',
@@ -33,7 +33,7 @@ export class CreateBlog implements Action {
 }
 export class CreateBlogSuccess implements Action {
     public readonly type = EBlogActions.CreateBlogSuccess
-    constructor(public payload: ISuccessMessage){}
+    constructor(public payload: IBlog){}
 }
 // export class CreateBlogError implements Action {
 //     public readonly type = EBlogActions.CreateBlogError
