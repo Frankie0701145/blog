@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import { CommentsComponent } from './comments/comments.component';
+import { IAppState } from 'src/app/store/state/app.state';
+import { Store, select } from '@ngrx/store';
+import { GetBlogs } from 'src/app/store/actions/blog.actions';
+import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 
 @Component({
   selector: 'app-blogs',
@@ -8,12 +12,15 @@ import { CommentsComponent } from './comments/comments.component';
   styleUrls: ['./blogs.component.sass']
 })
 export class BlogsComponent implements OnInit {
-
+  blogs$ = this._store.pipe(select(selectBlogList));
+  
   constructor(
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private _store: Store<IAppState>
+  ) {}
 
   ngOnInit() {
+    this._store.dispatch(new GetBlogs());
   }
 
   openCommentDialog(){
