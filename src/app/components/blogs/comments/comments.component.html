@@ -2,52 +2,11 @@
 <div mat-dialog-content id="blogContent">
 
     <div class="row" *ngFor="let comment of comments$ | async">
-        <p class="col-12">
-          <span id="name">Francis</span>
+        <p class="col-12 border">
+          <span id="name">{{comment.name}}</span>
           {{comment.body}}
         </p>
     </div>
-
-    <!-- <div class="row">
-        <p class="col-12">
-          <span id="name">Francis</span>
-          ackmsmsmllllllllllllllmlllllllllllll calksmmmmmmmmmmmmmmmm acklsnmlmmmmmmmmmm acklmslmmmmmmm aclkmsmlmmmmm
-          acklsmlmlkmlkmalcm aclkmslmc calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-          calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-        </p>
-    </div>
-    <div class="row">
-        <p class="col-12">
-          <span id="name">Francis</span>
-          ackmsmsmllllllllllllllmlllllllllllll calksmmmmmmmmmmmmmmmm acklsnmlmmmmmmmmmm acklmslmmmmmmm aclkmsmlmmmmm
-          acklsmlmlkmlkmalcm aclkmslmc calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-          calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-        </p>
-    </div>
-    <div class="row">
-        <p class="col-12">
-          <span id="name">Francis</span>
-          ackmsmsmllllllllllllllmlllllllllllll calksmmmmmmmmmmmmmmmm acklsnmlmmmmmmmmmm acklmslmmmmmmm aclkmsmlmmmmm
-          acklsmlmlkmlkmalcm aclkmslmc calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-          calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-        </p>
-    </div>
-    <div class="row">
-        <p class="col-12">
-          <span id="name">Francis</span>
-          ackmsmsmllllllllllllllmlllllllllllll calksmmmmmmmmmmmmmmmm acklsnmlmmmmmmmmmm acklmslmmmmmmm aclkmsmlmmmmm
-          acklsmlmlkmlkmalcm aclkmslmc calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-          calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-        </p>
-    </div>
-    <div class="row">
-        <p class="col-12">
-          <span id="name">Francis</span>
-          ackmsmsmllllllllllllllmlllllllllllll calksmmmmmmmmmmmmmmmm acklsnmlmmmmmmmmmm acklmslmmmmmmm aclkmsmlmmmmm
-          acklsmlmlkmlkmalcm aclkmslmc calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-          calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm calksmmmmmmmmmmmmmmmm
-        </p>
-    </div> -->
 </div>
 
 <div mat-dialog-actions class="border-bottom" id="action">

@@ -9,7 +9,8 @@ export enum ECommentActions {
     GetCommentsError = '[Blogs] Get Comments Error',
     CreateComment= '[Blogs] Create Blog',
     CreateCommentSuccess = '[Blogs] Create Comment Success',
-    CreateCommentError = '[Blogs] Create Comment Error'
+    CreateCommentError = '[Blogs] Create Comment Error',
+    RemoveComments = '[Comment] Remove Comments'
 }
 
 //Get Comments
@@ -35,7 +36,11 @@ export class CreateCommentSuccess implements Action {
     constructor(public payload: ISuccessMessage ){}
 }
 
+//Remove Comments
+export class RemoveComments implements Action{
+    public readonly type = ECommentActions.RemoveComments
+}
 
 
-export type CommentActions = GetComments | GetCommentsSuccess | CreateComment | CreateCommentSuccess;
+export type CommentActions = GetComments | GetCommentsSuccess | CreateComment | CreateCommentSuccess| RemoveComments;
 

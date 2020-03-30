@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { GetBlogs } from 'src/app/store/actions/blog.actions';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { selectNewBlogList } from 'src/app/store/selectors/newBlog.selector';
-import { GetComments } from 'src/app/store/actions/comment.actions';
+import { GetComments, RemoveComments } from 'src/app/store/actions/comment.actions';
 import { selectCommentList } from 'src/app/store/selectors/comment.selector';
 
 @Component({
@@ -17,7 +17,6 @@ import { selectCommentList } from 'src/app/store/selectors/comment.selector';
 export class BlogsComponent implements OnInit {
   blogs$ = this._store.pipe(select(selectBlogList));
   newBlogs$ = this._store.pipe(select(selectNewBlogList));
-  // comments$ = this._store.pipe(select(selectCommentList))
   
   constructor(
     private dialog: MatDialog,
@@ -39,7 +38,10 @@ export class BlogsComponent implements OnInit {
         blogId: blogId
     };
     // dialogConfig.width = "60%";
-    this.dialog.open(CommentsComponent, dialogConfig);
+    let dialogRef = this.dialog.open(CommentsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result)=>{
+        this._store.dispatch(new RemoveComments())
+    })
   }
 
 }

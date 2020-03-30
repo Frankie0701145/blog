@@ -11,6 +11,8 @@ export const commentsReducer = (
                 ...state,
                 comments: action.payload
             }
+        case ECommentActions.RemoveComments:
+            return{...state, comments: []}
         default:
             return state
     }
