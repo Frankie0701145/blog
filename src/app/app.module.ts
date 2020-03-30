@@ -11,7 +11,7 @@ import {LoginComponent} from './components/login/login.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { CommentsComponent } from './components/blogs/comments/comments.component';
-import {BlogService} from './services/blog.service'
+
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import {BlogService} from './services/blog.service'
     AngularMaterialModule,
     HttpClientModule
   ],
-  providers: [BlogService],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [CommentsComponent]
 })
