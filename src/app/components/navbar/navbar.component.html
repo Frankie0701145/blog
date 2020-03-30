@@ -34,15 +34,22 @@
 
 
               <div class='d-none d-md-block d-lg-block '>
-                <a mat-button [routerLink]="'/blogs'">  
-                  Blogs
-                </a>
-                <a mat-button [routerLink]="'/add_blog'">  
-                  Add Blogs
-                </a>
-                <a mat-button [routerLink]="'/login'">
-                  Login
-                </a>
+                  <a mat-button [routerLink]="'/blogs'">  
+                    Blogs
+                  </a>
+  
+                  <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut'>
+                    Login
+                  </a>
+    
+                  <ng-template #loggedOut>
+                      <a mat-button [routerLink]="'/add_blog'">  
+                        Add Blogs
+                      </a>
+                      <a mat-button [routerLink]="'/logout'">
+                        Logout
+                      </a>
+                  </ng-template>
               </div>
 
             </div>
@@ -63,13 +70,16 @@
                 <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/blogs'">
                     <span >  Blogs</span>   
                 </a>
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/add_blog'">  
+                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/add_blog'" *ngIf='loggedIn'>  
                   <span>Add Blogs</span>   
                 </a>
 
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'">
+                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='!loggedIn'>
                     <span>Login</span>
                 </a>  
+                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='loggedIn'>
+                  <span>Logout</span>
+              </a>  
         </div>
  
       </mat-sidenav>
