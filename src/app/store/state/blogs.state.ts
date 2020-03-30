@@ -1,9 +1,9 @@
 import {IBlog} from '../../models/blog.interface'
 
-export interface IBlogState {
+export interface IBlogsState {
     blogs: IBlog[]
 } 
 
-export const initialIBlogState = {
+export const initialIBlogState: IBlogsState = {
     blogs: []
 }

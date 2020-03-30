@@ -1,9 +1,9 @@
 
 
-export interface loggedInState{
+export interface ILoggedInState{
     loggedIn: boolean
 }
 
-export const initialState: loggedInState = {
+export const initialLoggedInState: ILoggedInState = {
     loggedIn: false
 }
