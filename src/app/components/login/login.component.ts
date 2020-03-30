@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { LoginSuccess } from 'src/app/store/actions/loggedIn.actions';
@@ -11,7 +11,7 @@ import {Router } from '@angular/router'
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  blogForm
+  loginForm
   hide: boolean= true;
 
   constructor(
@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
     private _store: Store<IAppState>,
     private route: Router
   ) { 
-    this.blogForm = this.formBuilder.group({
-      email: "",
-      password: ""
+    this.loginForm = this.formBuilder.group({
+      email: ["", Validators.required],
+      password: ["",Validators.required]
     });
   }
 
@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(userData){
+      if (this.loginForm.invalid) {
+          return;
+      }
       let payload ={
         accessToken: "asmcdaklsnmclamslcmkalmc"
       }
