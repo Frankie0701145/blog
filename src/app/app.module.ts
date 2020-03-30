@@ -16,6 +16,7 @@ import { CommentsComponent } from './components/blogs/comments/comments.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {appReducers} from './store/reducers/app.reducer';
 import {BlogEffects} from './store/effects/blog.effects';
+import { CommentEffects } from './store/effects/comment.effects';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import {BlogEffects} from './store/effects/blog.effects';
     AngularMaterialModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([BlogEffects]),
+    EffectsModule.forRoot([BlogEffects,CommentEffects]),
     FormsModule,
     ReactiveFormsModule
   ],
