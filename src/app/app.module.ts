@@ -13,7 +13,7 @@ import {LoginComponent} from './components/login/login.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { CommentsComponent } from './components/blogs/comments/comments.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {appReducers} from './store/reducers/app.reducer';
 import {BlogEffects} from './store/effects/blog.effects';
 
@@ -34,7 +34,9 @@ import {BlogEffects} from './store/effects/blog.effects';
     AngularMaterialModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([BlogEffects])
+    EffectsModule.forRoot([BlogEffects]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

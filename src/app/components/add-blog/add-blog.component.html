@@ -1,16 +1,17 @@
 <div id="blogUploadWrapper">
-    <form class="row m-3" id="blogForm">
+    
+    <form [formGroup]="blogForm" class="row m-3" id="blogForm" (ngSubmit)="onSubmit(blogForm.value)">
         
         <div class="col-sm-10 col-md-6 offset-md-3">
         
             <div class="form-group">
-                <input type="file" name="image" (change)="fileProgress($event)" accept="image/png, image/jpeg" />
+                <input type="file" name="image" required (change)="fileProgress($event)" accept="image/png, image/jpeg" formControlName="image" required/>
             </div>
             <!-- <div *ngIf="fileUploadProgress">
                 Upload progress: {{ fileUploadProgress }}
             </div> -->
             <div class="image-preview mb-3" *ngIf="previewUrl">
-                <img [src]="previewUrl" height="300" />                 
+                <img [src]="previewUrl" height="300" width="400" />                 
             </div>
  
             <!-- <div class="mb-3" *ngIf="uploadedFilePath">
@@ -22,26 +23,20 @@
         <div class="col-sm-12 col-md-6 offset-md-3">
             <mat-form-field class="example-full-width" class="row col-12">
                 <mat-label>Title</mat-label>
-                <input matInput placeholder="Title" class="col-5">
+                <input matInput placeholder="Title" class="col-5" formControlName="title" required>
             </mat-form-field>
         </div>
 
         <div class ="col-sm-12 col-md-6 offset-md-3">
             <mat-form-field class="example-full-width" class="row col-12">
-                <mat-label>Description</mat-label>
-                <textarea matInput placeholder="Brief description of the blog..." matTextareaAutosize=trues></textarea>
-            </mat-form-field>
-        </div>
-        <div class ="col-sm-12 col-md-6 offset-md-3">
-            <mat-form-field class="example-full-width" class="row col-12">
                 <mat-label>Body</mat-label>
-                <textarea matInput placeholder="The blog body..." matTextareaAutosize=trues></textarea>
+                <textarea matInput placeholder="The blog body..." matTextareaAutosize=trues formControlName="body" required></textarea>
             </mat-form-field>
         </div>
 
         <div class="col-sm-12 col-md-6 offset-md-3">
             <div class="form-group">
-                <button class="btn btn-primary"  (click)="onSubmit()">Submit</button>
+                <button class="btn btn-primary">Submit</button>
             </div>
         </div>
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import { IBlog } from '../models/blog.interface';
+import { IBlog } from '../models/blog.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,8 @@ export class BlogService {
 
   fetchBlogs(): Observable<Object>{
     return this.http.get(this.Url)
+  }
+  postBlog(blog: IBlog): Observable<Object>{
+    return this.http.post(this.Url,blog)
   }
 }
