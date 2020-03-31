@@ -1,3 +1,4 @@
+/**For selecting the comments portion of the state*/
 import { IAppState } from "../state/app.state";
 import { createSelector } from '@ngrx/store';
 import { ICommentsState } from '../state/comments.state';

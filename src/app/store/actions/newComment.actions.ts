@@ -1,6 +1,8 @@
+/**The new comment action*/
 import { Action } from '@ngrx/store';
 import { IComment } from 'src/app/models/comment.interface';
 
+/**The Add New Constant Names*/
 export enum ENewCommentActions {
     AddNewComment = "[Comment] Add New Comment"
 }

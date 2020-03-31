@@ -1,3 +1,5 @@
+/**For selecting the loggedIn portion of the state*/
+
 import { IAppState } from "../state/app.state";
 import { createSelector } from '@ngrx/store';
 import { ILoggedInState } from '../state/loggedIn.state';

@@ -1,3 +1,5 @@
+/**For selecting the newBlog portion of the state*/
+
 import { IAppState } from '../state/app.state';
 import { createSelector } from '@ngrx/store';
 import { INewBlogsState } from '../state/newBlog.state';

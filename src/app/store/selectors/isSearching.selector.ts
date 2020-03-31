@@ -1,3 +1,5 @@
+/**For selecting the isSearching portion of the state*/
+
 import { IAppState } from "../state/app.state";
 import { createSelector } from '@ngrx/store';
 import { IIsSearchingState } from '../state/isSearching.state';

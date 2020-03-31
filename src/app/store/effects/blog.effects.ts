@@ -2,7 +2,7 @@ import { Injectable, } from "@angular/core";
 import {Effect, Actions,ofType} from '@ngrx/effects'
 import { BlogService } from 'src/app/services/blog.service';
 import { IAppState } from '../state/app.state';
-import { Store,select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import {switchMap, map, tap} from 'rxjs/operators';
 import { GetBlogs, EBlogActions, GetBlogsSuccess, CreateBlog, CreateBlogSuccess } from '../actions/blog.actions';
 import { of } from 'rxjs';
@@ -12,6 +12,7 @@ import {Router } from '@angular/router'
 
 @Injectable()
 export class BlogEffects{
+    /**Fetching for blogs using the blogService */
     @Effect()
     getBlogs$ = this._action$.pipe(
         ofType<GetBlogs>(EBlogActions.GetBlogs),
@@ -20,6 +21,7 @@ export class BlogEffects{
             return of(new GetBlogsSuccess(userHttp))
         } )
     )
+    /**Posting new blogs using blogService*/
     @Effect()
     postBlogs$ = this._action$.pipe(
         ofType<CreateBlog>(EBlogActions.CreateBlog),

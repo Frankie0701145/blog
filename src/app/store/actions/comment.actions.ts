@@ -1,8 +1,10 @@
+/**The Comment Action*/
 import { Action } from '@ngrx/store';
 import {IErrorMessage} from '../../models/errorMessage.interface';
 import {ISuccessMessage} from '../../models/successMessage.interface';
 import {IComment} from '../../models/comment.interface';
 
+/**The constant names of the CommentActions*/
 export enum ECommentActions {
     GetComments = '[Blogs] Get Comments',
     GetCommentsSuccess = '[Blogs] Get Comments Success',
@@ -13,7 +15,7 @@ export enum ECommentActions {
     RemoveComments = '[Comment] Remove Comments'
 }
 
-//Get Comments
+/**The GetComments Action */
 export class GetComments implements Action {
     public readonly type = ECommentActions.GetComments
     constructor(public payload:string){}
@@ -25,7 +27,7 @@ export class GetCommentsSuccess implements Action {
 }
 
 
-//Create Comment
+/** Create Comment Action*/
 export class CreateComment implements Action {
     public readonly type = ECommentActions.CreateComment
     constructor(public payload: IComment){}
@@ -36,11 +38,11 @@ export class CreateCommentSuccess implements Action {
     constructor(public payload: ISuccessMessage ){}
 }
 
-//Remove Comments
+/**Remove Comments Action*/
 export class RemoveComments implements Action{
     public readonly type = ECommentActions.RemoveComments
 }
 
-
+/**The commentActions Type*/
 export type CommentActions = GetComments | GetCommentsSuccess | CreateComment | CreateCommentSuccess| RemoveComments;
 

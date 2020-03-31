@@ -12,12 +12,10 @@ export class CommentEffects{
     getComments = this._action$.pipe(
         ofType<GetComments>(ECommentActions.GetComments),
         map(action => {
-            console.log('The getComment action');
             return action
         }),
         switchMap((action)=> this._commentService.fetchComments(action.payload) ),
         switchMap((comments: IComment[])=>{
-            console.log(comments);
             return of(new GetCommentsSuccess(comments))
         })
     )

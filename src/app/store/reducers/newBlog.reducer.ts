@@ -1,19 +1,16 @@
+/**Reducer to handle the newBlog state*/
 import { initialINewBlogsState, INewBlogsState } from '../state/newBlog.state';
 import { NewBlogActions, ENewBlogActions } from '../actions/newBlog.actions';
 
-// }
 
-export const newBlogReducer = (
-    state=initialINewBlogsState,
-    action: NewBlogActions
-): INewBlogsState=>{
+export function newBlogReducer(state=initialINewBlogsState,action: NewBlogActions): INewBlogsState{
     
     switch(action.type){
+        /**For handling adding of a Blog to a th newBlog*/
         case ENewBlogActions.AddNewBlog:
-            console.log("Add newBlogs")
-            console.log(action.payload)
+            /**Make sure to add the new Blog at the start of the newBlogs state array*/
+            /**New blog is passed as a payload in the action*/
             let newState = {...state, newBlogs: [action.payload,...state.newBlogs]};
-            console.log(newState)
             return newState
         default:
             return state
