@@ -18,12 +18,16 @@ export class NavbarComponent implements OnInit {
   searching: boolean
   showSearchBtn: boolean
   constructor(
+    /**Inject the store*/
     private _store: Store<IAppState>,
+    /**inject the router*/
     private router: Router
   ) {
+    /**retrieve the loggedIn state from the store*/
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
         this.loggedIn =loggedIn;
     });
+    /**retrievee the searching state from the store*/
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
         this.searching = isSearching
     })
@@ -32,23 +36,35 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+  /**the logout function*/
   logout(){
+    /**dispatch the LogoutSuccess action*/
     this._store.dispatch(new LogoutSuccess())
+    /**navigate to the blogs endpoint*/
     this.router.navigate(['/blogs'])
   }
+  /**close the search bar*/
   closeSearch(){
+    /**Change the searching to false*/
     this.searching = !this.searching;
+    /**Dispatch the stopSearching to change the isSearching state to false*/
     this._store.dispatch(new StopSearching())
+    /**Remove all the filteredBlogs from the state*/
     this._store.dispatch(new RemoveFilteredBlogs())
   }
+  /**Open the search bar*/
   openSearch(){
     this.searching = !this.searching
   }
+  /**Search for blogs*/
   search(e){
+    /**Retrieve the searchText from the input*/
     let searchText:  string = e.target.value;
-    console.log(searchText)
+    /**Retrieve all the  blogs from the state*/
     this._store.pipe(select(selectBlogList)).subscribe((blogs)=>{
+      /**Dispatch the Searching action*/
       this._store.dispatch(new Searching())
+      /**Dispatch the FilterBlogs action and pass the searchText and The blogs to filter from*/
       this._store.dispatch(new FilterBlogs({searchText: searchText, blogs: blogs }))
     });
   }
