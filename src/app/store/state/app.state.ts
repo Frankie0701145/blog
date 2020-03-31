@@ -4,6 +4,7 @@ import {ICommentsState, initialCommentsState} from './comments.state'
 import {ILoggedInState, initialLoggedInState} from './loggedIn.state'
 import {INewBlogsState,initialINewBlogsState} from './newBlog.state'
 import { INewCommentsState, initialINewCommentsState } from './newComment.state'
+import { IIsSearchingState, initialIsSearchingState} from './isSearching.state'
 
 export interface IAppState {
     errors: IErrorMessagesState,
@@ -11,7 +12,8 @@ export interface IAppState {
     comments: ICommentsState,
     loggedIn: ILoggedInState,
     newBlogs: INewBlogsState,
-    newComments: INewCommentsState
+    newComments: INewCommentsState,
+    isSearching: IIsSearchingState
 }
 
 export const InitialAppState: IAppState = {
@@ -20,5 +22,6 @@ export const InitialAppState: IAppState = {
     comments: initialCommentsState,
     loggedIn: initialLoggedInState,
     newBlogs: initialINewBlogsState,
-    newComments: initialINewCommentsState
+    newComments: initialINewCommentsState,
+    isSearching: initialIsSearchingState
 }

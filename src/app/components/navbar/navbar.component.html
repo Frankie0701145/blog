@@ -5,20 +5,23 @@
 
 
 
-            <div class="">
+            <div class="" *ngIf="!searching">
                 <a class=''><img src='assets/images/soko.png'></a>
             </div>
-            
-            <div class="bd-highlight  d-flex ">
 
+            <div class='row' id="searchWrapper" *ngIf="searching">
+              <!-- <div class="container"> -->
+                <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search By Title" aria-label="Search" (change)="search($event)">
+                <button mat-mini-fab class=" border" (click)="closeSearch()">X</button>
+              <!-- </div> -->
+             
+            </div>
+            
+            <div class="bd-highlight  d-flex " *ngIf="!searching">
               <div class='d-flex flex-wrap'>
 
-                  <div class='d-none'>
-                    <input mat-input placeholder='Search for Blog d-none'/>
-                  </div>
-
                   <div>
-                    <a mat-button>
+                    <a mat-button (click)="openSearch()">
                       <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
                     </a>
                   </div>
@@ -31,8 +34,6 @@
                   </div>
 
               </div>
-
-
               <div class='d-none d-md-block d-lg-block '>
                   <a mat-button [routerLink]="'/blogs'">  
                     Blogs

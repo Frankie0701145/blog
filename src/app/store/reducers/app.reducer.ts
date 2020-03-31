@@ -13,6 +13,7 @@ import {loginReducer} from './login.reducers'
 import {IAppState} from '../state/app.state';
 import { newBlogReducer } from './newBlog.reducer';
 import { newCommentReducer } from './newComment.reducer';
+import {isSearchingReducer} from './isSearching.reducer'
 
 //errors, personnel, successMessages, loggedIn
 
@@ -22,7 +23,8 @@ export const appReducers: ActionReducerMap<IAppState> = {
     errors: errorsReducer,
     loggedIn: loginReducer,
     newBlogs: newBlogReducer,
-    newComments: newCommentReducer
+    newComments: newCommentReducer,
+    isSearching: isSearchingReducer
 };
 
 
