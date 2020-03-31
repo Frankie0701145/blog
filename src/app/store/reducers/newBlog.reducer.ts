@@ -1,4 +1,4 @@
-import { initialINewBlogsState, INewBlogsState } from '../state/new.state';
+import { initialINewBlogsState, INewBlogsState } from '../state/newBlog.state';
 import { NewBlogActions, ENewBlogActions } from '../actions/newBlog.actions';
 
 // }

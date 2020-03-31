@@ -2,7 +2,7 @@ import {IErrorMessagesState, initialErrorMessageState} from './errors.state'
 import {IBlogsState, initialIBlogsState} from './blogs.state'
 import {ICommentsState, initialCommentsState} from './comments.state'
 import {ILoggedInState, initialLoggedInState} from './loggedIn.state'
-import {INewBlogsState,initialINewBlogsState} from './new.state'
+import {INewBlogsState,initialINewBlogsState} from './newBlog.state'
 
 export interface IAppState {
     errors: IErrorMessagesState,

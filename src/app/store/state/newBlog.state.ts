@@ -1,4 +1,3 @@
-
 import {IBlog} from '../../models/blog.interface'
 
 export interface INewBlogsState {
