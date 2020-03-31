@@ -1,4 +1,4 @@
-
+/**Definition of the Blog entity*/
 
 export interface IBlog {
     id: string

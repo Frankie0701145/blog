@@ -1,4 +1,4 @@
-
+/**Definition of the Properties For Blog that can be edited*/
 
 export interface IBlogEditProperty {
     id?: string
