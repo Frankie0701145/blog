@@ -9,6 +9,7 @@ import { selectNewBlogList } from 'src/app/store/selectors/newBlog.selector';
 import {selectFilteredBlogList } from 'src/app/store/selectors/filteredBlogs.selector'
 import {  RemoveComments } from 'src/app/store/actions/comment.actions';
 import { selectIsSearching } from 'src/app/store/selectors/isSearching.selector';
+import { selectLoggedIn } from 'src/app/store/selectors/loggedIn.selector';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class BlogsComponent implements OnInit {
   newBlogs$ = this._store.pipe(select(selectNewBlogList));
   filteredBlog$ = this._store.pipe(select(selectFilteredBlogList ))
   isSearching: boolean;
+  loggedIn: boolean;
   constructor(
     private dialog: MatDialog,
     private _store: Store<IAppState>
@@ -28,6 +30,9 @@ export class BlogsComponent implements OnInit {
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
       console.log(isSearching)
       this.isSearching = isSearching
+    })
+    this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
+      this.loggedIn = loggedIn
     })
   }
 

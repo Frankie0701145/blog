@@ -36,7 +36,7 @@
                   </p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button (click)='openCommentDialog(newBlog.id)'>
+                    <button mat-button (click)='openCommentDialog(newBlog.id)' id="commentBtn">
                       <mat-icon>comment</mat-icon> {{newBlog.commentNo}}
                     </button>
                 </mat-card-actions>
@@ -45,7 +45,7 @@
             <!-- For Displaying Regular Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of blogs$ | async" >
                 <mat-card-header>
-                    <a [routerLink]="['/blogs', blog.id, 'edit']"> 
+                    <a [routerLink]="['/blogs', blog.id, 'edit']" id="editIcon" *ngIf="loggedIn"> 
                         <mat-icon>edit</mat-icon> 
                     </a>
                     <mat-card-title>{{blog.title}}</mat-card-title>  
