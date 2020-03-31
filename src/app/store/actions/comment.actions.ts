@@ -1,6 +1,5 @@
 /**The Comment Action*/
 import { Action } from '@ngrx/store';
-import {IErrorMessage} from '../../models/errorMessage.interface';
 import {ISuccessMessage} from '../../models/successMessage.interface';
 import {IComment} from '../../models/comment.interface';
 
