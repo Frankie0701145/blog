@@ -16,9 +16,10 @@ import { Searching, StopSearching } from 'src/app/store/actions/isSearching.acti
 export class NavbarComponent implements OnInit {
   loggedIn: boolean
   searching: boolean
+  showSearchBtn: boolean
   constructor(
     private _store: Store<IAppState>,
-    private route: Router
+    private router: Router
   ) {
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
         this.loggedIn =loggedIn;
@@ -26,16 +27,17 @@ export class NavbarComponent implements OnInit {
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
         this.searching = isSearching
     })
+ 
   }
 
   ngOnInit() {
   }
   logout(){
     this._store.dispatch(new LogoutSuccess())
-    this.route.navigate(['/blogs'])
+    this.router.navigate(['/blogs'])
   }
   closeSearch(){
-    // this.searching = !this.searching;
+    this.searching = !this.searching;
     this._store.dispatch(new StopSearching())
     this._store.dispatch(new RemoveFilteredBlogs())
   }
