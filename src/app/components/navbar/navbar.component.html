@@ -1,30 +1,27 @@
  
-    <div class='shadow'>
+    <div>
       <div class='container-lg  align-items-center'>
         <div class="d-flex flex-row p-4 justify-content-between  align-items-center p-1" id="navWrapper">
-
-
-
+            <!-- The company logo -->
             <div class="" *ngIf="!searching">
                 <a class=''><img src='assets/images/soko.png'></a>
             </div>
 
+            <!-- The search bar -->
             <div class='row' id="searchWrapper" *ngIf="searching">
-              <!-- <div class="container"> -->
                 <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search By Title" aria-label="Search" (change)="search($event)">
                 <button mat-mini-fab class=" border" (click)="closeSearch()">X</button>
-              <!-- </div> -->
-             
             </div>
             
             <div class="bd-highlight  d-flex " *ngIf="!searching">
               <div class='d-flex flex-wrap'>
-
+                  <!-- Open the search bar -->
                   <div>
                     <a mat-button (click)="openSearch()">
                       <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
                     </a>
                   </div>
+                  <!-- Display in small screens -->
                   <div class='d-sm-block d-md-none d-lg-none '>
                     <a mat-button class='' (click)="sidenav.toggle()">
                         <mat-icon >
@@ -32,17 +29,16 @@
                         </mat-icon>
                     </a>
                   </div>
-
               </div>
+
               <div class='d-none d-md-block d-lg-block '>
                   <a mat-button [routerLink]="'/blogs'">  
                     Blogs
                   </a>
-  
+                  <!-- Display the login or the Add Blogs and Logout links -->
                   <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut'>
                     Login
                   </a>
-    
                   <ng-template #loggedOut>
                       <a mat-button [routerLink]="'/add_blog'">  
                         Add Blogs
@@ -52,14 +48,12 @@
                       </a>
                   </ng-template>
               </div>
-
             </div>
-
         </div>
       </div>
     </div>
   
-  
+    <!-- The side nav -->
     <mat-sidenav-container>  
       
       <mat-sidenav #sidenav  mode='over' class='bg-light' opened='false' autoFocus='true'>
@@ -86,6 +80,7 @@
       </mat-sidenav>
   
       <mat-sidenav-content id="content"> 
+        <!-- The main content -->
         <router-outlet></router-outlet>
       </mat-sidenav-content> 
     </mat-sidenav-container>
