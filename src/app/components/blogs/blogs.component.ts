@@ -6,8 +6,10 @@ import { Store, select } from '@ngrx/store';
 import { GetBlogs } from 'src/app/store/actions/blog.actions';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { selectNewBlogList } from 'src/app/store/selectors/newBlog.selector';
-import { GetComments, RemoveComments } from 'src/app/store/actions/comment.actions';
-import { selectCommentList } from 'src/app/store/selectors/comment.selector';
+import {selectFilteredBlogList } from 'src/app/store/selectors/filteredBlogs.selector'
+import {  RemoveComments } from 'src/app/store/actions/comment.actions';
+import { selectIsSearching } from 'src/app/store/selectors/isSearching.selector';
+
 
 @Component({
   selector: 'app-blogs',
@@ -17,14 +19,21 @@ import { selectCommentList } from 'src/app/store/selectors/comment.selector';
 export class BlogsComponent implements OnInit {
   blogs$ = this._store.pipe(select(selectBlogList));
   newBlogs$ = this._store.pipe(select(selectNewBlogList));
-  
+  filteredBlog$ = this._store.pipe(select(selectFilteredBlogList ))
+  isSearching: boolean;
   constructor(
     private dialog: MatDialog,
     private _store: Store<IAppState>
-  ) {}
+  ) {
+    this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
+      console.log(isSearching)
+      this.isSearching = isSearching
+    })
+  }
 
   ngOnInit() {
     this._store.dispatch(new GetBlogs());
+ 
   }
 
   openCommentDialog(blogId: string){

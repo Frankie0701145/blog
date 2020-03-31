@@ -5,6 +5,7 @@ import {ILoggedInState, initialLoggedInState} from './loggedIn.state'
 import {INewBlogsState,initialINewBlogsState} from './newBlog.state'
 import { INewCommentsState, initialINewCommentsState } from './newComment.state'
 import { IIsSearchingState, initialIsSearchingState} from './isSearching.state'
+import { IFilteredBlogsState,initialFilteredBlogsState } from './filteredBlogs.state'
 
 export interface IAppState {
     errors: IErrorMessagesState,
@@ -13,7 +14,8 @@ export interface IAppState {
     loggedIn: ILoggedInState,
     newBlogs: INewBlogsState,
     newComments: INewCommentsState,
-    isSearching: IIsSearchingState
+    isSearching: IIsSearchingState,
+    filteredBlogs: IFilteredBlogsState
 }
 
 export const InitialAppState: IAppState = {
@@ -23,5 +25,6 @@ export const InitialAppState: IAppState = {
     loggedIn: initialLoggedInState,
     newBlogs: initialINewBlogsState,
     newComments: initialINewCommentsState,
-    isSearching: initialIsSearchingState
+    isSearching: initialIsSearchingState,
+    filteredBlogs: initialFilteredBlogsState
 }

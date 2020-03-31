@@ -14,6 +14,7 @@ import {IAppState} from '../state/app.state';
 import { newBlogReducer } from './newBlog.reducer';
 import { newCommentReducer } from './newComment.reducer';
 import {isSearchingReducer} from './isSearching.reducer'
+import { filterBlogsReducer } from './filteredBlogs.reducer';
 
 //errors, personnel, successMessages, loggedIn
 
@@ -24,7 +25,8 @@ export const appReducers: ActionReducerMap<IAppState> = {
     loggedIn: loginReducer,
     newBlogs: newBlogReducer,
     newComments: newCommentReducer,
-    isSearching: isSearchingReducer
+    isSearching: isSearchingReducer,
+    filteredBlogs: filterBlogsReducer 
 };
 
 

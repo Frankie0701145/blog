@@ -2,40 +2,63 @@
 
 <div class="container mt-3">
 
-    <div class="row ">
-        <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let newBlog of newBlogs$  | async">
-            <mat-card-header>
-                <mat-card-title>{{newBlog.title}}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src={{newBlog.photoUrl}} alt="Photo of a Shiba Inu"/>
-            <mat-card-content>
-              <p>
-                  {{newBlog.body}}
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button (click)='openCommentDialog(newBlog.id)'>
-                  <mat-icon>comment</mat-icon> {{newBlog.commentNo}}
-                </button>
-            </mat-card-actions>
-        </mat-card>
-      
-        <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of blogs$ | async">
-            <mat-card-header>
-                <mat-card-title>{{blog.title}}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src={{blog.photoUrl}} alt="Photo of a Shiba Inu"/>
-            <mat-card-content>
-              <p>
-                  {{blog.body}}
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button (click)='openCommentDialog(blog.id)'>
-                  <mat-icon>comment</mat-icon> {{blog.commentNo}}
-                </button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+    <div class="row">   
+         <div *ngIf="isSearching">
+           
+            <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of filteredBlog$ | async" >
+                <mat-card-header>
+                    <mat-card-title>{{blog.title}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src={{blog.photoUrl}} alt="Photo of a Shiba Inu"/>
+                <mat-card-content>
+                <p>
+                    {{blog.body}}
+                </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)='openCommentDialog(blog.id)'>
+                    <mat-icon>comment</mat-icon> {{blog.commentNo}}
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>   
 
+        <div *ngIf="!isSearching">
+            <!-- For Displaying New Blogs -->
+            <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let newBlog of newBlogs$  | async" >
+                <mat-card-header>
+                    <mat-card-title>{{newBlog.title}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src={{newBlog.photoUrl}} alt="Photo of a Shiba Inu"/>
+                <mat-card-content>
+                  <p>
+                      {{newBlog.body}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)='openCommentDialog(newBlog.id)'>
+                      <mat-icon>comment</mat-icon> {{newBlog.commentNo}}
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+    
+            <!-- For Displaying Regular Blogs -->
+            <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of blogs$ | async" >
+                <mat-card-header>
+                    <mat-card-title>{{blog.title}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src={{blog.photoUrl}} alt="Photo of a Shiba Inu"/>
+                <mat-card-content>
+                  <p>
+                      {{blog.body}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)='openCommentDialog(blog.id)'>
+                      <mat-icon>comment</mat-icon> {{blog.commentNo}}
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
 </div>

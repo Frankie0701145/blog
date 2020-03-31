@@ -5,6 +5,9 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { LogoutSuccess } from 'src/app/store/actions/loggedIn.actions';
 import {Router} from '@angular/router'
+import { FilterBlogs } from 'src/app/store/actions/filteredBlogs.action';
+import { selectBlogList } from 'src/app/store/selectors/blog.selector';
+import { Searching } from 'src/app/store/actions/isSearching.actions';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -40,6 +43,10 @@ export class NavbarComponent implements OnInit {
   search(e){
     let searchText:  string = e.target.value;
     console.log(searchText)
+    this._store.pipe(select(selectBlogList)).subscribe((blogs)=>{
+      this._store.dispatch(new Searching())
+      this._store.dispatch(new FilterBlogs({searchText: searchText, blogs: blogs }))
+    });
   }
 
 }
