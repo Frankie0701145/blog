@@ -22,13 +22,15 @@ export const blogsReducer = (
             console.log("Editing")
             let blogId: string = action.payload.blogId;
             let toEditProperty = action.payload.blogProperty
-            let toEditBlogs = {...state.blogs};
+            let toEditBlogs = [...state.blogs];
+            console.log(toEditBlogs)
             let newBlogs = toEditBlogs.map((blog)=>{
                 if(blog.id === blogId){
                     return {...blog, toEditProperty}
                 }
                 return blog
             })
+            
             return {
                 ...state,
                 blogs: newBlogs

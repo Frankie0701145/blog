@@ -28,13 +28,13 @@ export class BlogEffects{
         switchMap((blogHttp: IBlog)=>{
             return of(new AddNewBlog(blogHttp))
         }),
-        tap(()=>this.route.navigate(['/blogs']))
+        tap(()=>this.router.navigate(['/blogs']))
     )
 
     constructor(
         private _blogService: BlogService,
         private _action$: Actions,
         private _store: Store<IAppState>,
-        private route: Router
+        private router: Router
     ){}
 }

@@ -8,7 +8,8 @@ import {
   MatInputModule,
   MatListModule,
   MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressSpinnerModule
 } from '@angular/material'
 
 
@@ -22,7 +23,8 @@ import {
     MatInputModule,
     MatListModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AngularMaterialModule { }
