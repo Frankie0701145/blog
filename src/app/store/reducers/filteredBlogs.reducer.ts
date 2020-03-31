@@ -8,21 +8,26 @@ export const filterBlogsReducer = (
     switch(action.type){
         case EFilteredBlogActions.SearchBlogs:
         
-        let blogs = action.payload.blogs
-        let searchText = action.payload.searchText
-        console.log(state)
+                let blogs = action.payload.blogs
+                let searchText = action.payload.searchText
+                console.log(state)
 
-        let filteredBlogs = blogs.filter((blog)=>{
-            let titleRegx =  new RegExp(searchText, 'i');
-            let result = titleRegx.test(blog.title);
-            return result
-        })
-        console.log("Filtering")
-        console.log(filteredBlogs)
-        return {
-            ...state,
-            filteredBlogs
-        }
+                let filteredBlogs = blogs.filter((blog)=>{
+                    let titleRegx =  new RegExp(searchText, 'i');
+                    let result = titleRegx.test(blog.title);
+                    return result
+                })
+                console.log("Filtering")
+                console.log(filteredBlogs)
+                return {
+                    ...state,
+                    filteredBlogs
+                }
+        case EFilteredBlogActions.RemoveFilteredBlogs:
+            return{
+                ...state,
+                filteredBlogs: []
+            }
         default:
             return state;
     }

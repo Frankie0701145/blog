@@ -5,9 +5,9 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { LogoutSuccess } from 'src/app/store/actions/loggedIn.actions';
 import {Router} from '@angular/router'
-import { FilterBlogs } from 'src/app/store/actions/filteredBlogs.action';
+import { FilterBlogs, RemoveFilteredBlogs } from 'src/app/store/actions/filteredBlogs.action';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
-import { Searching } from 'src/app/store/actions/isSearching.actions';
+import { Searching, StopSearching } from 'src/app/store/actions/isSearching.actions';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -35,7 +35,9 @@ export class NavbarComponent implements OnInit {
     this.route.navigate(['/blogs'])
   }
   closeSearch(){
-    this.searching = !this.searching;
+    // this.searching = !this.searching;
+    this._store.dispatch(new StopSearching())
+    this._store.dispatch(new RemoveFilteredBlogs())
   }
   openSearch(){
     this.searching = !this.searching
