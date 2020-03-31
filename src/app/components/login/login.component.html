@@ -7,38 +7,39 @@
         </div>
         <div id="right" class="col-sm-12 col-lg-6">
             <div id="formWrapper" class=" container">
-
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-                <div class="row pb-4">
-                    <span class="offset-5">Login to proceed</span>
-                </div>
-
-                <div class=" row pb-4">
-                    <mat-icon class="icon offset-2">email</mat-icon>
-                    <mat-form-field appearance="legacy" class="col-8">  
-                        <mat-label class="">Email</mat-label>
-                        <input matInput placeholder="Email" formControlName="email" required>   
-                        
-                    </mat-form-field>
-                </div>
-                <div class="row pb-4">
-                    <mat-icon class="icon offset-2">https</mat-icon>
-                    <mat-form-field appearance="legacy" class="col-8">
-                        <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                        <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </a>
-                    </mat-form-field>
-                </div>
-
-                <div class="row ">
-                    <div class="col-8" id="submitBtnWrapper">
-                        <button class="btn  btn-lg btn-block" id="loginBtn">Submit</button>
+                <!-- The form -->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                    <div class="row pb-4">
+                        <span class="offset-5">Login to proceed</span>
                     </div>
-                   
-                </div>
-            </form>
+
+                    <div class=" row pb-4">
+                        <mat-icon class="icon offset-2">email</mat-icon>
+                        <mat-form-field appearance="legacy" class="col-8">  
+                            <mat-label class="">Email</mat-label>
+                            <input matInput placeholder="Email" formControlName="email" required>   
+                            
+                        </mat-form-field>
+                    </div>
+                    <div class="row pb-4">
+                        <mat-icon class="icon offset-2">https</mat-icon>
+                        <mat-form-field appearance="legacy" class="col-8">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <!-- Toggling of the visibility of the password using the hide property -->
+                            <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </a>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-8" id="submitBtnWrapper">
+                            <button class="btn  btn-lg btn-block" id="loginBtn">Submit</button>
+                        </div>
+                    
+                    </div>
+                </form>
             </div>
         </div>
         
