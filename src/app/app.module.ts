@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {appReducers} from './store/reducers/app.reducer';
 import {BlogEffects} from './store/effects/blog.effects';
 import { CommentEffects } from './store/effects/comment.effects';
+import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CommentEffects } from './store/effects/comment.effects';
     LoginComponent,
     AddBlogComponent,
     BlogsComponent,
-    CommentsComponent
+    CommentsComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,
