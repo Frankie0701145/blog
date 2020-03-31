@@ -1,21 +1,25 @@
 
-<div mat-dialog-content id="blogContent">
+<div mat-dialog-content id="blogContent" >
 
-    <div class="row" *ngFor="let comment of comments$ | async">
-        <p class="col-12 border">
+    <div class="row border-top" *ngFor="let comment of comments$ | async">
+        <p class="col-12 ">
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
         </p>
     </div>
 </div>
 
-<div mat-dialog-actions class="border-bottom" id="action">
-  <mat-form-field class="col">
-    <mat-label>Comment</mat-label>
-    <input matInput >
-  </mat-form-field>
-  <button mat-button cdkFocusInitial (click)="save()">
-    Save
-  </button>
+<div mat-dialog-actions class="border-top" id="action">
+    <mat-form-field class="col-12 matFormInput">
+      <mat-label>Name</mat-label>
+      <input matInput >
+    </mat-form-field>
+    <mat-form-field class="col-12 matFormInput">
+      <mat-label>Comment</mat-label>
+      <input matInput >
+    </mat-form-field>
+    <button mat-button cdkFocusInitial (click)="save()" id="saveBtn">
+      Save
+    </button>
 
 </div>
