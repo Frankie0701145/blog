@@ -8,9 +8,10 @@ import { HttpClient } from '@angular/common/http';
 export class CommentService {
   Url: string= "https://my-json-server.typicode.com/Frankie0701145/blog-data/comments"
   constructor(
+    /**inject the HttpClient*/
     private http: HttpClient
   ) { }
-
+  /**fetch comments */
   fetchComments(blogId: string): Observable<Object>{
       return this.http.get(this.Url)
   }
