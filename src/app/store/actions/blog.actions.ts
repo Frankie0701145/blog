@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import {IBlog} from '../../models/blog.interface';
+import { IBlogEditProperty } from 'src/app/models/editBlog.interface';
 // import {IErrorMessage} from '../../models/errorMessage.interface';
 // import {ISuccessMessage} from '../../models/successMessage.interface'
 
@@ -9,7 +10,8 @@ export enum EBlogActions {
     GetBlogsError = '[Blogs] Get Blogs Error',
     CreateBlog = '[Add Blog] Create Blog',
     CreateBlogSuccess = '[Add Blog] Create Blog Success',
-    CreateBlogError = '[Add Blog] Create Blog Error'
+    CreateBlogError = '[Add Blog] Create Blog Error',
+    EditBlog = '[Blogs] Edit Blog'
 }
 
 //Get Blogs
@@ -21,10 +23,6 @@ export class GetBlogsSuccess implements Action {
     public readonly type = EBlogActions.GetBlogsSuccess
     constructor(public payload: IBlog[]){}
 }
-// export class GetBlogsError implements Action {
-//     public readonly type = EBlogActions.GetBlogsError
-//     constructor(public payload: IErrorMessage){}
-// }
 
 //Create Blog
 export class CreateBlog implements Action {
@@ -35,10 +33,13 @@ export class CreateBlogSuccess implements Action {
     public readonly type = EBlogActions.CreateBlogSuccess
     constructor(public payload: IBlog){}
 }
-// export class CreateBlogError implements Action {
-//     public readonly type = EBlogActions.CreateBlogError
-//     constructor(public payload: IErrorMessage){}
-// }
 
-export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess;
+//Edit Blog
+export class EditBlogSuccess implements Action {
+    public readonly type = EBlogActions.EditBlog
+    constructor( public payload: {blogId: string, blogProperty: IBlogEditProperty}){}
+}
+
+
+export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess | EditBlogSuccess;
 
