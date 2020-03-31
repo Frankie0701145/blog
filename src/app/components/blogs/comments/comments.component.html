@@ -1,25 +1,40 @@
 
-<div mat-dialog-content id="blogContent" >
+<div mat-dialog-content id="commentContent" >
 
-    <div class="row border-top" *ngFor="let comment of comments$ | async">
-        <p class="col-12 ">
+    <div class="row border-top" *ngFor="let comment of comments$ | async; last as isLast">
+        <p class="col-12" id="commentBody" *ngIf="isLast" cdk-focus-initial>
+          <span id="name">{{comment.name}}</span>
+          {{comment.body}}
+          last
+        </p>
+       
+        <p class="col-12" id="commentBody" *ngIf="!isLast">
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
         </p>
     </div>
+    <div class="row border-top" *ngFor="let newComment of newComments$ | async" >
+      <p class="col-12" id="commentBody">
+        <span id="name">{{newComment.name}}</span>
+        {{newComment.body}}
+      </p>
+    </div>
 </div>
 
 <div mat-dialog-actions class="border-top" id="action">
-    <mat-form-field class="col-12 matFormInput">
-      <mat-label>Name</mat-label>
-      <input matInput >
-    </mat-form-field>
-    <mat-form-field class="col-12 matFormInput">
-      <mat-label>Comment</mat-label>
-      <input matInput >
-    </mat-form-field>
-    <button mat-button cdkFocusInitial (click)="save()" id="saveBtn">
-      Save
-    </button>
+
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm.value)" >
+          <mat-form-field class="col-12 matFormInput" >
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" type="text" required>
+          </mat-form-field>
+          <mat-form-field class="col-12 matFormInput">
+            <mat-label>Comment</mat-label>
+            <input matInput formControlName="comment" type="text" required maxlength="20">
+          </mat-form-field>
+          <button mat-button cdkFocusInitial id="saveBtn" tabindex="-1">
+            Save
+          </button>
+    </form>
 
 </div>

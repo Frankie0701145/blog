@@ -1,7 +1,8 @@
 
 
 export interface IComment {
-    userName: string,
+    name: string,
     blogId: string,
-    body: string
+    body: string,
+    id: string
 }

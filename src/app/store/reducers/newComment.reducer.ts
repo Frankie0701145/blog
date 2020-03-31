@@ -9,9 +9,7 @@ export const newCommentReducer = (
     
     switch(action.type){
         case ENewCommentActions.AddNewComment:
-
-            let newState = {...state, newBlogs: [action.payload,...state.newComment]};
-            console.log(newState)
+            let newState = {...state, newComments: [...state.newComments, action.payload]};
             return newState
         default:
             return state
