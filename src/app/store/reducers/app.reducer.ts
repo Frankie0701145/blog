@@ -12,6 +12,7 @@ import { errorsReducer } from './errors.reducer';
 import {loginReducer} from './login.reducers'
 import {IAppState} from '../state/app.state';
 import { newBlogReducer } from './newBlog.reducer';
+import { newCommentReducer } from './newComment.reducer';
 
 //errors, personnel, successMessages, loggedIn
 
@@ -20,7 +21,8 @@ export const appReducers: ActionReducerMap<IAppState> = {
     comments: commentsReducer,
     errors: errorsReducer,
     loggedIn: loginReducer,
-    newBlogs: newBlogReducer
+    newBlogs: newBlogReducer,
+    newComments: newCommentReducer
 };
 
 

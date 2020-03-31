@@ -9,3 +9,5 @@ export class AddNewComment implements Action {
     public readonly type = ENewCommentActions.AddNewComment
     constructor(public payload: IComment){}
 }
+
+export type NewCommentActions = AddNewComment
