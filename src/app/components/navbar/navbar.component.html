@@ -1,7 +1,8 @@
  
-    <div>
-      <div class='container-lg  align-items-center'>
-        <div class="d-flex flex-row p-4 justify-content-between  align-items-center p-1" id="navWrapper">
+  <div id="overallWrapper ">  
+    <div class="row bg-highlight" id="navContainer" id="navWrapper">
+      <div class='container-lg  align-items-center ' >
+        <div class="d-flex flex-row p-4 justify-content-between  align-items-center p-1"  >
             <!-- The company logo -->
             <div class="" *ngIf="!searching">
                 <a class=''><img src='assets/images/soko.png'></a>
@@ -52,11 +53,10 @@
         </div>
       </div>
     </div>
-  
     <!-- The side nav -->
     <mat-sidenav-container>  
       
-      <mat-sidenav #sidenav  mode='over' class='bg-light' opened='false' autoFocus='true'>
+      <mat-sidenav #sidenav  mode='over' class='bg-light' opened='false' autoFocus='true' id="sideNav">
         <div class="d-flex flex-row justify-content-end">
             <a mat-button (click)="sidenav.toggle()"><mat-icon>keyboard_backspace</mat-icon></a>
         </div>
@@ -84,6 +84,6 @@
         <router-outlet></router-outlet>
       </mat-sidenav-content> 
     </mat-sidenav-container>
-
+  </div>
 
 
