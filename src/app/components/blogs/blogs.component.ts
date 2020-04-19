@@ -3,7 +3,6 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import { CommentsComponent } from './comments/comments.component';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
-import { GetBlogs } from 'src/app/store/actions/blog.actions';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { selectNewBlogList } from 'src/app/store/selectors/newBlog.selector';
 import {selectFilteredBlogList } from 'src/app/store/selectors/filteredBlogs.selector'
@@ -48,8 +47,6 @@ export class BlogsComponent implements OnInit {
   }
 
   ngOnInit() {
-    /**dispatch the GeBlogs action to fetch blogs*/
-    this._store.dispatch(new GetBlogs());
  
   }
   
