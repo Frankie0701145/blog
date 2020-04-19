@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { CreateBlogSuccess } from 'src/app/store/actions/blog.actions';
+import { CreateBlog } from 'src/app/store/actions/blog.actions';
 import { IAppState } from 'src/app/store/state/app.state';
 
 @Component({
@@ -70,7 +70,7 @@ export class AddBlogComponent implements OnInit {
       commentNo: 4
     }
     /**dispatch the createBlog action*/
-    this._store.dispatch(new CreateBlogSuccess(data));
+    this._store.dispatch(new CreateBlog(data));
   }
 
 }
