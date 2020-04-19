@@ -57,8 +57,6 @@ export class EditBlogComponent implements OnInit {
   }
 
   ngOnInit() {
-    /**fetch the blogs*/
-    this._store.dispatch(new GetBlogs());
 
     /**select the blogs from the state*/
     this._store.pipe(select(selectBlogList)).subscribe((blogs)=>{
