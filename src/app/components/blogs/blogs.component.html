@@ -6,15 +6,16 @@
          <div *ngIf="isSearching">
             <!-- For displaying Filtered Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of filteredBlog$ | async" >
-                <mat-card-header>
-                    <div class="col-9">
-                        <mat-card-title>{{blog.title}}</mat-card-title> 
-                    </div>
-                    <div class="col-2">
-                        <a [routerLink]="['/blogs', blog.id, 'edit']" id="editIcon" *ngIf="loggedIn"> 
-                            <mat-icon>edit</mat-icon> 
+                <mat-card-header class="row">
+                    <div class="col-1 offset-11">
+                        <a [routerLink]="['/blogs', blog.id, 'edit']" *ngIf="loggedIn" class="editIconLink"> 
+                            <mat-icon class="editIcon">edit</mat-icon> 
                         </a>
                     </div>
+                    <hr>
+                    <div class="col-12">
+                        <mat-card-title>{{blog.title}}</mat-card-title> 
+                    </div>  
                 </mat-card-header>
                 <img mat-card-image src={{blog.photoUrl}} alt="Photo of a Shiba Inu"/>
                 <mat-card-content>
@@ -33,17 +34,16 @@
         <div *ngIf="!isSearching">
             <!-- For Displaying Regular Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of blogs$ | async" >
-                <mat-card-header>
-                    <div class="col-9">
-                        <mat-card-title>{{blog.title}}</mat-card-title> 
-                    </div>
-                    <div class="col-2">
-                        <a [routerLink]="['/blogs', blog.id, 'edit']" id="editIcon" *ngIf="loggedIn"> 
-                            <mat-icon>edit</mat-icon> 
+                <mat-card-header class="row">
+                    <div class="col-1 offset-11" *ngIf="loggedIn">
+                        <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink"> 
+                            <mat-icon class="editIcon">edit</mat-icon> 
                         </a>
                     </div>
-                    
-                     
+                    <hr>
+                    <div class="col-12">
+                        <mat-card-title>{{blog.title}}</mat-card-title> 
+                    </div>     
                 </mat-card-header>
                 <img mat-card-image src={{blog.photoUrl}} alt="Photo of a Shiba Inu"/>
                 <mat-card-content>
