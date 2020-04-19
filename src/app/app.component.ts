@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { GetBlogs } from 'src/app/store/actions/blog.actions';
 import { IAppState } from './store/state/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @Component({
   selector: 'app-root',

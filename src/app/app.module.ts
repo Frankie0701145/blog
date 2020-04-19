@@ -18,6 +18,8 @@ import {appReducers} from './store/reducers/app.reducer';
 import {BlogEffects} from './store/effects/blog.effects';
 import { CommentEffects } from './store/effects/comment.effects';
 import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([BlogEffects,CommentEffects]),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
