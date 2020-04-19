@@ -10,7 +10,6 @@ import {blogsReducer} from './blogs.reducer';
 import { commentsReducer } from './comments.reducer';
 import {loginReducer} from './login.reducers'
 import {IAppState} from '../state/app.state';
-import { newBlogReducer } from './newBlog.reducer';
 import { newCommentReducer } from './newComment.reducer';
 import {isSearchingReducer} from './isSearching.reducer'
 import { filterBlogsReducer } from './filteredBlogs.reducer';
@@ -20,7 +19,6 @@ export const appReducers: ActionReducerMap<IAppState> = {
     blogs: blogsReducer,
     comments: commentsReducer,
     loggedIn: loginReducer,
-    newBlogs: newBlogReducer,
     newComments: newCommentReducer,
     isSearching: isSearchingReducer,
     filteredBlogs: filterBlogsReducer 
