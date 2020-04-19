@@ -82,7 +82,7 @@ export class EditBlogComponent implements OnInit {
     /**Dispatch the action EditBlogSuccess passing the payload of the property to edit with the blogId*/
     this._store.dispatch(new EditBlogSuccess({blogId: this.blogId, blogProperty: data}));
     /**navigate to the blogs*/
-    this.router.navigate(['/blogs'])
+    this.router.navigate(['/blogs']);
   }
 
 }

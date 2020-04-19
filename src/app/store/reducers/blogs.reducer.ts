@@ -22,19 +22,21 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
         case EBlogActions.EditBlog:
             /** Get the blogId from the passed payload*/
             let blogId: string = action.payload.blogId; 
+            console.log(blogId);
             /**Get the properties to edit from the payload*/
             let toEditProperties = action.payload.blogProperty
             /**Retrieve the blogs state to avoid manipulating the previous state*/
             let toEditBlogs = [...state.blogs];
             /** iterate the blogs and look for the blog with the passed blogId */
-            let newBlogs = toEditBlogs.map((blog)=>{
-                if(blog.id === blogId){
-                    /** If found change the properties of the blog and return the blog*/
-                    return {...blog, toEditProperties}
+            let newBlogs =  toEditBlogs.map((blog)=>{
+                //if I find the blog
+                if(blog.id == blogId){
+                    //edit the blog and return the new blog
+                    return{...blog,...toEditProperties};
                 }
-                /**otherwise return the blog unchanged*/
-                return blog
-            })
+                //if I don't find the blog
+                return blog;
+            });
             /**return the new state*/
             return {
                 ...state,
