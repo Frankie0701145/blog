@@ -51,22 +51,16 @@ export class AddBlogComponent implements OnInit {
     if (this.blogForm.invalid) {
       return;
     }
-    /**Dummy image data to display on the blog*/
-    let dummyImagesUrl: string[] = [
-      "https://lets-share.nyc3.digitaloceanspaces.com/chain-1812013_1280.jpg",
-      "https://lets-share.nyc3.digitaloceanspaces.com/girl-1868930_1280.jpg",
-      "https://lets-share.nyc3.digitaloceanspaces.com/wedding-rings-3611277_1280.jpg"
-    ]
     /**random number to pick a photo url from the url*/
     let randomNumber = Math.floor(Math.random() * 3 );
-    /**pick a random url*/
-    let photoUrl =  dummyImagesUrl[randomNumber];
+    /**Generate a random id*/
+    let generatedId: number = Math.floor(Math.random()*1000);
     /**form the data to send as payload*/
     let data = {
       title: blogData.title,
-      photoUrl: photoUrl,
+      photoUrl: this.previewUrl,
       body: blogData.body,
-      id: "10",
+      id: generatedId.toString(),
       commentNo: 4
     }
     /**dispatch the createBlog action*/
