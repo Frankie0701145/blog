@@ -4,7 +4,6 @@ import { CommentsComponent } from './comments/comments.component';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
-import { selectNewBlogList } from 'src/app/store/selectors/newBlog.selector';
 import {selectFilteredBlogList } from 'src/app/store/selectors/filteredBlogs.selector'
 import {  RemoveComments } from 'src/app/store/actions/comment.actions';
 import { selectIsSearching } from 'src/app/store/selectors/isSearching.selector';
@@ -21,8 +20,6 @@ import { IBlog } from 'src/app/models/blog.interface';
 export class BlogsComponent implements OnInit {
   /**The blogs observable to retrieve the blogs from the state*/ 
   blogs$: Observable<IBlog[]> = this._store.pipe(select(selectBlogList));
-  /**The newBlogs observable to retrieve the  newBlogs from the state*/
-  newBlogs$: Observable<IBlog[]> = this._store.pipe(select(selectNewBlogList));
   /**The filteredBlogs observable to retrieve the filteredBlogs from the state*/
   filteredBlog$: Observable<IBlog[]> = this._store.pipe(select(selectFilteredBlogList ))
   /**Property to keep track when the user is searching */
