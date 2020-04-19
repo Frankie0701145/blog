@@ -63,8 +63,10 @@ export class EditBlogComponent implements OnInit {
       /**retrieve the blog that match the blogId*/
       let blogsResult = blogs.filter((blog)=>blog.id==this.blogId)
       let blog = blogsResult[0]
+      // console.log(blog);
       /**Build the form */
       this.blogForm = this.formBuilder.group({...blog});
+      this.previewUrl = blog.photoUrl;
       /**Set the blog*/
       this.blog= blog;
     });
@@ -75,8 +77,10 @@ export class EditBlogComponent implements OnInit {
     /**Create the data*/
     let data = {
       title: formValue.title,
-      body: formValue.body
+      body: formValue.body,
+      photoUrl: this.previewUrl
     }
+    console.log(data);
     /**Dispatch the action EditBlogSuccess passing the payload of the property to edit with the blogId*/
     this._store.dispatch(new EditBlogSuccess({blogId: this.blogId, blogProperty: data}));
     /**navigate to the blogs*/
