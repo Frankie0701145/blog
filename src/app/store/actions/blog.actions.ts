@@ -45,6 +45,6 @@ export class EditBlogSuccess implements Action {
 }
 
 
-/** The Type for the BlockAction*/
+/** The Type for the BlogAction*/
 export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess | EditBlogSuccess;
 

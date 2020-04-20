@@ -13,6 +13,7 @@ import {IAppState} from '../state/app.state';
 import { newCommentReducer } from './newComment.reducer';
 import {isSearchingReducer} from './isSearching.reducer'
 import { filterBlogsReducer } from './filteredBlogs.reducer';
+import { loadingReducer } from './loading.reducer';
 
 /**combine all the reducers to one*/
 export const appReducers: ActionReducerMap<IAppState> = {
@@ -21,7 +22,8 @@ export const appReducers: ActionReducerMap<IAppState> = {
     loggedIn: loginReducer,
     newComments: newCommentReducer,
     isSearching: isSearchingReducer,
-    filteredBlogs: filterBlogsReducer 
+    filteredBlogs: filterBlogsReducer,
+    loading: loadingReducer
 };
 
 
