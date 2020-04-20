@@ -26,7 +26,6 @@ export class AddBlogComponent implements OnInit {
   ) { 
     /**select the loading state*/
     this._store.pipe(select(selectLoadingState)).subscribe((loading)=>{
-      console.log(loading);
       this.loading = loading;
     });
     

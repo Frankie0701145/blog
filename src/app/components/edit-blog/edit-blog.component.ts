@@ -4,7 +4,8 @@ import {FormBuilder} from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { GetBlogs, EditBlogSuccess } from 'src/app/store/actions/blog.actions';
+import { EditBlogSuccess } from 'src/app/store/actions/blog.actions';
+import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
 
 @Component({
   selector: 'app-edit-blog',
@@ -22,6 +23,8 @@ export class EditBlogComponent implements OnInit {
   blog;
   /**The blogId*/
   blogId: string;
+  /**select the loading state*/
+  loading: boolean; 
   
 
   constructor(
@@ -37,7 +40,11 @@ export class EditBlogComponent implements OnInit {
     /**subscribe to the paramMap and retrieve the id*/
     this.route.paramMap.subscribe((params: ParamMap)=>{
       this.blogId = "" +params.get('id')
-    })
+    });
+    /**select the loading state*/
+    this._store.pipe(select(selectLoadingState)).subscribe((loading)=>{
+      this.loading = loading;
+    });
 
   }
 
