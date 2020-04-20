@@ -8,6 +8,7 @@ import { GetBlogs, EBlogActions, GetBlogsSuccess, CreateBlogSuccess, CreateBlog 
 import { of } from 'rxjs';
 import { IBlog } from 'src/app/models/blog.interface';
 import {Router } from '@angular/router'
+import { StartLoading, StopLoading } from '../actions/loading.actions';
 
 @Injectable()
 export class BlogEffects{
@@ -25,12 +26,17 @@ export class BlogEffects{
     postBlogs$ = this._action$.pipe(
         ofType<CreateBlog>(EBlogActions.CreateBlog),
         map(action => action),
-        switchMap((action)=> this._blogService.postBlog(action.payload)),
+        switchMap((action)=>{
+            this._store.dispatch(new StartLoading());
+            return this._blogService.postBlog(action.payload);
+        }),
         switchMap((blogHttp: IBlog)=>{
-            console.log(blogHttp);
             return of(new CreateBlogSuccess(blogHttp))
         }),
-        tap(()=>this.router.navigate(['/blogs']))
+        tap(()=>{
+            this._store.dispatch(new StopLoading());
+            return this.router.navigate(['/blogs']);
+        })
     )
 
     constructor(

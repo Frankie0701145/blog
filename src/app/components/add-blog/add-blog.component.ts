@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { CreateBlog } from 'src/app/store/actions/blog.actions';
 import { IAppState } from 'src/app/store/state/app.state';
+import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
 
 @Component({
   selector: 'app-add-blog',
@@ -13,6 +14,7 @@ export class AddBlogComponent implements OnInit {
   fileData: File = null;
   previewUrl:any = null;/**to hold the url of the preview*/
   blogForm;  /**to hold the blog form*/
+  loading: boolean; /**select the loading state*/
 
   uploadedFilePath: string = null;
 
@@ -22,6 +24,12 @@ export class AddBlogComponent implements OnInit {
     /**inject the store*/
     private _store: Store<IAppState>
   ) { 
+    /**select the loading state*/
+    this._store.pipe(select(selectLoadingState)).subscribe((loading)=>{
+      console.log(loading);
+      this.loading = loading;
+    });
+    
     /**the form for the blog*/
     this.blogForm = this.formBuilder.group({
       title: "",
