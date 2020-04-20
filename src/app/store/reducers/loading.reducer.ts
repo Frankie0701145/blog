@@ -18,5 +18,10 @@ export function loadingReducer(
                 ...state,
                 loading: false
             }
+        default:
+            return {
+                ...state,
+                loading: false
+            }
     }
 }
