@@ -4,8 +4,8 @@ import {FormBuilder} from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { EditBlogSuccess } from 'src/app/store/actions/blog.actions';
 import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
+import { EditBlog } from 'src/app/store/actions/blog.actions';
 
 @Component({
   selector: 'app-edit-blog',
@@ -87,11 +87,8 @@ export class EditBlogComponent implements OnInit {
       body: formValue.body,
       photoUrl: this.previewUrl
     }
-    console.log(data);
     /**Dispatch the action EditBlogSuccess passing the payload of the property to edit with the blogId*/
-    this._store.dispatch(new EditBlogSuccess({blogId: this.blogId, blogProperty: data}));
-    /**navigate to the blogs*/
-    this.router.navigate(['/blogs']);
+    this._store.dispatch(new EditBlog({blogId: this.blogId, blogProperties: data}));
   }
 
 }

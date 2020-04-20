@@ -2,7 +2,7 @@
 
 import { Action } from '@ngrx/store';
 import {IBlog} from '../../models/blog.interface';
-import { IBlogEditProperty } from 'src/app/models/editBlog.interface';
+import { IBlogEditProperties } from 'src/app/models/editBlog.interface';
 
 /**The action constant for the blog actions*/
 export enum EBlogActions {
@@ -12,7 +12,8 @@ export enum EBlogActions {
     CreateBlog = '[Add Blog] Create Blog',
     CreateBlogSuccess = '[Add Blog] Create Blog Success',
     CreateBlogError = '[Add Blog] Create Blog Error',
-    EditBlog = '[Blogs] Edit Blog'
+    EditBlog = '[Blogs] Edit Blog',
+    EditBlogSuccess = '[Blogs] Edit Blog Success'
 }
 
 /**The GetBlogs Action */
@@ -38,10 +39,16 @@ export class CreateBlogSuccess implements Action {
     constructor(public payload: IBlog){}
 }
 
+/**Edit Blog Action*/
+export class EditBlog implements Action {
+    public readonly type = EBlogActions.EditBlog
+    constructor( public payload: {blogId: string, blogProperties: IBlogEditProperties}){}
+}
+
 /** The EditBlogSuccess Action*/
 export class EditBlogSuccess implements Action {
-    public readonly type = EBlogActions.EditBlog
-    constructor( public payload: {blogId: string, blogProperty: IBlogEditProperty}){}
+    public readonly type = EBlogActions.EditBlogSuccess
+    constructor( public payload: {blogId: string, blogProperties: IBlogEditProperties}){}
 }
 
 

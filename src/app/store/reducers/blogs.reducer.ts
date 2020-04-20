@@ -19,12 +19,13 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                     blogs: [action.payload,...state.blogs]
                 }
         /** For Editing a blog*/
-        case EBlogActions.EditBlog:
+        case EBlogActions.EditBlogSuccess:
             /** Get the blogId from the passed payload*/
             let blogId: string = action.payload.blogId; 
-            console.log(blogId);
             /**Get the properties to edit from the payload*/
-            let toEditProperties = action.payload.blogProperty
+            let toEditProperties = action.payload.blogProperties
+            console.log(toEditProperties);
+            console.log(blogId);
             /**Retrieve the blogs state to avoid manipulating the previous state*/
             let toEditBlogs = [...state.blogs];
             /** iterate the blogs and look for the blog with the passed blogId */
