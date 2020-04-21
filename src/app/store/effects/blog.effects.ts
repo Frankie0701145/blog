@@ -63,6 +63,7 @@ export class BlogEffects{
                     ...blogHttp
                 }
             }
+            this._store.dispatch(new AddSuccessMessage({message: 'Blog edited successful'}));
             return of(new EditBlogSuccess(payload))
         }),
         tap(()=>{

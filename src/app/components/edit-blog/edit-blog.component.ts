@@ -87,8 +87,12 @@ export class EditBlogComponent implements OnInit {
       body: formValue.body,
       photoUrl: this.previewUrl
     }
-    /**Dispatch the action EditBlogSuccess passing the payload of the property to edit with the blogId*/
+    /**Dispatch the action EditBlog(which is an effect), passing the payload of the property to edit with the blogId*/
+    /**Dispatching the effect of editing the blog*/
+    /**Commented out because it causes error if the user tries to edit a blog that has been created and persisted on the server */
     this._store.dispatch(new EditBlog({blogId: this.blogId, blogProperties: data}));
+    /**Dispatch the action EditBlogSuccess, passing the payload of the property to edit with the blogId*/
+    // this._store.dispatch(new EditBlog({blogId: this.blogId, blogProperties: data}));
   }
 
 }
