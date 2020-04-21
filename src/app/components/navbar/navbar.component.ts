@@ -4,10 +4,12 @@ import {selectIsSearching} from '../../store/selectors/isSearching.selector';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { LogoutSuccess } from 'src/app/store/actions/loggedIn.actions';
-import {Router} from '@angular/router'
+import {Router, NavigationEnd} from '@angular/router'
 import { FilterBlogs, RemoveFilteredBlogs } from 'src/app/store/actions/filteredBlogs.action';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { Searching, StopSearching } from 'src/app/store/actions/isSearching.actions';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,7 +18,7 @@ import { Searching, StopSearching } from 'src/app/store/actions/isSearching.acti
 export class NavbarComponent implements OnInit {
   loggedIn: boolean
   searching: boolean
-  showSearchBtn: boolean
+  showSearchBtn$: Observable<boolean>
   constructor(
     /**Inject the store*/
     private _store: Store<IAppState>,
@@ -31,7 +33,11 @@ export class NavbarComponent implements OnInit {
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
         this.searching = isSearching
     })
- 
+    /**Checks when the use visits the blogs route to show the search button*/
+    this.showSearchBtn$ = this.router.events.pipe(
+      filter((event)=> event instanceof NavigationEnd),
+      map((event)=> event['url'].endsWith('/blogs'))
+    );
   }
 
   ngOnInit() {

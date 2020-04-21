@@ -43,7 +43,6 @@ export class BlogsComponent implements OnInit {
   ) {
     /**Set the isSearching property to that of isSearching from the state*/
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
-      console.log(isSearching)
       this.isSearching = isSearching
     })
     /**Set the loggedIn property to that of the loggedIn from the state*/

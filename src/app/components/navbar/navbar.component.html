@@ -17,7 +17,7 @@
             <div class="bd-highlight  d-flex " *ngIf="!searching">
               <div class='d-flex flex-wrap'>
                   <!-- Open the search bar -->
-                  <div>
+                  <div *ngIf="showSearchBtn$ | async">
                     <a mat-button (click)="openSearch()">
                       <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
                     </a>
