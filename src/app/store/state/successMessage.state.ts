@@ -1,9 +1,9 @@
 import { ISuccessMessage } from 'src/app/models/successMessage.interface';
 
 export interface ISuccessMessageState {
-    successMessage: ISuccessMessage[]
+    successMessages: ISuccessMessage[]
 }
 
 export const initialSuccessMessageState: ISuccessMessageState = {
-    successMessage: []
+    successMessages: []
 }

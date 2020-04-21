@@ -3,9 +3,9 @@ import {createSelector} from '@ngrx/store';
 import { IAppState } from '../state/app.state';
 import {ISuccessMessageState} from '../state/successMessage.state'
 
-const selectSuccessMessage = (state: IAppState)=> state.successMessage
+const selectSuccessMessage = (state: IAppState)=> state.successMessages
 
 export const selectSuccessMessageList = createSelector(
     selectSuccessMessage,
-    (state: ISuccessMessageState)=> state.successMessage
+    (state: ISuccessMessageState)=> state.successMessages
 )

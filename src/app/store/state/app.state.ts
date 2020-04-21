@@ -16,7 +16,7 @@ export interface IAppState {
     isSearching: IIsSearchingState,
     filteredBlogs: IFilteredBlogsState,
     loading: ILoadingState,
-    successMessage: ISuccessMessageState
+    successMessages: ISuccessMessageState
 }
 
 export const InitialAppState: IAppState = {
@@ -27,5 +27,5 @@ export const InitialAppState: IAppState = {
     isSearching: initialIsSearchingState,
     filteredBlogs: initialFilteredBlogsState,
     loading: initialLoadingState,
-    successMessage: initialSuccessMessageState
+    successMessages: initialSuccessMessageState
 }
