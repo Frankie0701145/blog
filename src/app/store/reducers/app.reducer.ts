@@ -14,6 +14,7 @@ import { newCommentReducer } from './newComment.reducer';
 import {isSearchingReducer} from './isSearching.reducer'
 import { filterBlogsReducer } from './filteredBlogs.reducer';
 import { loadingReducer } from './loading.reducer';
+import {successMessageReducer} from './successMessage.reducer'
 
 /**combine all the reducers to one*/
 export const appReducers: ActionReducerMap<IAppState> = {
@@ -23,7 +24,8 @@ export const appReducers: ActionReducerMap<IAppState> = {
     newComments: newCommentReducer,
     isSearching: isSearchingReducer,
     filteredBlogs: filterBlogsReducer,
-    loading: loadingReducer
+    loading: loadingReducer,
+    successMessages: successMessageReducer
 };
 
 
