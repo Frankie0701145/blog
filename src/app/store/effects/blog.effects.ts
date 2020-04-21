@@ -12,6 +12,7 @@ import { IBlog } from 'src/app/models/blog.interface';
 import {Router } from '@angular/router'
 import { StartLoading, StopLoading } from '../actions/loading.actions';
 import { IBlogEditProperties } from 'src/app/models/editBlog.interface';
+import { AddSuccessMessage } from '../actions/successMessage.action';
 
 @Injectable()
 export class BlogEffects{
@@ -34,6 +35,7 @@ export class BlogEffects{
             return this._blogService.postBlog(action.payload);
         }),
         switchMap((blogHttp: IBlog)=>{
+            this._store.dispatch(new AddSuccessMessage({message: 'Blog created Successful'}));
             return of(new CreateBlogSuccess(blogHttp))
         }),
         tap(()=>{
