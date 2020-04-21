@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
         this.loggedIn =loggedIn;
     });
-    /**retrievee the searching state from the store*/
+    /**retrieve the searching state from the store*/
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
         this.searching = isSearching
     })
