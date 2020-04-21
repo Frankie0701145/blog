@@ -4,6 +4,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { LoginSuccess } from 'src/app/store/actions/loggedIn.actions';
 import {Router } from '@angular/router'
+import { AddSuccessMessage } from 'src/app/store/actions/successMessage.action';
 
 @Component({
   selector: 'app-login',
@@ -45,8 +46,10 @@ export class LoginComponent implements OnInit {
       }
       /**Call the LoginSuccess action*/
       this._store.dispatch(new LoginSuccess(payload));
+      /**Dispatch the success message*/
+      this._store.dispatch(new AddSuccessMessage({message:"Login in Successfully"}));
       /**navigate to the blogs route*/
-      this.route.navigate(['/blogs'])
+      this.route.navigate(['/blogs']);
   }
 
 }
