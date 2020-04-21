@@ -10,7 +10,10 @@ import { selectIsSearching } from 'src/app/store/selectors/isSearching.selector'
 import { selectLoggedIn } from 'src/app/store/selectors/loggedIn.selector';
 import { Observable } from 'rxjs';
 import { IBlog } from 'src/app/models/blog.interface';
-
+import { selectSuccessMessageList } from 'src/app/store/selectors/successMessage.selector';
+import { ISuccessMessage } from 'src/app/models/successMessage.interface';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { RemoveSuccessMessages } from 'src/app/store/actions/successMessage.action';
 
 @Component({
   selector: 'app-blogs',
@@ -26,11 +29,17 @@ export class BlogsComponent implements OnInit {
   isSearching: boolean;
   /**Property to check the loggedIn state*/
   loggedIn: boolean;
+  /**Success messages array*/
+  successMessages: ISuccessMessage[];
+  /**property to check if there is success Messages*/
+  hasSuccessMessage: boolean= false;
   constructor(
     /**Inject the dialog from MatDialog*/
     private dialog: MatDialog,
     /**injects the store*/
-    private _store: Store<IAppState>
+    private _store: Store<IAppState>,
+    /**the snack bar*/
+    private _snackBar: MatSnackBar
   ) {
     /**Set the isSearching property to that of isSearching from the state*/
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
@@ -41,6 +50,23 @@ export class BlogsComponent implements OnInit {
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
       this.loggedIn = loggedIn
     })
+    /**Set the successMessages property to that of the success from the state*/
+    this._store.pipe(select(selectSuccessMessageList)).subscribe((successMessages)=>{
+        if(successMessages.length > 0){
+          this.hasSuccessMessage = true
+          /**open up the snack bar with the success message*/
+          this._snackBar.open(successMessages[0].message, 'x',{
+               duration:2000,
+               verticalPosition: 'bottom',
+               horizontalPosition: 'right'
+          });
+          /**clear the success messages state*/
+          this._store.dispatch(new RemoveSuccessMessages());
+        }else{
+          this.hasSuccessMessage = false;
+        }
+        this.successMessages = successMessages;
+    });
   }
 
   ngOnInit() {
