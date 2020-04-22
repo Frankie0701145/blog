@@ -6,7 +6,7 @@ import {FormBuilder} from '@angular/forms';
 import { GetComments } from 'src/app/store/actions/comment.actions';
 import { selectCommentList } from 'src/app/store/selectors/comment.selector';
 import { AddNewComment } from 'src/app/store/actions/newComment.actions';
-import {selectNewBlogList} from 'src/app/store/selectors/newComment.select'
+import {selectNewCommentList} from 'src/app/store/selectors/newComment.select'
 import { Observable } from 'rxjs';
 import { IComment } from 'src/app/models/comment.interface';
 @Component({
@@ -20,7 +20,7 @@ export class CommentsComponent implements OnInit {
   /**Observable retrieve the comments from the store*/
   comments$:Observable<IComment[]> = this._store.pipe(select(selectCommentList));
   /*** Observable to retrieve the newComments from the store*/
-  newComments$: Observable<IComment[]> = this._store.pipe(select(selectNewBlogList))
+  newComments$: Observable<IComment[]> = this._store.pipe(select(selectNewCommentList))
   /**The comment form builder for the comment */
   commentForm: any;
 

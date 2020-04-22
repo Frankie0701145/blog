@@ -1,23 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Form} from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { CreateBlog } from 'src/app/store/actions/blog.actions';
 import { IAppState } from 'src/app/store/state/app.state';
 import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
+import { IBlog } from 'src/app/models/blog.interface';
 
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
   styleUrls: ['./add-blog.component.sass']
 })
+
+/**
+ * @class
+ * @implements {OnInit}
+*/
 export class AddBlogComponent implements OnInit {
-  fileData: File = null;
-  previewUrl:any = null;/**to hold the url of the preview*/
-  blogForm;  /**to hold the blog form*/
-  loading: boolean; /**select the loading state*/
+  /**Will hold the photo data*/
+  fileData: File = null;  
+  /**Will hold the url of the preview photo*/
+  previewUrl:any = null; 
+  /**Will hold the blog form*/
+  blogForm;  
+  /**Will hold the loading state*/
+  loading: boolean; 
 
-  uploadedFilePath: string = null;
-
+  /**
+   * @param {FormBuilder} formBuilder -The form builder
+   * @param {Store} _store -The store
+  */
   constructor(
     /**inject the formBuilder*/
     private formBuilder: FormBuilder,
@@ -29,7 +41,7 @@ export class AddBlogComponent implements OnInit {
       this.loading = loading;
     });
     
-    /**the form for the blog*/
+    /**Create the blog form*/
     this.blogForm = this.formBuilder.group({
       title: "",
       body: "",
@@ -39,12 +51,19 @@ export class AddBlogComponent implements OnInit {
 
   ngOnInit() {
   }
-  /**to monitor the upload of the file and add to preview*/
+
+  /**
+   * To handle the upload of photo
+   * @param event -event emitted by the photo input field.
+  */
   fileProgress(event: any){
+    /**Retrieve the file*/
     this.fileData = <File> event.target.files[0];
     this.preview()
   }
-  /**To preview the uploaded file*/
+  /**
+   * To preview the uploaded photo
+  */
   preview(){
     let reader = new FileReader()
     /**Read the image uploaded*/
@@ -54,16 +73,20 @@ export class AddBlogComponent implements OnInit {
       this.previewUrl = reader.result; 
     }
   }
+
+  /**
+   * Handles the submission of the form
+   * @param blogData
+  */
   onSubmit(blogData){
+    /**Check if the form is invalid*/
     if (this.blogForm.invalid) {
       return;
     }
-    /**random number to pick a photo url from the url*/
-    let randomNumber = Math.floor(Math.random() * 3 );
-    /**Generate a random id*/
+    /**Generate a random id. Will be used as blog id.*/
     let generatedId: number = Math.floor(Math.random()*1000);
-    /**form the data to send as payload*/
-    let data = {
+    /**Blog information. Will be used as payload in CreateBlog action.*/
+    let data: IBlog = {
       title: blogData.title,
       photoUrl: this.previewUrl,
       body: blogData.body,

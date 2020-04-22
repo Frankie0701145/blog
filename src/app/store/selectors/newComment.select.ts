@@ -7,7 +7,8 @@ import {INewCommentsState} from '../state/newComment.state'
 /**Select the newComments from the state*/
 const selectNewComments = (state: IAppState)=> state.newComments;
 
-export const selectNewBlogList = createSelector(
+/**Used to select the newComments state*/
+export const selectNewCommentList = createSelector(
     selectNewComments ,
     /**Select the newComments property from the newComments*/
     (state: INewCommentsState)=> state.newComments

@@ -64,6 +64,7 @@ export class CreateBlog implements Action {
     */
     public readonly type = EBlogActions.CreateBlog
     /**
+     *  The CreateBlog Action. Action for creating blogs on the server which will be handled by postBlogs$ effect.
      *@param {IBlog} payload - The payload contains blog properties and value
     */
     constructor(public payload: IBlog){}

@@ -7,6 +7,7 @@ import { IIsSearchingState } from '../state/isSearching.state';
 /**Select the isSearching from the state*/
 const selectLoggedInFn = (state: IAppState)=> state.isSearching;
 
+/**Used to select the isSearching state*/
 export const selectIsSearching = createSelector(
     selectLoggedInFn,
     /**Select the isSearching property from the isSearching*/

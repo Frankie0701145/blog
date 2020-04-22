@@ -6,6 +6,7 @@ import { ICommentsState } from '../state/comments.state';
 /**Select the comments from the state*/
 const selectComments = (state: IAppState)=> state.comments;
 
+/**Used to select the comments state*/
 export const selectCommentList = createSelector(
     selectComments,
     /**Select the comments property from the comments*/
