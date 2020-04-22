@@ -20,25 +20,25 @@ import { RemoveSuccessMessages } from 'src/app/store/actions/successMessage.acti
   templateUrl: './blogs.component.html',
   styleUrls: ['./blogs.component.sass']
 })
+/**
+ * @class
+ * @implements {OnInit}
+*/
 export class BlogsComponent implements OnInit {
-  /**The blogs observable to retrieve the blogs from the state*/ 
+  /**The blogs observable for retrieving the blogs from the state*/ 
   blogs$: Observable<IBlog[]> = this._store.pipe(select(selectBlogList));
-  /**The filteredBlogs observable to retrieve the filteredBlogs from the state*/
+  /**The filteredBlogs observable for retrieving the filteredBlogs from the state*/
   filteredBlog$: Observable<IBlog[]> = this._store.pipe(select(selectFilteredBlogList ))
   /**Property to keep track when the user is searching */
   isSearching: boolean;
   /**Property to check the loggedIn state*/
   loggedIn: boolean;
-  /**Success messages array*/
-  successMessages: ISuccessMessage[];
-  /**property to check if there is success Messages*/
-  hasSuccessMessage: boolean= false;
   constructor(
     /**Inject the dialog from MatDialog*/
     private dialog: MatDialog,
     /**injects the store*/
     private _store: Store<IAppState>,
-    /**the snack bar*/
+    /**inject the snack bar*/
     private _snackBar: MatSnackBar
   ) {
     /**Set the isSearching property to that of isSearching from the state*/
@@ -49,10 +49,10 @@ export class BlogsComponent implements OnInit {
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
       this.loggedIn = loggedIn
     })
-    /**Set the successMessages property to that of the success from the state*/
+    /**subscribe to the successMessages state*/
     this._store.pipe(select(selectSuccessMessageList)).subscribe((successMessages)=>{
+        /**if there is a successMessage*/
         if(successMessages.length > 0){
-          this.hasSuccessMessage = true
           /**open up the snack bar with the success message*/
           this._snackBar.open(successMessages[0].message, 'x',{
                duration:2000,
@@ -61,10 +61,7 @@ export class BlogsComponent implements OnInit {
           });
           /**clear the success messages state*/
           this._store.dispatch(new RemoveSuccessMessages());
-        }else{
-          this.hasSuccessMessage = false;
         }
-        this.successMessages = successMessages;
     });
   }
 
@@ -72,20 +69,26 @@ export class BlogsComponent implements OnInit {
  
   }
   
-  /**Function to open the matDialog and initialize*/
+  /**
+   * @param {string} blogId
+   * Function to open the matDialog and initialize. The matDialog will contain comments
+  */
   openCommentDialog(blogId: string){
+    /**Initialize the MatDialogConfig*/
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.maxHeight = "500px";
     dialogConfig.maxWidth = "500px";
     dialogConfig.minHeight = "200px";
     dialogConfig.minWidth = "200px";
+    /**Pass the blogId to the component which will be used to retrieve comments*/
     dialogConfig.data = {
         blogId: blogId
     };
+    /**Open up the comment dialog*/
     let dialogRef = this.dialog.open(CommentsComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe((result)=>{
+    /**Subscribe to when the dialog will be closed*/
+    dialogRef.afterClosed().subscribe(()=>{
         /**After the comment dialog closes dispatch the RemoveComments action to remove the comments*/
         this._store.dispatch(new RemoveComments())
     })
