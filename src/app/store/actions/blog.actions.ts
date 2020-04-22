@@ -24,7 +24,7 @@ export enum EBlogActions {
  * @class
  * @implements {Action}
  * A GetBlogs Action class that implements Action
- * The GetBlogs Action. Action for retrieving blogs from the server which will be handle by an effect.
+ * The GetBlogs Action. Action for retrieving blogs from the server which will be handle by getBlogs$ effect.
 */
 export class GetBlogs implements Action {
     /**
@@ -55,7 +55,7 @@ export class GetBlogsSuccess implements Action {
  * @class
  * @implements {Action}
  * A CreateBlog Action class that implements Action
- * The CreateBlog Action. Action for creating blogs on the server which will be handled by an effect.
+ * The CreateBlog Action. Action for creating blogs on the server which will be handled by postBlogs$ effect.
 */
 export class CreateBlog implements Action {
     /**
@@ -90,7 +90,7 @@ export class CreateBlogSuccess implements Action {
  * @class
  * @implements {Action}
  * A EditBlog Action class that implements Action
- * Edit Blog Action. Action for editing the blogs on the server which will be handled by an effect.
+ * Edit Blog Action. Action for editing the blogs on the server which will be handled by  editBlog$ effect.
 */
 export class EditBlog implements Action {
     /**
