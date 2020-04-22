@@ -2,22 +2,27 @@
 import {initialIsSearchingState, IIsSearchingState} from '../state/isSearching.state';
 import {SearchingActions, EIsSearchingActions } from '../actions/isSearching.actions'
 
+/**
+ * @param state
+ * @param {SearchingActions} action
+*/
 export function isSearchingReducer(state= initialIsSearchingState, action:SearchingActions): IIsSearchingState{
     switch(action.type){
-        /**Case for searching */
+        /**handling the Searching action */
         case EIsSearchingActions.Searching:
-            /**Turn to true*/
+            /**Toggle the isSearching to true*/
                 return {
                     ...state,
                     isSearching: true
                 }
-         /**Case for stopSearching */
+         /**Handling stopSearching action*/
         case EIsSearchingActions.StopSearching:
-            /**turn false*/
+            /**Toggle the isSearching to false*/
             return {
                 ...state,
                 isSearching: false
             }
+        /**Return the initialIsSearching state*/
         default:
             return state
     }

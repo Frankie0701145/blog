@@ -10,21 +10,21 @@ import {BlogActions, EBlogActions} from  '../actions/blog.actions';
 */
 export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBlogsState {
     switch(action.type){
-        /**For Get Blogs Success Action*/
+        /*handle GetBlogsSuccess Action*/
         case EBlogActions.GetBlogsSuccess:
             /**Take the blogs retrieve from a get request and return the new state with the blogs*/
             return{
                 ...state,
                 blogs: action.payload
             }
-        /**For Create Blog Success Action */
+        /**Handle CreateBlogSuccess Action */
         case EBlogActions.CreateBlogSuccess: 
                 /**Add the created blog to the beginning of the blogs state and return the new state */
                 return{
                     ...state,
                     blogs: [action.payload,...state.blogs]
                 }
-        /** For Editing Blog Success Action*/
+        /** Handle EditingBlogSuccess Action*/
         case EBlogActions.EditBlogSuccess:
             /** Get the blogId from the passed payload*/
             let blogId: string = action.payload.blogId; 
@@ -47,7 +47,7 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                 ...state,
                 blogs: newBlogs
             }
-        /**return the default state for the first time initialization*/
+        /**return the initialBlogState*/
         default:
             return state;
     }

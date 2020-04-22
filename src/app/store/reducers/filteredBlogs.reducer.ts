@@ -11,7 +11,7 @@ import {FilteredBlogActions, EFilteredBlogActions} from  '../actions/filteredBlo
 */
 export function filterBlogsReducer(state=initialFilteredBlogsState, action: FilteredBlogActions): IFilteredBlogsState{
     switch(action.type){
-        /**Search the blogs*/
+        /**Handle the SearchBlogs Action*/
         case EFilteredBlogActions.SearchBlogs:
                 /**Retrieve the blogs passed from the payload */
                 let blogs = action.payload.blogs
