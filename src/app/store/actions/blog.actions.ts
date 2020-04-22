@@ -8,6 +8,7 @@ import { IBlogEditProperties } from 'src/app/models/editBlog.interface';
 
 /**
  * The constants for the blog actions
+ * @enum {string}
 */
 export enum EBlogActions {
     GetBlogs = '[Blogs] Get Blogs',
