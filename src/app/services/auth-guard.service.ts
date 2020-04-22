@@ -8,8 +8,17 @@ import { selectLoggedIn } from '../store/selectors/loggedIn.selector';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * @class
+ * @implements CanActivate
+*/
 export class AuthGuardService implements CanActivate{
+  /**property that holds the loggedInstate*/
   loggedIn: boolean
+  /**
+   * @param {Router} router -The router instant
+   * @param {Store} _store - The store instant
+  */
   constructor(
     /**Inject the router*/
     public router: Router, 
@@ -21,7 +30,9 @@ export class AuthGuardService implements CanActivate{
          this.loggedIn = loggedIn
     })
   }
-
+  /**
+   * @returns {boolean} - The return value determines if the user can view that page
+  */
   canActivate(): boolean{
     /**check if the loggedIn is false*/
     if(!this.loggedIn){
