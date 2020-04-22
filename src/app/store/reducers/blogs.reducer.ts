@@ -2,6 +2,12 @@
 import {initialIBlogsState, IBlogsState} from '../state/blogs.state';
 import {BlogActions, EBlogActions} from  '../actions/blog.actions';
 
+
+/**
+ * @param state - The extracted successMessage state
+ * @param {BlogActions} action - The blogsAction
+ * @return {IBlogsState} - returns the blog state
+*/
 export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBlogsState {
     switch(action.type){
         /**For Get Blogs Success Action*/
@@ -18,24 +24,22 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                     ...state,
                     blogs: [action.payload,...state.blogs]
                 }
-        /** For Editing a blog*/
+        /** For Editing Blog Success Action*/
         case EBlogActions.EditBlogSuccess:
             /** Get the blogId from the passed payload*/
             let blogId: string = action.payload.blogId; 
             /**Get the properties to edit from the payload*/
             let toEditProperties = action.payload.blogProperties
-            console.log(toEditProperties);
-            console.log(blogId);
-            /**Retrieve the blogs state to avoid manipulating the previous state*/
+            /**Retrieve the blogs state to avoid mutating the previous state*/
             let toEditBlogs = [...state.blogs];
             /** iterate the blogs and look for the blog with the passed blogId */
             let newBlogs =  toEditBlogs.map((blog)=>{
-                //if I find the blog
+                /**If the blogId match, edit the blog with the blogProperties passed*/
                 if(blog.id == blogId){
-                    //edit the blog and return the new blog
+                    /**edit the blog and return the new blog*/
                     return{...blog,...toEditProperties};
                 }
-                //if I don't find the blog
+                /**if the blogId don't match return the blog unchanged*/
                 return blog;
             });
             /**return the new state*/
@@ -43,6 +47,7 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                 ...state,
                 blogs: newBlogs
             }
+        /**return the default state for the first time initialization*/
         default:
             return state;
     }
