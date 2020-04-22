@@ -3,9 +3,11 @@ import {createSelector} from '@ngrx/store';
 import { IAppState } from '../state/app.state';
 import { IBlogsState } from '../state/blogs.state';
 
+/**Select the blogs from the state*/
 const selectBlogs = (state: IAppState)=> state.blogs;
 
 export const selectBlogList = createSelector(
     selectBlogs,
-    (state: IBlogsState)=> state.blogs
+    /**Select the blogs property from the blogs*/
+    (blogs: IBlogsState)=> blogs.blogs
 ); 

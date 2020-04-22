@@ -4,10 +4,11 @@ import { IAppState } from "../state/app.state";
 import { createSelector } from '@ngrx/store';
 import { ILoggedInState } from '../state/loggedIn.state';
 
-
+/**select the loggedIn from the state*/
 const selectLoggedInFn = (state: IAppState)=> state.loggedIn;
 
 export const selectLoggedIn = createSelector(
     selectLoggedInFn,
-    (state: ILoggedInState)=> state.loggedIn
+    /**select the loggedIn property from loggedIn*/
+    (loggedIn: ILoggedInState)=> loggedIn.loggedIn
 ); 

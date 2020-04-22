@@ -3,9 +3,11 @@ import {createSelector} from '@ngrx/store';
 import { IAppState } from '../state/app.state';
 import {ISuccessMessageState} from '../state/successMessage.state'
 
+/**Select the successMessages from the state*/
 const selectSuccessMessage = (state: IAppState)=> state.successMessages
 
 export const selectSuccessMessageList = createSelector(
     selectSuccessMessage,
+    /**Select the successMessages property from the successMessages*/
     (state: ISuccessMessageState)=> state.successMessages
 )
