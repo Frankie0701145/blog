@@ -16,6 +16,9 @@ export enum ELoadingActions {
  * Toggles the searching state to true
 */
 export class StartLoading implements Action {
+    /**
+     *  Holds the action type constant
+    */
     public readonly type = ELoadingActions.StartLoading
 }
 
@@ -26,6 +29,9 @@ export class StartLoading implements Action {
  * Stop loading action
 */
 export class StopLoading implements Action {
+    /**
+     *  Holds the action type constant
+    */
     public readonly type = ELoadingActions.StopLoading
 }
 
