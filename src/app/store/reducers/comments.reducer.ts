@@ -2,17 +2,20 @@
 import {initialCommentsState, ICommentsState} from '../state/comments.state';
 import {ECommentActions, CommentActions} from  '../actions/comment.actions';
 
+/**
+ * @param state - The extracted comments state
+ * @param {CommentActions} action 
+*/
 export function commentsReducer(state=initialCommentsState, action: CommentActions):ICommentsState{
     switch(action.type){
         /**For Successful Retrieval of Comments*/
         case ECommentActions.GetCommentsSuccess:
+            /**Adds the comments to the comments state*/
             return {
                 ...state,
                 comments: action.payload
             }
-        /**Remove comments */
-        case ECommentActions.RemoveComments:
-            return{...state, comments: []}
+        /**return the initialCommentsState for the first time initialization*/
         default:
             return state
     }
