@@ -100,7 +100,7 @@ export class EditBlog implements Action {
     public readonly type = EBlogActions.EditBlog
     /**
      * @param {blogId: string, blogProperties: IBlogEditProperties} payload - The payload contains the blogId and  Properties and values that are going to change on a blog.
-     * @param {blogId: string, blogProperties: IBlogEditProperties} payload.blogId - The blogId to retrieve the blog that is to be edited
+     * @param {string} payload.blogId - The blogId to retrieve the blog that is to be edited
      * @param {IBlogEditProperties} payload.blogProperties - Properties and values that are going to change on a blog.
     */
     constructor( public payload: {blogId: string, blogProperties: IBlogEditProperties}){}
@@ -117,7 +117,7 @@ export class EditBlogSuccess implements Action {
     public readonly type = EBlogActions.EditBlogSuccess
     /**
      * @param {blogId: string, blogProperties: IBlogEditProperties} payload - The payload contains the blogId and  Properties and values that are going to change on a blog.
-     * @param {blogId: string, blogProperties: IBlogEditProperties} payload.blogId - The blogId to retrieve the blog that is to be edited
+     * @param {string} payload.blogId - The blogId to retrieve the blog that is to be edited
      * @param {IBlogEditProperties} payload.blogProperties - Properties and values that are going to change on a blog.
     */
     constructor( public payload: {blogId: string, blogProperties: IBlogEditProperties}){}
