@@ -70,9 +70,9 @@ export class EditBlogComponent implements OnInit {
       /**retrieve the blog that match the blogId*/
       let blogsResult = blogs.filter((blog)=>blog.id==this.blogId)
       let blog = blogsResult[0]
-      // console.log(blog);
       /**Build the form */
       this.blogForm = this.formBuilder.group({...blog});
+      /**set the previewUrl*/
       this.previewUrl = blog.photoUrl;
       /**Set the blog*/
       this.blog= blog;
@@ -88,11 +88,8 @@ export class EditBlogComponent implements OnInit {
       photoUrl: this.previewUrl
     }
     /**Dispatch the action EditBlog(which is an effect), passing the payload of the property to edit with the blogId*/
-    /**Dispatching the effect of editing the blog*/
-    /**Commented out because it causes error if the user tries to edit a blog that has been created and persisted on the server */
+    /**Will be handled by the editBlog$ effect*/
     this._store.dispatch(new EditBlog({blogId: this.blogId, blogProperties: data}));
-    /**Dispatch the action EditBlogSuccess, passing the payload of the property to edit with the blogId*/
-    // this._store.dispatch(new EditBlog({blogId: this.blogId, blogProperties: data}));
   }
 
 }
