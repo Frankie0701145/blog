@@ -1,20 +1,41 @@
+/**
+ * Definition of the SuccessMessageActions
+*/
 import { Action } from '@ngrx/store';
 import { ISuccessMessage } from 'src/app/models/successMessage.interface';
 
-/**The action constant for the successMessage actions*/
+/**
+ * @enum {string}
+ * The action constant for the successMessage actions
+*/
 
 export enum ESuccessMessage {
     AddSuccessMessage = "[Success Message] Add Success Message",
     RemoveSuccessMessages = "[Success Message] Remove Success Message"
 }
 
-/**Add success message*/
+/**
+ * @class
+ * @implements {Action}
+ * Add success message to the successMessages state
+*/
 export class AddSuccessMessage implements Action {
+    /**
+     *  Holds the action type constant
+    */
     public readonly type = ESuccessMessage.AddSuccessMessage
+    /**
+     * @param {ISuccessMessage} payload - Payload object that contains the message property
+     * @param {string} payload.message - The success message
+    */
     constructor( public payload: ISuccessMessage){}
 }
 
-/** Remove success messages*/
+/** 
+ * @class
+ * @implements {Action}
+ * Remove success messages from the state
+*/
 export class RemoveSuccessMessages implements Action {
     public readonly type = ESuccessMessage.RemoveSuccessMessages
 }
