@@ -72,27 +72,38 @@ export class BlogEffects {
         switchMap((action) => {
             /**Action to change the state loading to true*/
             this._store.dispatch(new StartLoading());
+            /**Edit the blog from the server*/
             return this._blogService.editBlog(action.payload.blogId, action.payload.blogProperties).pipe(
                 map((blogHttp: IBlog) => {  
+                    /**If successful*/
+                    /**Trigger the EditBlogSuccess action*/
                     this._store.dispatch(new EditBlogSuccess({
                         blogId: blogHttp.id,
                         blogProperties: {
                             ...blogHttp
                         }
                     }));
+                    /**Trigger the StopLoading Action*/
                     this._store.dispatch(new StopLoading());
+                    /**Navigate the user to the blogs page*/
                     this.router.navigate(['/blogs']);
+                    /**Add the success message*/
                     return new AddSuccessMessage({ message: 'Blog edited successful' });
                 }),
                 catchError((error) => {
+                    /**If it fails because some blogs created by the user are not persisted on the db just edit the blog*/
+                    /**Trigger the EditBlogSuccess action*/
                     this._store.dispatch(new EditBlogSuccess(
                         {
                             blogId: action.payload.blogId,
                             blogProperties: action.payload.blogProperties
                         }
                     ));
+                    /**Trigger the StopLoading Action*/
                     this._store.dispatch(new StopLoading());
+                    /**Navigate the user to the blogs page*/
                     this.router.navigate(['/blogs']);
+                    /**Add the success message*/
                     return of(new AddSuccessMessage({ message: 'Blog edited successful'}))
                 })
             )
