@@ -87,5 +87,5 @@ export class CreateCommentSuccess implements Action {
 /**
  * The commentActions Type
 */
-export type CommentActions = GetComments | GetCommentsSuccess | CreateComment | CreateCommentSuccess| RemoveComments;
+export type CommentActions = GetComments | GetCommentsSuccess | CreateComment | CreateCommentSuccess;
 
