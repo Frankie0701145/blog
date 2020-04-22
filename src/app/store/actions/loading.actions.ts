@@ -1,17 +1,30 @@
 import { Action } from '@ngrx/store';
 
-/**Enum for the actions*/
+/**
+ * @enum {string}
+ * Constant names for the loading Action
+*/
 export enum ELoadingActions {
     StartLoading = "[Loading] Start Loading",
     StopLoading = "[Loading] Stop Loading"
 }
 
-/**The start loading action*/
+/**
+ * @class 
+ * @implements {Action}
+ * The StartLoading Action class.
+ * Toggles the searching state to true
+*/
 export class StartLoading implements Action {
     public readonly type = ELoadingActions.StartLoading
 }
 
-/**Stop loading action*/
+/**
+ * @class
+ * @implements {Action}
+ * Toggles the searching state to false
+ * Stop loading action
+*/
 export class StopLoading implements Action {
     public readonly type = ELoadingActions.StopLoading
 }

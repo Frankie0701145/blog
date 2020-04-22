@@ -1,6 +1,9 @@
 import { Action } from '@ngrx/store';
 
-/**The constant names for IsSearchActions */
+/**
+ * The constant names for IsSearchActions 
+ * @enum {string}
+*/
 export enum EIsSearchingActions {
     Searching= '[Navbar] Searching',
     StopSearching = '[Navbar] Stop Searching',
