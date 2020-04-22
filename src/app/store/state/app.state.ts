@@ -8,6 +8,7 @@ import { IFilteredBlogsState,initialFilteredBlogsState } from './filteredBlogs.s
 import { ILoadingState, initialLoadingState } from './loading'
 import {initialSuccessMessageState, ISuccessMessageState} from './successMessage.state'
 
+/**interface for the application state*/
 export interface IAppState {
     blogs: IBlogsState,
     comments: ICommentsState,
@@ -19,6 +20,7 @@ export interface IAppState {
     successMessages: ISuccessMessageState
 }
 
+/**the initial state for the application state*/
 export const InitialAppState: IAppState = {
     blogs: initialIBlogsState,
     comments: initialCommentsState,
