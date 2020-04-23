@@ -7,7 +7,6 @@
         <p class="col-12" id="commentBody" *ngIf="isLast" cdk-focus-initial>
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
-          last
         </p>
        
         <p class="col-12" id="commentBody" *ngIf="!isLast">
@@ -15,18 +14,11 @@
           {{comment.body}}
         </p>
     </div>
-    <!-- Display new comments -->
-    <div class="row border-top" *ngFor="let newComment of newComments$ | async" >
-      <p class="col-12" id="commentBody">
-        <span id="name">{{newComment.name}}</span>
-        {{newComment.body}}
-      </p>
-    </div>
 </div>
 
 <div mat-dialog-actions class="border-top" id="action">
 
-    <form [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm.value)" >
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm)" >
           <!-- Name input -->
           <mat-form-field class="col-12 matFormInput" >
             <mat-label>Name</mat-label>
@@ -35,11 +27,20 @@
           <!-- Comment Input -->
           <mat-form-field class="col-12 matFormInput">
             <mat-label>Comment</mat-label>
-            <input matInput formControlName="comment" type="text" required maxlength="20">
+            <input matInput formControlName="comment" type="text" required maxlength="200">
           </mat-form-field>
           <!-- Save Button -->
-          <button mat-button cdkFocusInitial id="saveBtn" tabindex="-1">
-            Save
+          <button class="btn bg-dark btn-lg btn-block" mat-button cdkFocusInitial id="saveBtn" tabindex="-1">
+                <div class="row justify-content-center" *ngIf='loading$ | async ;else submit'>
+                    <div class="mr-1">
+                        <mat-spinner diameter="30" class="spinner">
+                        </mat-spinner>
+                    </div>
+                    <div class="saveWord">Saving...</div> 
+                </div>
+                <ng-template #submit>
+                  <div class="saveWord">Save</div>
+                </ng-template>
           </button>
     </form>
 

@@ -19,7 +19,7 @@ export function commentsReducer(state=initialCommentsState, action: CommentActio
         case ECommentActions.CreateCommentSuccess:
             return {
                 ...state,
-                comments: [action.payload, ...state.comments]
+                comments: [...state.comments,action.payload]
             }
         /**return the initialCommentsState for the first time(initialization)*/
         default:

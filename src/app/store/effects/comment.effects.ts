@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { GetComments, ECommentActions, GetCommentsSuccess } from '../actions/comment.actions';
+import { GetComments, ECommentActions, GetCommentsSuccess, CreateCommentSuccess, CreateComment } from '../actions/comment.actions';
 import { map, switchMap } from 'rxjs/operators';
 import {CommentService} from '../../services/comment.service'
 import { of, Observable } from 'rxjs';
 import { IComment } from 'src/app/models/comment.interface';
+import { StartLoading, StopLoading } from '../actions/loading.actions';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../state/app.state';
+import { AddSuccessMessage } from '../actions/successMessage.action';
 
 /**
  * Injectable CommentEffects class
@@ -26,6 +30,26 @@ export class CommentEffects{
             return of(new GetCommentsSuccess(comments))
         })
     )
+    @Effect()
+    postComments$: Observable<AddSuccessMessage> = this._action$.pipe(
+        ofType<CreateComment>(ECommentActions.CreateComment),
+        map((action) =>{
+            return action
+        }),
+        switchMap((action)=>{
+           /**Action to change the state loading to true*/
+          this._store.dispatch(new StartLoading());
+          return this._commentService.postComment(action.payload).pipe(
+              map((commentHttp: IComment)=>{
+                    this._store.dispatch(new CreateCommentSuccess(commentHttp));
+                    /**Trigger the StopLoading Action*/
+                    this._store.dispatch(new StopLoading());
+                    /**Add the success message*/
+                    return new AddSuccessMessage({ message: 'Comment created successful'});
+              })
+          )
+        })
+    )
     /**
      * Injects the Action and CommentService
      * @param {Action} action
@@ -34,6 +58,7 @@ export class CommentEffects{
     constructor(
         private _action$: Actions,
         private _commentService: CommentService,
+        private _store: Store<IAppState>,
     ){
 
     }
