@@ -9,19 +9,27 @@ import { AddNewComment } from 'src/app/store/actions/newComment.actions';
 import {selectNewCommentList} from 'src/app/store/selectors/newComment.select'
 import { Observable } from 'rxjs';
 import { IComment } from 'src/app/models/comment.interface';
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.sass']
 })
+
+/**
+ * @class
+ * @implements {OnInit}
+*/
 export class CommentsComponent implements OnInit {
   /**The blogId property of the blog*/ 
   blogId
-  /**Observable for retrieving the comments from the store*/
-  comments$:Observable<IComment[]> = this._store.pipe(select(selectCommentList));
+  /**
+   * To hold the comments that belong to this blog from the state
+  */
+  comments: IComment[];
   /*** Observable for retrieving the newComments from the store*/
   newComments$: Observable<IComment[]> = this._store.pipe(select(selectNewCommentList))
-  /**The comment form builder for the comment */
+  /**The comment form */
   commentForm: any;
 
   constructor(
@@ -39,10 +47,20 @@ export class CommentsComponent implements OnInit {
         name: "",
         comment: ""
     });
+
    }
 
   ngOnInit() {
-    
+      /**
+       * Retrieve all the comments from the state then filter only those that belongs for this blog
+      */
+      this._store.pipe(select(selectCommentList)).subscribe((comments)=>{
+        /**Retrieve only comments that belong to this blog*/
+        let blogComments: IComment[] =  comments.filter((comment)=>{
+          return comment.blogId == this.blogId;
+        });
+        this.comments = blogComments;
+      });
   }
   /**function to submit the data from the comment form*/
   onSubmit(values){

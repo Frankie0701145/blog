@@ -3,7 +3,7 @@
 <div mat-dialog-content id="commentContent" >
     <!-- The comment body section -->
     <!-- Display old comments -->
-    <div class="row border-top" *ngFor="let comment of comments$ | async; last as isLast">
+    <div class="row border-top" *ngFor="let comment of comments; last as isLast">
         <p class="col-12" id="commentBody" *ngIf="isLast" cdk-focus-initial>
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
