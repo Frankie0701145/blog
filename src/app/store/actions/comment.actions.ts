@@ -27,10 +27,6 @@ export class GetComments implements Action {
      * Holds the action type constant
     */
     public readonly type = ECommentActions.GetComments
-    /**
-     * @param {string} payload - BlogId used to fetch comments.
-    */
-    constructor(public payload:string){}
 }
 /**
  * @class
@@ -45,9 +41,20 @@ export class GetCommentsSuccess implements Action {
     */
     public readonly type = ECommentActions.GetCommentsSuccess
     /**
+     * Action triggered after successful GetComments. Adds comments to the comment state.
      * @param {IComment} - The payload contains comments
     */
     constructor(public payload: IComment[] ){}
+}
+/**
+ * @class
+ * @implements {Action}
+ * Remove class that implements the Action
+ * Remove comments state
+*/
+
+export class RemoveComments implements Action {
+    public readonly type = ECommentActions.RemoveComments
 }
 
 
