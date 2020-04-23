@@ -5,7 +5,6 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import {selectFilteredBlogList } from 'src/app/store/selectors/filteredBlogs.selector'
-import {  RemoveComments } from 'src/app/store/actions/comment.actions';
 import { selectIsSearching } from 'src/app/store/selectors/isSearching.selector';
 import { selectLoggedIn } from 'src/app/store/selectors/loggedIn.selector';
 import { Observable } from 'rxjs';
@@ -87,11 +86,6 @@ export class BlogsComponent implements OnInit {
     };
     /**Open up the comment dialog*/
     let dialogRef = this.dialog.open(CommentsComponent, dialogConfig);
-    /**Subscribe to when the dialog will be closed*/
-    dialogRef.afterClosed().subscribe(()=>{
-        /**After the comment dialog closes dispatch the RemoveComments action to remove the comments*/
-        this._store.dispatch(new RemoveComments())
-    })
-  }
 
+  }
 }
