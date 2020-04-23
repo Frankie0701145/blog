@@ -53,11 +53,6 @@ export class GetCommentsSuccess implements Action {
  * Remove comments state
 */
 
-export class RemoveComments implements Action {
-    public readonly type = ECommentActions.RemoveComments
-}
-
-
 /** 
  * @class
  * @implements {Action}
