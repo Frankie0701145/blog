@@ -5,7 +5,9 @@ import { IBlogsState } from '../state/blogs.state';
 
 /**Select the blogs from the state*/
 const selectBlogs = (state: IAppState)=> state.blogs;
-
+/** 
+ * select the blog from the state
+*/
 export const selectBlogList = createSelector(
     selectBlogs,
     /**Select the blogs property from the blogs*/

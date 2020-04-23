@@ -17,15 +17,15 @@ import { IComment } from 'src/app/models/comment.interface';
 export class CommentsComponent implements OnInit {
   /**The blogId property of the blog*/ 
   blogId
-  /**Observable retrieve the comments from the store*/
+  /**Observable for retrieving the comments from the store*/
   comments$:Observable<IComment[]> = this._store.pipe(select(selectCommentList));
-  /*** Observable to retrieve the newComments from the store*/
+  /*** Observable for retrieving the newComments from the store*/
   newComments$: Observable<IComment[]> = this._store.pipe(select(selectNewCommentList))
   /**The comment form builder for the comment */
   commentForm: any;
 
   constructor(
-    /**Inject the data passed*/
+    /**Inject the data passed from the blogs component*/
     @Inject(MAT_DIALOG_DATA) public data: any,
     /**inject the store*/
     private _store: Store<IAppState>,

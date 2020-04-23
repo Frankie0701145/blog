@@ -25,6 +25,7 @@ export class LoginSuccess implements Action {
     */
     public readonly type = ELoginActions.LoginSuccess
     /**
+     * Toggles the loggedIn state to true
      * @param {Object} payload
      * @param {string} payload.accessToken - Access token from the server
     */
@@ -39,7 +40,8 @@ export class LoginSuccess implements Action {
 */
 export class LogoutSuccess implements Action {
     /**
-     *  Holds the action type constant
+     * Toggles the loggedIn state to false
+     * Holds the action type constant
     */
     public readonly type = ELoginActions.LogoutSuccess
 }
