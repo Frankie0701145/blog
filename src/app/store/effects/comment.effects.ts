@@ -13,8 +13,7 @@ import { IComment } from 'src/app/models/comment.interface';
 @Injectable()
 export class CommentEffects{
     /**
-     * Fetching for comments of a blog
-     * @return {Observable<GetCommentsSuccess>}
+     * Fetching comments using the commentService
     */
     @Effect()
     getComments$: Observable<GetCommentsSuccess> = this._action$.pipe(
@@ -22,7 +21,7 @@ export class CommentEffects{
         map(action => {
             return action
         }),
-        switchMap((action)=> this._commentService.fetchComments(action.payload) ),
+        switchMap((action)=> this._commentService.fetchAllComments() ),
         switchMap((comments: IComment[])=>{
             return of(new GetCommentsSuccess(comments))
         })
