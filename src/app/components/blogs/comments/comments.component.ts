@@ -3,10 +3,7 @@ import {MAT_DIALOG_DATA} from '@angular/material'
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
 import {FormBuilder} from '@angular/forms';
-import { GetComments } from 'src/app/store/actions/comment.actions';
 import { selectCommentList } from 'src/app/store/selectors/comment.selector';
-import { AddNewComment } from 'src/app/store/actions/newComment.actions';
-import {selectNewCommentList} from 'src/app/store/selectors/newComment.select'
 import { Observable } from 'rxjs';
 import { IComment } from 'src/app/models/comment.interface';
 
@@ -27,8 +24,6 @@ export class CommentsComponent implements OnInit {
    * To hold the comments that belong to this blog from the state
   */
   comments: IComment[];
-  /*** Observable for retrieving the newComments from the store*/
-  newComments$: Observable<IComment[]> = this._store.pipe(select(selectNewCommentList))
   /**The comment form */
   commentForm: any;
 
@@ -80,7 +75,7 @@ export class CommentsComponent implements OnInit {
     /**Scroll to the bottom of the commentContent*/
     container.scrollTop = container.scrollHeight
     /**Dispatch the AddNewComment action and pass the comment.*/
-    this._store.dispatch(new AddNewComment(comment))
+    // this._store.dispatch()
    
   }
 
