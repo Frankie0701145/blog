@@ -42,7 +42,7 @@ export class CommentsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this._store.dispatch(new GetComments(this.blogId))
+    
   }
   /**function to submit the data from the comment form*/
   onSubmit(values){
