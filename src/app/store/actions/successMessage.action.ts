@@ -25,6 +25,7 @@ export class AddSuccessMessage implements Action {
     */
     public readonly type = ESuccessMessage.AddSuccessMessage
     /**
+     * Add success message to the successMessages state
      * @param {ISuccessMessage} payload - Payload object that contains the message property
      * @param {string} payload.message - The success message
     */
@@ -37,6 +38,9 @@ export class AddSuccessMessage implements Action {
  * Remove success messages from the state
 */
 export class RemoveSuccessMessages implements Action {
+    /**
+     *  Holds the action type constant
+    */
     public readonly type = ESuccessMessage.RemoveSuccessMessages
 }
 

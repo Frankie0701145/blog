@@ -26,6 +26,7 @@ export class FilterBlogs implements Action {
     */
     public readonly type = EFilteredBlogActions.SearchBlogs
     /**
+     * Filter Blogs Action. Used to select blogs that match the search text and add the result to the filterBlogs state.
      * @param {searchText: string, blogs: IBlog[]} payload
      * @param {string} payload.searchText - Contains a string used to search for blogs by the title
      * @param {IBLog} payload.blog - Contains blogs that are to be searched.
