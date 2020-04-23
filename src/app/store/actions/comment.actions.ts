@@ -9,11 +9,8 @@ import {IComment} from '../../models/comment.interface';
 export enum ECommentActions {
     GetComments = '[Blogs] Get Comments',
     GetCommentsSuccess = '[Blogs] Get Comments Success',
-    GetCommentsError = '[Blogs] Get Comments Error',
     CreateComment= '[Blogs] Create Blog',
     CreateCommentSuccess = '[Blogs] Create Comment Success',
-    CreateCommentError = '[Blogs] Create Comment Error',
-    RemoveComments = '[Comment] Remove Comments'
 }
 
 /**
