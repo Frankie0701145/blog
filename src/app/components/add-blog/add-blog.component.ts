@@ -5,6 +5,7 @@ import { CreateBlog } from 'src/app/store/actions/blog.actions';
 import { IAppState } from 'src/app/store/state/app.state';
 import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
 import { IBlog } from 'src/app/models/blog.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-blog',
@@ -23,8 +24,8 @@ export class AddBlogComponent implements OnInit {
   previewUrl:any = null; 
   /**Will hold the blog form*/
   blogForm;  
-  /**Will hold the loading state*/
-  loading: boolean; 
+  /**select the loading state*/
+  loading$: Observable<boolean> = this._store.pipe(select(selectLoadingState))
 
   /**
    * @param {FormBuilder} formBuilder -The form builder
@@ -36,10 +37,6 @@ export class AddBlogComponent implements OnInit {
     /**inject the store*/
     private _store: Store<IAppState>
   ) { 
-    /**select the loading state*/
-    this._store.pipe(select(selectLoadingState)).subscribe((loading)=>{
-      this.loading = loading;
-    });
     
     /**Create the blog form*/
     this.blogForm = this.formBuilder.group({
