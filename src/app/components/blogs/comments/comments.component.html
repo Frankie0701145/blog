@@ -1,24 +1,32 @@
 
+<!--Header-->
+
+<button mat-icon-button mat-dialog-close id="closeBtn">
+  <mat-icon id="closeIcon" inline=true>
+    close
+  </mat-icon>
+</button>
+
 <!-- The comment content dialog -->
 <div mat-dialog-content id="commentContent" >
     <!-- The comment body section -->
     <!-- Display old comments -->
-    <div class="row border-top" *ngFor="let comment of comments; last as isLast">
-        <p class="col-12" id="commentBody" *ngIf="isLast" cdk-focus-initial>
+    <div class="row border rounded-sm shadow my-2" *ngFor="let comment of comments; last as isLast">
+        <div class="col-12 text-wrap text-break p-2" id="commentBody">
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
-        </p>
+        </div>
        
-        <p class="col-12" id="commentBody" *ngIf="!isLast">
+        <!-- <p class="col-12" id="commentBody" *ngIf="!isLast">
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
-        </p>
+        </p> -->
     </div>
 </div>
 
-<div mat-dialog-actions class="border-top" id="action">
+<div mat-dialog-actions class="border-top" id="actionContent">
 
-    <form [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm)" >
+    <form class="row" [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm)" >
           <!-- Name input -->
           <mat-form-field class="col-12 matFormInput" >
             <mat-label>Name</mat-label>
@@ -30,7 +38,7 @@
             <input matInput formControlName="comment" type="text" required maxlength="200">
           </mat-form-field>
           <!-- Save Button -->
-          <button class="btn bg-dark btn-lg btn-block" mat-button cdkFocusInitial id="saveBtn" tabindex="-1">
+          <button class="btn bg-dark btn-lg btn-block col-12" mat-button cdkFocusInitial id="saveBtn" tabindex="-1" [disabled]="loading$ | async">
                 <div class="row justify-content-center" *ngIf='loading$ | async ;else submit'>
                     <div class="mr-1">
                         <mat-spinner diameter="30" class="spinner">
