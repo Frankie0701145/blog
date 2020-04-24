@@ -33,18 +33,18 @@
               </div>
 
               <div class='d-none d-md-block d-lg-block '>
-                  <a mat-button [routerLink]="'/blogs'">  
+                  <a mat-button [routerLink]="'/blogs'" [routerLinkActive]="'active-link'" class="nav-link">  
                     Blogs
                   </a>
                   <!-- Display the login or the Add Blogs and Logout links -->
-                  <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut'>
+                  <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut' [routerLinkActive]="'active-link'" class="nav-link">
                     Login
                   </a>
                   <ng-template #loggedOut>
-                      <a mat-button [routerLink]="'/add_blog'">  
+                      <a mat-button [routerLink]="'/add_blog'" [routerLinkActive]="'active-link'" class="nav-link">  
                         Add Blogs
                       </a>
-                      <a mat-button [routerLink]="'/logout'" (click)="logout()">
+                      <a mat-button [routerLink]="'/logout'" (click)="logout()" class="nav-link">
                         Logout
                       </a>
                   </ng-template>
@@ -62,17 +62,17 @@
         </div>
         <div class='d-flex flex-wrap'>
             
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/blogs'">
+                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/blogs'">
                     <span >  Blogs</span>   
                 </a>
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/add_blog'" *ngIf='loggedIn'>  
+                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/add_blog'" *ngIf='loggedIn'>  
                   <span>Add Blogs</span>   
                 </a>
 
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='!loggedIn'>
+                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/login'" *ngIf='!loggedIn'>
                     <span>Login</span>
                 </a>  
-                <a mat-button class='border-bottom p-2 col-12' [routerLink]="'/login'" *ngIf='loggedIn' (click)="logout()">
+                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/login'" *ngIf='loggedIn' (click)="logout()">
                   <span>Logout</span>
               </a>  
         </div>
