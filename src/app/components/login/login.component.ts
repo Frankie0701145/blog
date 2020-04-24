@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { LoginSuccess } from 'src/app/store/actions/loggedIn.actions';
 import {Router } from '@angular/router'
 import { AddSuccessMessage } from 'src/app/store/actions/successMessage.action';
+import { Observable } from 'rxjs';
+import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
+import { StartLoading, StopLoading } from 'src/app/store/actions/loading.actions';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +24,10 @@ export class LoginComponent implements OnInit {
   */
   loginForm;
   /**
+   * selects the loading state
+  */
+  loading$: Observable<Boolean> = this._store.pipe(select(selectLoadingState));
+  /*
    * The property to toggle the visibility of the password input.
   */ 
   hide: boolean= true;
@@ -65,9 +72,18 @@ export class LoginComponent implements OnInit {
         accessToken: "asmcdaklsnmclamslcmkalmc"
       }
       /**
+       * Dispatch the loading Action
+      */
+      /**Action to change the state loading to true*/
+      this._store.dispatch(new StartLoading());
+      /**
        * Call the LoginSuccess action. Toggle the loggedIn state to true
       */
       this._store.dispatch(new LoginSuccess(payload));
+      /**
+       * change the loading state to false
+      */
+      this._store.dispatch(new StopLoading());
       /**
        * Dispatch the AddSuccessMessage action.
       */

@@ -28,9 +28,6 @@ export function loadingReducer(
             }
         /**Return the default state of loading for*/
         default:
-            return {
-                ...state,
-                loading: false
-            }
+            return state
     }
 }
