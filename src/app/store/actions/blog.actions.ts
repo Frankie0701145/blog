@@ -152,5 +152,5 @@ export class AddBlogCommentNumber implements Action {
 /** 
  * The Type for the BlogAction.
 */
-export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess | EditBlogSuccess;
+export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess | EditBlogSuccess | AddBlogCommentNumber;
 

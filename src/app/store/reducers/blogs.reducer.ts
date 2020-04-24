@@ -47,6 +47,26 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                 ...state,
                 blogs: newBlogs
             }
+        /**
+         * Add the Blog state comment number by one
+        */
+        case EBlogActions.AddBlogCommentNumber:
+            //  let blogId: string = action.payload.blogId;
+            return {
+                blogs: state.blogs.map((blog)=>{
+                    /**
+                     * Find the blog with that blogId.
+                     * Add one to that blog
+                    */
+                    if(blog.id == action.payload.blogId){
+                        /**Add one to the commentNo*/
+                        blog.commentNo+=1; 
+                    }
+                    /**return the blog*/
+                    return blog
+                })
+            }
+
         /**return the initialBlogState*/
         default:
             return state;

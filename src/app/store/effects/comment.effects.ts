@@ -9,6 +9,7 @@ import { StartLoading, StopLoading } from '../actions/loading.actions';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../state/app.state';
 import { AddSuccessMessage } from '../actions/successMessage.action';
+import { AddBlogCommentNumber } from '../actions/blog.actions';
 
 /**
  * Injectable CommentEffects class
@@ -41,7 +42,10 @@ export class CommentEffects{
           this._store.dispatch(new StartLoading());
           return this._commentService.postComment(action.payload).pipe(
               map((commentHttp: IComment)=>{
+                    /**Add the newly created comment to the comments state*/
                     this._store.dispatch(new CreateCommentSuccess(commentHttp));
+                    /**Add the blog commentNo by one*/
+                    this._store.dispatch(new AddBlogCommentNumber({blogId:commentHttp.blogId}));
                     /**Trigger the StopLoading Action*/
                     this._store.dispatch(new StopLoading());
                     /**Add the success message*/
@@ -51,6 +55,8 @@ export class CommentEffects{
                     console.log(error);
                     /**If it fails because some blogs created by the user are not persisted on the db just add the comment*/
                     this._store.dispatch(new CreateCommentSuccess(action.payload));
+                    /**Add the blog commentNo by one*/
+                    this._store.dispatch(new AddBlogCommentNumber({blogId:action.payload.blogId}));
                     /**Trigger the StopLoading Action*/
                     this._store.dispatch(new StopLoading());
                     /**Add the success message*/
