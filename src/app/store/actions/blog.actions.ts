@@ -18,7 +18,8 @@ export enum EBlogActions {
     CreateBlogSuccess = '[Add Blog] Create Blog Success',
     CreateBlogError = '[Add Blog] Create Blog Error',
     EditBlog = '[Blogs] Edit Blog',
-    EditBlogSuccess = '[Blogs] Edit Blog Success'
+    EditBlogSuccess = '[Blogs] Edit Blog Success',
+    AddBlogCommentNumber = '[Blogs] Add Comment Number'
 }
 
 /**
@@ -116,6 +117,9 @@ export class EditBlog implements Action {
  * Edits the blogs in the state
 */
 export class EditBlogSuccess implements Action {
+    /**
+     * Holds the action type constant
+    */
     public readonly type = EBlogActions.EditBlogSuccess
     /**
      * The EditBlogSuccess Action. Action to be triggered after a successful EditBlog.
@@ -125,6 +129,23 @@ export class EditBlogSuccess implements Action {
      * @param {IBlogEditProperties} payload.blogProperties - Properties and values that are going to change on a blog.
     */
     constructor( public payload: { blogId: string, blogProperties: IBlogEditProperties}){}
+}
+
+/**
+ * @class
+ * @implements {Action}
+ * Adds Comment Number of a blog after a successful CreateCommentSuccess Action
+*/
+export class AddBlogCommentNumber implements Action {
+    /**
+     * Holds the action type constant
+    */
+    public readonly type = EBlogActions.AddBlogCommentNumber
+    /**
+     * @param {blogId: string}
+     * Adds Comment Number of a blog after a successful CreateCommentSuccess Action
+    */
+    constructor (public payload: {blogId: string}){}
 }
 
 
