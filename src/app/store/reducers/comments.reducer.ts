@@ -8,14 +8,18 @@ import {ECommentActions, CommentActions} from  '../actions/comment.actions';
 */
 export function commentsReducer(state=initialCommentsState, action: CommentActions):ICommentsState{
     switch(action.type){
-        /**For Successful Retrieval of Comments*/
-        /**Handle GetCommentSuccess Action*/
+        /**
+         * Adds comments to the comment state
+        */
         case ECommentActions.GetCommentsSuccess:
             /**Adds the comments to the comments state*/
             return {
                 ...state,
                 comments: action.payload
             }
+        /**
+         * Adds a new comment to the comment state
+        */
         case ECommentActions.CreateCommentSuccess:
             return {
                 ...state,
