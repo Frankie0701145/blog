@@ -91,7 +91,7 @@ export class AddBlogComponent implements OnInit {
       photoUrl: this.previewUrl,
       body: blogData.body,
       id: generatedId.toString(),
-      commentNo: 4
+      commentNo: 0
     }
     /**dispatch the createBlog action*/
     this._store.dispatch(new CreateBlog(data));
