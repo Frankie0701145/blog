@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { GetComments, ECommentActions, GetCommentsSuccess, CreateCommentSuccess, CreateComment } from '../actions/comment.actions';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import {CommentService} from '../../services/comment.service'
 import { of, Observable } from 'rxjs';
 import { IComment } from 'src/app/models/comment.interface';
@@ -46,6 +46,15 @@ export class CommentEffects{
                     this._store.dispatch(new StopLoading());
                     /**Add the success message*/
                     return new AddSuccessMessage({ message: 'Comment created successful'});
+              }),
+              catchError((error)=>{
+                    console.log(error);
+                    /**If it fails because some blogs created by the user are not persisted on the db just add the comment*/
+                    this._store.dispatch(new CreateCommentSuccess(action.payload));
+                    /**Trigger the StopLoading Action*/
+                    this._store.dispatch(new StopLoading());
+                    /**Add the success message*/
+                    return of(new AddSuccessMessage({ message: 'Comment created successful'}));
               })
           )
         })
