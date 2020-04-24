@@ -76,9 +76,9 @@ export class BlogsComponent implements OnInit {
     /**Initialize the MatDialogConfig*/
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.maxHeight = "500px";
+    // dialogConfig.maxHeight = "700px";
     dialogConfig.maxWidth = "500px";
-    dialogConfig.minHeight = "200px";
+    // dialogConfig.minHeight = "400px";
     dialogConfig.minWidth = "200px";
     /**Pass the blogId to the component which will be used to retrieve comments*/
     dialogConfig.data = {
