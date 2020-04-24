@@ -6,6 +6,7 @@ import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
 import { EditBlog } from 'src/app/store/actions/blog.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-blog',
@@ -24,7 +25,7 @@ export class EditBlogComponent implements OnInit {
   /**The blogId*/
   blogId: string;
   /**select the loading state*/
-  loading: boolean; 
+  loading$: Observable<boolean> = this._store.pipe(select(selectLoadingState))
   
 
   constructor(
@@ -40,10 +41,6 @@ export class EditBlogComponent implements OnInit {
     /**subscribe to the paramMap and retrieve the id*/
     this.route.paramMap.subscribe((params: ParamMap)=>{
       this.blogId = "" +params.get('id')
-    });
-    /**select the loading state*/
-    this._store.pipe(select(selectLoadingState)).subscribe((loading)=>{
-      this.loading = loading;
     });
 
   }
