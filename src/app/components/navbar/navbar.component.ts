@@ -25,15 +25,14 @@ export class NavbarComponent implements OnInit {
   */
   loggedIn: boolean
   /**
-   * Will hold the value of searching from the state.
-   * Will be used to show the filteredBlogs instead of the blogs 
+   *boolean to control the hiding and showing the search input.
   */
-  searching: boolean
+  showSearchInput: boolean = false;
   /**
    * Will control if the search button gets displayed
-   * It will only be true on the /blogs page.
+   * It will only be true on the /blogs route.
   */
-  showSearchBtn$: Observable<boolean>
+  showSearchBtn: boolean
 
   /**
    * @param {Store} _store
@@ -56,18 +55,18 @@ export class NavbarComponent implements OnInit {
         this.loggedIn =loggedIn;
     });
     /**
-     * retrieve the searching state from the store
+     * Checks when the user visits the blogs route and show the search button
     */
-    this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
-        this.searching = isSearching
-    })
-    /**
-     * Checks when the use visits the blogs route to show the search button
-    */
-    this.showSearchBtn$ = this.router.events.pipe(
-      filter((event)=> event instanceof NavigationEnd),
-      map((event)=> event['url'].endsWith('/blogs'))
-    );
+    this.router.events.pipe(
+      filter((event)=> {
+        return event instanceof NavigationEnd
+      }),
+      map((event)=> {
+        return event['url'].endsWith('/blogs')
+      })
+    ).subscribe((result)=>{
+      this.showSearchBtn = result;
+    });
   }
 
   ngOnInit() {
@@ -90,9 +89,9 @@ export class NavbarComponent implements OnInit {
   */
   closeSearch(){
     /**
-     * Change the searching to false
+     * Close the searchInput by changing the showSearchInput to false.
     */
-    this.searching = !this.searching;
+    this.showSearchInput = false;
     /**
      * Dispatch the stopSearching to change the isSearching state to false
     */
@@ -107,8 +106,8 @@ export class NavbarComponent implements OnInit {
    * Open the search bar.
   */
   openSearch(){
-    //
-    this.searching = !this.searching
+    /**Open the search input*/
+    this.showSearchInput = true;
   }
   /**
    * Handles the action triggered by the search input.
@@ -123,7 +122,7 @@ export class NavbarComponent implements OnInit {
     */
     this._store.pipe(select(selectBlogList)).subscribe((blogs)=>{
       /**
-       * Dispatch the Searching action. Toggle the searching state to true
+       * Dispatch the Searching action. Toggle the isSearching state to true
       */
       this._store.dispatch(new Searching())
       /**

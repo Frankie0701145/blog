@@ -2,87 +2,97 @@
   <div id="overallWrapper border">  
     <div class="row border" id="navWrapper">
       <div class='container-lg  align-items-center ' >
-        <div class="d-flex flex-row p-3 justify-content-between  align-items-center p-1"  >
-            <!-- The company logo -->
-            <div class="" *ngIf="!searching">
-                <a class=''><img src='assets/images/soko.png'></a>
+        <div class="d-flex flex-row p-3 justify-content-between  align-items-center p-1">
+            <!-- The search input wrapper.-->
+            <div class='row' id="searchWrapper" *ngIf="showSearchInput; else notSearching">
+                <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search By Title" aria-label="Search" (keyup)="search($event)">
+                <button mat-mini-fab class=" border" (click)="closeSearch()" id="closeSearchBtn">X</button>
             </div>
+            <!--Show when the search bar input is hidden-->
+            <ng-template #notSearching>
+                <!-- The company logo -->
+                <div>
+                    <a><img src='assets/images/soko.png'></a>
+                </div>
+                <!--The nav links-->
+                <div class="bd-highlight d-flex">
 
-            <!-- The search bar -->
-            <div class='row' id="searchWrapper" *ngIf="searching">
-                <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search By Title" aria-label="Search" (change)="search($event)">
-                <button mat-mini-fab class=" border" (click)="closeSearch()">X</button>
-            </div>
-            
-            <div class="bd-highlight  d-flex " *ngIf="!searching">
-              <div class='d-flex flex-wrap'>
-                  <!-- Open the search bar -->
-                  <div *ngIf="showSearchBtn$ | async">
-                    <a mat-button (click)="openSearch()">
-                      <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
-                    </a>
-                  </div>
-                  <!-- Display in small screens -->
-                  <div class='d-sm-block d-md-none d-lg-none '>
-                    <a mat-button class='' (click)="sidenav.toggle()">
-                        <mat-icon >
-                            menu
-                        </mat-icon>
-                    </a>
-                  </div>
-              </div>
+                    <div class='d-flex flex-wrap'>
+                        <!-- Open the search bar. Only shown on the blog route. -->
+                        <div *ngIf="showSearchBtn">
+                          <a mat-button (click)="openSearch()">
+                            <mat-icon>search</mat-icon>
+                          </a>
+                        </div>
+                        <!-- Display in small screens -->
+                        <div class='d-sm-block d-md-none d-lg-none '>
+                          <a mat-button class='' (click)="sidenav.toggle()">
+                              <mat-icon >
+                                  menu
+                              </mat-icon>
+                          </a>
+                        </div>
+                    </div>
 
-              <div class='d-none d-md-block d-lg-block '>
-                  <a mat-button [routerLink]="'/blogs'" [routerLinkActive]="'active-link'" class="nav-link">  
-                    Blogs
-                  </a>
-                  <!-- Display the login or the Add Blogs and Logout links -->
-                  <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut' [routerLinkActive]="'active-link'" class="nav-link">
-                    Login
-                  </a>
-                  <ng-template #loggedOut>
-                      <a mat-button [routerLink]="'/add_blog'" [routerLinkActive]="'active-link'" class="nav-link">  
-                        Add Blogs
-                      </a>
-                      <a mat-button [routerLink]="'/logout'" (click)="logout()" class="nav-link">
-                        Logout
-                      </a>
-                  </ng-template>
-              </div>
-            </div>
+                    <!--Display in medium and large screens -->
+                    <div class='d-none d-md-block d-lg-block '>
+                        <a mat-button [routerLink]="'/blogs'" [routerLinkActive]="'active-link'" class="nav-link">  
+                          Blogs
+                        </a>
+                        <!--Shown when not loggedIn-->
+                        <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut' [routerLinkActive]="'active-link'" class="nav-link">
+                          Login
+                        </a>
+                         <!--Shown when loggedIn-->
+                        <ng-template #loggedOut>
+                            <a mat-button [routerLink]="'/add_blog'" [routerLinkActive]="'active-link'" class="nav-link">  
+                              Add Blogs
+                            </a>
+                            <a mat-button [routerLink]="'/logout'" (click)="logout()" class="nav-link">
+                              Logout
+                            </a>
+                        </ng-template>
+                    </div>
+                </div>
+            </ng-template>
         </div>
       </div>
     </div>
-    <!-- The side nav -->
+
     <mat-sidenav-container>  
-      
+      <!-- The side nav -->
       <mat-sidenav #sidenav  mode='over' class='bg-light' opened='false' autoFocus='true' id="sideNav">
         <div class="d-flex flex-row justify-content-end">
             <a mat-button (click)="sidenav.toggle()"><mat-icon>keyboard_backspace</mat-icon></a>
         </div>
         <div class='d-flex flex-wrap'>
             
-                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/blogs'">
-                    <span >  Blogs</span>   
+                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/blogs'" [routerLinkActive]="'active-link'">
+                    <span>Blogs</span>   
                 </a>
-                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/add_blog'" *ngIf='loggedIn'>  
-                  <span>Add Blogs</span>   
-                </a>
-
-                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/login'" *ngIf='!loggedIn'>
+                <!--Shown when not loggedIn-->
+                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/login'" *ngIf='!loggedIn ; else shownLoggedIn' [routerLinkActive]="'active-link'">
                     <span>Login</span>
-                </a>  
-                <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/login'" *ngIf='loggedIn' (click)="logout()">
-                  <span>Logout</span>
-              </a>  
+                </a> 
+                <!--Shown when loggedIn-->
+                <ng-template #shownLoggedIn> 
+                    <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/add_blog'" *ngIf='loggedIn' [routerLinkActive]="'active-link'">  
+                      <span>Add Blogs</span>   
+                    </a>
+                    <a mat-button class='border-bottom p-2 col-12 nav-link' [routerLink]="'/login'" *ngIf='loggedIn' (click)="logout()"> 
+                      <span>Logout</span>
+                    </a>  
+                </ng-template>
+
         </div>
  
       </mat-sidenav>
-  
-      <mat-sidenav-content id="content"> 
-        <!-- The main content -->
+
+      <!-- The main content -->
+      <mat-sidenav-content id="content">       
         <router-outlet></router-outlet>
       </mat-sidenav-content> 
+
     </mat-sidenav-container>
   </div>
 
