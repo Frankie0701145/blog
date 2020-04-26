@@ -7,7 +7,7 @@
             <!-- For displaying Filtered Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of filteredBlog$ | async" >
                 <mat-card-header class="row">
-                    <div class="col-1 offset-11">
+                    <div class="col-1 offset-10">
                         <a [routerLink]="['/blogs', blog.id, 'edit']" *ngIf="loggedIn" class="editIconLink"> 
                             <mat-icon class="editIcon">edit</mat-icon> 
                         </a>
@@ -36,7 +36,7 @@
             <!-- For Displaying Regular Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of blogs$ | async" >
                 <mat-card-header class="row">
-                    <div class="col-1 offset-11" *ngIf="loggedIn">
+                    <div class="col-1 offset-10" *ngIf="loggedIn">
                         <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink"> 
                             <mat-icon class="editIcon">edit</mat-icon> 
                         </a>
