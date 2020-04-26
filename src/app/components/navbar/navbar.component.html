@@ -19,13 +19,13 @@
 
                     <div class='d-flex flex-wrap'>
                         <!-- Open the search bar. Only shown on the blog route. -->
-                        <div *ngIf="showSearchBtn">
+                        <div *ngIf="showSearchBtn" id="searchIconWrapper">
                           <a mat-button (click)="openSearch()">
                             <mat-icon>search</mat-icon>
                           </a>
                         </div>
                         <!-- Display in small screens -->
-                        <div class='d-sm-block d-md-none d-lg-none '>
+                        <div class='d-sm-block d-md-none d-lg-none' id="menuIconWrapper">
                           <a mat-button class='' (click)="sidenav.toggle()">
                               <mat-icon >
                                   menu
