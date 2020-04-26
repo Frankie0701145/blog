@@ -9,20 +9,20 @@
             <div id="formWrapper" class=" container">
                 <!-- The form -->
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-                    <div class="row pb-4">
-                        <span class="offset-5">Login to proceed</span>
+                    <div class="row pb-4 justify-content-center">
+                        <span class="">Login to proceed</span>
                     </div>
 
-                    <div class=" row pb-4">
-                        <mat-icon class="icon offset-2">email</mat-icon>
+                    <div class="row pb-4 justify-content-center">
+                        <mat-icon class="icon">email</mat-icon>
                         <mat-form-field appearance="legacy" class="col-8">  
                             <mat-label class="">Email</mat-label>
                             <input [email]="true" matInput placeholder="Email" formControlName="email" required>   
                             
                         </mat-form-field>
                     </div>
-                    <div class="row pb-4">
-                        <mat-icon class="icon offset-2">https</mat-icon>
+                    <div class="row pb-4 justify-content-center">
+                        <mat-icon class="icon">https</mat-icon>
                         <mat-form-field appearance="legacy" class="col-8">
                             <mat-label>Enter your password</mat-label>
                             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
@@ -33,7 +33,7 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="row ">
+                    <div class="row justify-content-center">
                         <div class="col-8" id="submitBtnWrapper">
                             <button class="btn bg-dark btn-lg btn-block" id="loginBtn" [disabled]="loading$  | async">
                                 <div class="row justify-content-center" *ngIf='loading$ | async ;else submit'>
