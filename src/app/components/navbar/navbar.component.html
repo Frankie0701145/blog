@@ -5,7 +5,7 @@
         <div class="d-flex flex-row p-3 justify-content-between  align-items-center p-1">
             <!-- The search input wrapper.-->
             <div class='row' id="searchWrapper" *ngIf="showSearchInput; else notSearching">
-                <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search By Title" aria-label="Search" (keyup)="search($event)">
+                <input class="col-9 col-md-9 col-lg-9 form-control mr-1 " type="search" placeholder="Search By Title" aria-label="Search" (keyup)="search($event)">
                 <button mat-mini-fab class=" border" (click)="closeSearch()" id="closeSearchBtn">X</button>
             </div>
             <!--Show when the search bar input is hidden-->

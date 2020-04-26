@@ -1,7 +1,3 @@
-#sidenav-content
-    padding: 0px !important
-    margin: 0px!important
-    height: 86vh
 #navWrapper
     position: sticky
     z-index: 9999
@@ -10,7 +6,23 @@
     box-shadow: 1px 0.4px 4px rgba(0, 0, 0, .5)
     #searchWrapper
         position: absolute
+        top: 0
+        width: 80%
+        overflow: hidden
+    #closeSearchBtn
+        background-color: #FE512A
+@media screen and ( max-width: 600px )
+    #searchWrapper
+        position: relative
+        left: 10%
+    
+@media screen and ( min-width: 600px ) and (max-width: 763px)
+    #searchWrapper
+        position: absolute
+        left: 13%
+@media screen and (min-width: 763px)
+    #searchWrapper
+        position: absolute
+        left: 16%
 
-#closeSearchBtn
-    background-color: #FE512A
-
+    
