@@ -10,13 +10,14 @@
                 </mat-form-field>
             </div>
 
-            <div class="col-sm-10 col-md-7 offset-md-2">
+            <div class="col-sm-10 col-md-7 offset-md-2 mb-3">
                 <div class="row col-12">
                     <div class="mb-3 col-12 image-preview-wrapper" *ngIf="true">
                         <img [src]="previewUrl" height="90%" width="90%" alt="Image Previewer"/>                 
                     </div>
-                    <div class="form-group col-8">
-                        <input type="file" (change)="fileProgress($event)" accept="image/png, image/jpeg" required/>
+                    <div class="custom-file">
+                        <input class="custom-file-input" type="file" (change)="fileProgress($event)" accept="image/png, image/jpeg" required/>
+                        <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>
             </div>
