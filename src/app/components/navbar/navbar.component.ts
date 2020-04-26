@@ -10,6 +10,7 @@ import { selectBlogList } from 'src/app/store/selectors/blog.selector';
 import { Searching, StopSearching } from 'src/app/store/actions/isSearching.actions';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { IBlog } from 'src/app/models/blog.interface';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -33,6 +34,10 @@ export class NavbarComponent implements OnInit {
    * It will only be true on the /blogs route.
   */
   showSearchBtn: boolean
+  /**
+   * Will hold the blogs from the state
+  */
+  blogs: IBlog []
 
   /**
    * @param {Store} _store
@@ -54,6 +59,12 @@ export class NavbarComponent implements OnInit {
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
         this.loggedIn =loggedIn;
     });
+    /**
+     * retrieve the blogs from the store
+    */
+    this._store.pipe(select(selectBlogList)).subscribe((blogs)=>{
+        this.blogs = blogs
+    })
     /**
      * Checks when the user visits the blogs route and show the search button
     */
@@ -87,11 +98,16 @@ export class NavbarComponent implements OnInit {
   /**
    * Closes the search bar.
   */
-  closeSearch(){
+  closeSearch(searchInput){
     /**
      * Close the searchInput by changing the showSearchInput to false.
     */
     this.showSearchInput = false;
+    /**
+     * Clear the search text
+     * 
+    */
+    searchInput.value = "";
     /**
      * Dispatch the stopSearching to change the isSearching state to false
     */
@@ -99,7 +115,7 @@ export class NavbarComponent implements OnInit {
     /**
      * Remove all the filteredBlogs from the state
     */
-    this._store.dispatch(new RemoveFilteredBlogs())
+    this._store.dispatch(new RemoveFilteredBlogs());
   }
 
   /**
@@ -118,19 +134,14 @@ export class NavbarComponent implements OnInit {
     */
     let searchText:  string = e.target.value;
     /**
-     * Retrieve all the  blogs from the state
+      * Dispatch the Searching action. Toggle the isSearching state to true
     */
-    this._store.pipe(select(selectBlogList)).subscribe((blogs)=>{
-      /**
-       * Dispatch the Searching action. Toggle the isSearching state to true
-      */
-      this._store.dispatch(new Searching())
-      /**
+   this._store.dispatch(new Searching())
+    /**
        * Dispatch the FilterBlogs action and pass the searchText and The blogs to filter from.
        * Action responsible for filtering 
-      */
-      this._store.dispatch(new FilterBlogs({searchText: searchText, blogs: blogs }))
-    });
+    */
+    this._store.dispatch(new FilterBlogs({searchText: searchText, blogs: this.blogs }))
   }
 
 }
