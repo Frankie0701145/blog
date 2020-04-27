@@ -10,17 +10,11 @@
 <!-- The comment content dialog -->
 <div mat-dialog-content id="commentContent" >
     <!-- The comment body section -->
-    <!-- Display old comments -->
     <div class="row border rounded-sm shadow my-2" *ngFor="let comment of comments; last as isLast">
         <div class="col-12 text-wrap text-break p-2" id="commentBody">
           <span id="name">{{comment.name}}</span>
           {{comment.body}}
         </div>
-       
-        <!-- <p class="col-12" id="commentBody" *ngIf="!isLast">
-          <span id="name">{{comment.name}}</span>
-          {{comment.body}}
-        </p> -->
     </div>
 </div>
 
