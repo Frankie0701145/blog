@@ -8,9 +8,9 @@
 </button>
 
 <!-- The comment content dialog -->
-<div mat-dialog-content id="commentContent" >
+<div #commentContent mat-dialog-content id="commentContent" (scroll) ="scrolled(e)" >
     <!-- The comment body section -->
-    <div class="row border rounded-sm shadow my-2" *ngFor="let comment of comments; last as isLast">
+    <div #commentsDiv class="row border rounded-sm shadow my-2 commentsDiv" *ngFor="let comment of comments; last as isLast">
         <div class="col-12 text-wrap text-break p-2" id="commentBody">
           <span id="name">{{comment.name}}</span>
           {{comment.body}}

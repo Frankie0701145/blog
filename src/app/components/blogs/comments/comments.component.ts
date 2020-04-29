@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit, QueryList, ViewChildren, ViewChild, ElementRef } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material'
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
@@ -19,34 +19,94 @@ import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
  * @class
  * @implements {OnInit}
 */
-export class CommentsComponent implements OnInit {
-  /**The blogId property of the blog*/ 
+export class CommentsComponent implements OnInit, AfterViewInit {
+  /**
+   * @type {QueryList<any>}
+   * Query the commentsDiv from the DOM
+   */
+  @ViewChildren('commentsDiv') commentsDiv: QueryList<any>
+  /**
+   * @type {ElementRef}
+   * To hold the commentContent DIV Element
+   */
+  @ViewChild('commentContent',{static: false}) commentContentDialog: ElementRef
+
+  /**
+   * @type {string}
+   * The blogId property of the blog
+  */ 
   blogId: string
   /**
-   * To hold the comments that belong to this blog from the state
+   * @type {boolean}
+   * Boolean to monitor if the user is near the bottom. Will control if the scrollBottom() is triggered.
+  */
+  isNearBottom: boolean = true;
+  /**
+   * @type {IComment[]}
+   * To hold the comments state that belong to this blog.
   */
   comments: IComment[];
-  /**The comment form */
+  /**
+   * @type {any}
+   * The comment form 
+  */
   commentForm: any;
+  /**
+   * @type {Observable<boolean>}
+   * Observable to retrieve loading state from the store.
+  */
   loading$: Observable<boolean> = this._store.pipe(select(selectLoadingState))
 
   constructor(
-    /**Inject the data passed from the blogs component*/
+    /**
+     * Inject the data passed from the blogs component
+    */
     @Inject(MAT_DIALOG_DATA) public data: any,
-    /**inject the store*/
+    /**
+     * @type {Store<IAppState>}
+     *  inject the store
+    */
     private _store: Store<IAppState>,
     /**Inject the formBuilder*/
     private formBuilder: FormBuilder
   ) {
-    /**Get the blogId from the passed blog*/
+
+    /**
+     * Get the blogId from the passed blog.
+    */
     this.blogId = data.blogId
-    /**Build the comment form*/
+    /**
+     * Build the comment form
+    */
     this.commentForm = this.formBuilder.group({
         name: "",
         comment: ""
     });
-
    }
+
+  ngAfterViewInit(): void {
+
+    /**
+     * Scroll to the bottom to show the latest comment
+    */
+    this.scrollToBottom();
+
+    /**
+     * Subscribe to when a comment is added.
+     */
+    this.commentsDiv.changes.subscribe(()=>{
+      /**
+       * Only scroll if the user is near the Bottom of the scroll height.
+      */
+      if(this.isNearBottom){
+        /**
+         * Scroll to the bottom to view the latest comment.
+        */
+        this.scrollToBottom();
+      }
+
+    });
+  }
 
   ngOnInit() {
       /**
@@ -60,28 +120,61 @@ export class CommentsComponent implements OnInit {
         this.comments = blogComments;
       });
   }
-  /**function to submit the data from the comment form*/
+  /**
+   * @param {FormGroup} commentForm
+   * function to submit the data from the comment form
+   */
   onSubmit(commentForm: FormGroup){
-    /**Return if invalid*/
+    /**
+     * Return if invalid
+    */
     if (commentForm.invalid) {
       return;
     }
-    /**Generate a random id. Will be used as blog id.*/
+    /**
+     * @type {string}
+     * Generate a random id. Will be used as blog id.
+    */
     let generatedId: string = Math.floor(Math.random()*1000).toString();
-    /**The comment data*/
+    /**
+     * @type {IComment}
+     * The comment data
+    */
     let comment: IComment={
       id: generatedId,
       body: commentForm.value.comment,
       name: commentForm.value.name,
       blogId: this.blogId
     }
-    /**Retrieve the commentContent*/
-    let container = document.getElementById("commentContent");
-    /**Scroll to the bottom of the commentContent*/
-    container.scrollTop = container.scrollHeight
-    /**Dispatch the AddNewComment action and pass the comment.*/
+    /**
+     * Dispatch the AddNewComment action and pass the comment.
+    */
     this._store.dispatch(new CreateComment(comment));
-    /**Clear the comment input*/ 
+    /**
+     * Clear the comment input only and not the name input
+     */ 
     commentForm.reset({name:commentForm.value.name, comment: ""})
   }
+
+  /**
+   * Scrolls the commentDialog to bottom.
+  */
+  private scrollToBottom(): void{
+    this.commentContentDialog.nativeElement.scroll({
+      top: this.commentContentDialog.nativeElement.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+  /**
+   * Will get fired when the commentDialog is scrolled.
+   * Monitor if the comment content is near the bottom
+   * Used to toggle the isNearBottom.
+  */
+ scrolled(event: any){
+    const threshold = 150;
+    const position = this.commentContentDialog.nativeElement.scrollTop + this.commentContentDialog.nativeElement.offsetHeight;
+    const height = this.commentContentDialog.nativeElement.scrollHeight;
+    this.isNearBottom = position > (height-threshold);
+ }
 }
