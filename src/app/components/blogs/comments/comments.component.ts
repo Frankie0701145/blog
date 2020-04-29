@@ -171,7 +171,7 @@ export class CommentsComponent implements OnInit, AfterViewInit {
    * Monitor if the comment content is near the bottom
    * Used to toggle the isNearBottom.
   */
- scrolled(event: any){
+ scrolled(){
     const threshold = 150;
     const position = this.commentContentDialog.nativeElement.scrollTop + this.commentContentDialog.nativeElement.offsetHeight;
     const height = this.commentContentDialog.nativeElement.scrollHeight;
