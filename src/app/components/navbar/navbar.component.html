@@ -1,64 +1,65 @@
  
-  <div class="container-fluid" id="overallWrapper">  
-    <div class="row border" id="navWrapper">
-      <div class='container-lg  align-items-center ' >
-        <div class="d-flex flex-row p-3 justify-content-between  align-items-center p-1">
-            <!-- The search input wrapper.-->
-            <div class='row pb-4' id="searchWrapper" *ngIf="showSearchInput; else notSearching">
-                <input #searchInput class="col-9 col-md-9 col-lg-9 form-control mr-1 " type="search" placeholder="Search By Title" aria-label="Search" (keyup)="search($event)">
-                <button mat-mini-fab (click)="closeSearch(searchInput)" id="closeSearchBtn">X</button>
-            </div>
-            <!--Show when the search bar input is hidden-->
-            <ng-template #notSearching>
-                <!-- The company logo -->
-                <div>
-                    <a><img src='assets/images/soko.png'></a>
-                </div>
-                <!--The nav links-->
-                <div class="bd-highlight d-flex">
+  <div id="overallWrapper">  
+    <div class="container-fluid"  id="navWrapper">
+      <div class="row border">
+        <div class='container-lg  align-items-center ' >
+          <div class="d-flex flex-row p-3 justify-content-between  align-items-center p-1">
+              <!-- The search input wrapper.-->
+              <div class='row pb-4' id="searchWrapper" *ngIf="showSearchInput; else notSearching">
+                  <input #searchInput class="col-9 col-md-9 col-lg-9 form-control mr-1 " type="search" placeholder="Search By Title" aria-label="Search" (keyup)="search($event)">
+                  <button mat-mini-fab (click)="closeSearch(searchInput)" id="closeSearchBtn">X</button>
+              </div>
+              <!--Show when the search bar input is hidden-->
+              <ng-template #notSearching>
+                  <!-- The company logo -->
+                  <div>
+                      <a><img src='assets/images/soko.png'></a>
+                  </div>
+                  <!--The nav links-->
+                  <div class="bd-highlight d-flex">
 
-                    <div class='d-flex flex-wrap'>
-                        <!-- Open the search bar. Only shown on the blog route. -->
-                        <div *ngIf="showSearchBtn" id="searchIconWrapper">
-                          <a mat-button (click)="openSearch()">
-                            <mat-icon>search</mat-icon>
-                          </a>
-                        </div>
-                        <!-- Display in small screens -->
-                        <div class='d-sm-block d-md-none d-lg-none' id="menuIconWrapper">
-                          <a mat-button class='' (click)="sidenav.toggle()">
-                              <mat-icon >
-                                  menu
-                              </mat-icon>
-                          </a>
-                        </div>
-                    </div>
+                      <div class='d-flex flex-wrap'>
+                          <!-- Open the search bar. Only shown on the blog route. -->
+                          <div *ngIf="showSearchBtn" id="searchIconWrapper">
+                            <a mat-button (click)="openSearch()">
+                              <mat-icon>search</mat-icon>
+                            </a>
+                          </div>
+                          <!-- Display in small screens -->
+                          <div class='d-sm-block d-md-none d-lg-none' id="menuIconWrapper">
+                            <a mat-button class='' (click)="sidenav.toggle()">
+                                <mat-icon >
+                                    menu
+                                </mat-icon>
+                            </a>
+                          </div>
+                      </div>
 
-                    <!--Display in medium and large screens -->
-                    <div class='d-none d-md-block d-lg-block '>
-                        <a mat-button [routerLink]="'/blogs'" [routerLinkActive]="'active-link'" class="nav-link">  
-                          Blogs
-                        </a>
-                        <!--Shown when not loggedIn-->
-                        <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut' [routerLinkActive]="'active-link'" class="nav-link">
-                          Login
-                        </a>
-                         <!--Shown when loggedIn-->
-                        <ng-template #loggedOut>
-                            <a mat-button [routerLink]="'/add_blog'" [routerLinkActive]="'active-link'" class="nav-link">  
-                              Add Blogs
-                            </a>
-                            <a mat-button [routerLink]="'/logout'" (click)="logout()" class="nav-link">
-                              Logout
-                            </a>
-                        </ng-template>
-                    </div>
-                </div>
-            </ng-template>
+                      <!--Display in medium and large screens -->
+                      <div class='d-none d-md-block d-lg-block '>
+                          <a mat-button [routerLink]="'/blogs'" [routerLinkActive]="'active-link'" class="nav-link">  
+                            Blogs
+                          </a>
+                          <!--Shown when not loggedIn-->
+                          <a mat-button [routerLink]="'/login'" *ngIf='!loggedIn;else loggedOut' [routerLinkActive]="'active-link'" class="nav-link">
+                            Login
+                          </a>
+                          <!--Shown when loggedIn-->
+                          <ng-template #loggedOut>
+                              <a mat-button [routerLink]="'/add_blog'" [routerLinkActive]="'active-link'" class="nav-link">  
+                                Add Blogs
+                              </a>
+                              <a mat-button [routerLink]="'/logout'" (click)="logout()" class="nav-link">
+                                Logout
+                              </a>
+                          </ng-template>
+                      </div>
+                  </div>
+              </ng-template>
+          </div>
         </div>
       </div>
     </div>
-
     <mat-sidenav-container>  
       <!-- The side nav -->
       <mat-sidenav #sidenav  mode='over' class='bg-light' opened='false' autoFocus='true' id="sideNav">
