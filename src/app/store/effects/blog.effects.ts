@@ -25,7 +25,7 @@ import { DeleteFilteredBlogSuccess } from '../actions/filteredBlogs.action';
 export class BlogEffects {
     /**
      * Fetching for blogs using the blogService 
-     * @returns {Observable<GetBlogsSuccess>} - Returns an GetBlogsSuccess observable
+     * @returns {Observable<GetBlogsSuccess>} - Returns a GetBlogsSuccess observable
      * 
     */
     @Effect()
@@ -39,7 +39,7 @@ export class BlogEffects {
 
     /**
      * Posting new blogs using blogService
-     * @returns {ObservableM<IBlog | CreateBlogSuccess>}
+     * @returns {Observable<IBlog | CreateBlogSuccess>}
     */
     @Effect()
     postBlogs$: Observable<IBlog | CreateBlogSuccess> = this._action$.pipe(
@@ -48,7 +48,7 @@ export class BlogEffects {
         switchMap((action) => {
             /**Action to change the state loading to true*/
             this._store.dispatch(new StartLoading());
-            /**Post post blogs to the server*/
+            /**Post the blog to the server*/
             return this._blogService.postBlog(action.payload);
         }),
         switchMap((blogHttp: IBlog) => {
@@ -57,7 +57,7 @@ export class BlogEffects {
             return of(new CreateBlogSuccess(blogHttp))
         }),
         tap(() => {
-            /**Action to change the state loading to false*/
+            /**Action to toggle the state loading to false*/
             this._store.dispatch(new StopLoading());
             /**Navigate the user to the blogs page*/
             return this.router.navigate(['/blogs']);
@@ -66,7 +66,7 @@ export class BlogEffects {
 
     /**
      * Edit the blogs using blogService
-     * @return the observable EditBlogSuccess
+     * @return {Observable<EditBlogSuccess>} - returns EditBlogSuccess
     */
     @Effect()
     editBlog$: Observable<AddSuccessMessage | Observable<AddSuccessMessage>> = this._action$.pipe(
@@ -112,6 +112,10 @@ export class BlogEffects {
             )
         }),
     )
+
+    /**'
+     * Delete a blog from the server
+    */
 
     @Effect()
     deleteBlog$ = this._action$.pipe(

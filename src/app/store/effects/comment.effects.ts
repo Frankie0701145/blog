@@ -31,6 +31,9 @@ export class CommentEffects{
             return of(new GetCommentsSuccess(comments))
         })
     )
+    /**
+     * Post comments to the server
+    */
     @Effect()
     postComments$: Observable<AddSuccessMessage> = this._action$.pipe(
         ofType<CreateComment>(ECommentActions.CreateComment),
@@ -40,6 +43,9 @@ export class CommentEffects{
         switchMap((action)=>{
            /**Action to change the state loading to true*/
           this._store.dispatch(new StartLoading());
+          /**
+           * Post the comment
+          */
           return this._commentService.postComment(action.payload).pipe(
               map((commentHttp: IComment)=>{
                     /**Add the newly created comment to the comments state*/
@@ -52,8 +58,8 @@ export class CommentEffects{
                     return new AddSuccessMessage({ message: 'Comment created successful'});
               }),
               catchError((error)=>{
-                    console.log(error);
                     /**If it fails because some blogs created by the user are not persisted on the db just add the comment*/
+                    /**Add the newly created comment to the comments state*/
                     this._store.dispatch(new CreateCommentSuccess(action.payload));
                     /**Add the blog commentNo by one*/
                     this._store.dispatch(new AddBlogCommentNumber({blogId:action.payload.blogId}));
