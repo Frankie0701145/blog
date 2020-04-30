@@ -21,7 +21,7 @@
                       <div class='d-flex flex-wrap'>
                           <!-- Open the search bar. Only shown on the blog route. -->
                           <div *ngIf="showSearchBtn" id="searchIconWrapper">
-                            <a mat-button (click)="openSearch()">
+                            <a mat-button (click)="openSearch()" matTooltip="Search the blogs.">
                               <mat-icon>search</mat-icon>
                             </a>
                           </div>

@@ -9,11 +9,11 @@
                 <mat-card-header class="row">
                     <div class="col-2 offset-10" *ngIf="loggedIn">
                         <div class="d-flex flex-row justify-content-end">
-                            <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink col-1 mr-2"> 
+                            <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink col-1 mr-2"  matTooltip="Edit blog."> 
                                 <mat-icon class="editIcon">edit</mat-icon> 
                             </a>
                             <!-- Show the delete button if loading state is equal to false -->
-                            <a (click)='deleteBlog(blog.id)' class="deleteIconLink col-1" *ngIf="!(loading$ | async) ;else spinner">
+                            <a (click)='deleteBlog(blog.id)' class="deleteIconLink col-1" *ngIf="!(loading$ | async) ;else spinner"  matTooltip="Delete blog.">
                                 <mat-icon>delete</mat-icon> 
                             </a>
                             <!-- Show the spinner if the loading state is equal to true -->
@@ -37,7 +37,7 @@
                 </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-icon-button (click)='openCommentDialog(blog.id)' class="commentBtn">
+                    <button mat-icon-button (click)='openCommentDialog(blog.id)' class="commentBtn" matTooltip="View comments.">
                         <mat-icon>comment</mat-icon> 
                     </button>
                     {{blog.commentNo}}
@@ -51,11 +51,11 @@
                 <mat-card-header class="row">
                     <div class="col-2 offset-10" *ngIf="loggedIn">
                         <div class="d-flex flex-row justify-content-end">
-                            <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink col-1 mr-2"> 
+                            <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink col-1 mr-2" matTooltip="Edit blog."> 
                                 <mat-icon class="editIcon">edit</mat-icon> 
                             </a>
                             <!-- Show the delete button if loading state is equal to false -->
-                            <a (click)='deleteBlog(blog.id)' class="deleteIconLink col-1" *ngIf="!(loading$ | async) ;else spinner">
+                            <a (click)='deleteBlog(blog.id)' class="deleteIconLink col-1" *ngIf="!(loading$ | async) ;else spinner" matTooltip="Delete blog.">
                                 <mat-icon>delete</mat-icon> 
                             </a>
                             <!-- Show the spinner if the loading state is equal to true -->
@@ -79,7 +79,7 @@
                   </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-icon-button (click)='openCommentDialog(blog.id)' class="commentBtn">
+                    <button mat-icon-button (click)='openCommentDialog(blog.id)' class="commentBtn" matTooltip="View comments.">
                       <mat-icon>comment</mat-icon>
                     </button>
                     {{blog.commentNo}}
