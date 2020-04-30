@@ -1,6 +1,6 @@
 
 <!--Header-->
-
+Comments
 <button mat-icon-button mat-dialog-close id="closeBtn">
   <mat-icon id="closeIcon" inline=true>
     close
@@ -17,8 +17,9 @@
         </div>
     </div>
 </div>
+<!-- Only user that are not logged in can post a comment -->
 
-<div mat-dialog-actions class="border-top" id="actionContent">
+<div mat-dialog-actions class="border-top" id="actionContent" *ngIf="!(loggedIn$ | async)">
 
     <form class="row" [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm)" >
           <!-- Name input -->

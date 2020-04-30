@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { IComment } from 'src/app/models/comment.interface';
 import { CreateComment } from 'src/app/store/actions/comment.actions';
 import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
+import { selectLoggedIn } from 'src/app/store/selectors/loggedIn.selector';
 
 @Component({
   selector: 'app-comments',
@@ -41,6 +42,11 @@ export class CommentsComponent implements OnInit, AfterViewInit {
    * Boolean to monitor if the user is near the bottom. Will control if the scrollBottom() is triggered.
   */
   isNearBottom: boolean = true;
+  /**
+   * @type {boolean}
+   * The loading state
+  */
+  loggedIn$: Observable<boolean> = this._store.pipe(select(selectLoggedIn));
   /**
    * @type {IComment[]}
    * To hold the comments state that belong to this blog.
