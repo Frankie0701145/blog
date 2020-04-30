@@ -24,7 +24,7 @@
                 </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-icon-button (click)='openCommentDialog(blog.id)'>
+                    <button mat-icon-button (click)='openCommentDialog(blog.id)' class="commentBtn">
                         <mat-icon>comment</mat-icon> 
                     </button>
                     {{blog.commentNo}}
@@ -53,7 +53,7 @@
                   </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-icon-button (click)='openCommentDialog(blog.id)'>
+                    <button mat-icon-button (click)='openCommentDialog(blog.id)' class="commentBtn">
                       <mat-icon>comment</mat-icon>
                     </button>
                     {{blog.commentNo}}
