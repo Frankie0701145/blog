@@ -13,6 +13,7 @@ import { IBlog } from 'src/app/models/blog.interface';
 export enum EFilteredBlogActions {
     SearchBlogs = '[Blogs] Search Blogs',
     RemoveFilteredBlogs = '[Blogs] Remove filteredBlogs',
+    DeleteFilteredBlogsSuccess = '[Blogs] Delete Filtered Blogs by Id'
 }
 
 /**
@@ -46,5 +47,22 @@ export class RemoveFilteredBlogs implements Action {
     public readonly type = EFilteredBlogActions.RemoveFilteredBlogs
 }
 
+/**
+ * @class
+ * @implements {Action}
+ * The DeleteFilteredBlogSuccess. Action to be triggered after a successful deleteSuccessBlog action.
+*/
+export class DeleteFilteredBlogSuccess implements Action{
+    /**
+     * Holds the action type constant
+    */
+    public readonly type = EFilteredBlogActions.DeleteFilteredBlogsSuccess
+    /**
+     * @param {blogId: string} - The blog Id
+     * The DeleteBlogSuccess. Action to be triggered after a successful deleteBlog action.
+    */
+    constructor(public payload:{blogId: string}){}
+}
+
 /**The filtered Blog Actions Type */
-export type FilteredBlogActions  = FilterBlogs | RemoveFilteredBlogs
+export type FilteredBlogActions  = FilterBlogs | RemoveFilteredBlogs | DeleteFilteredBlogSuccess

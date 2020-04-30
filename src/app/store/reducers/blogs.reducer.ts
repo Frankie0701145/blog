@@ -66,6 +66,9 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                     return blog
                 })
             }
+        /**
+         * Delete Blog by the passed Blog Id
+        */
         case EBlogActions.DeleteBlogSuccess:
             return {
                 /**Filter out the blog with the passed blog id*/

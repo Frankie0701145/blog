@@ -36,6 +36,17 @@ export function filterBlogsReducer(state=initialFilteredBlogsState, action: Filt
                 ...state,
                 filteredBlogs: []
             }
+        /**
+         * Delete FilteredBlog by the passed Blog Id
+        */
+        case EFilteredBlogActions.DeleteFilteredBlogsSuccess:
+            return {
+                filteredBlogs: state.filteredBlogs.filter((filteredBlog)=>{
+                    if(filteredBlog.id !== action.payload.blogId){
+                        return filteredBlog
+                    }
+                })
+            }
         /**Return the initialState */
         default:
             return state;

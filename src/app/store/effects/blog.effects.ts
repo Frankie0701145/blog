@@ -15,6 +15,7 @@ import { Router } from '@angular/router'
 import { StartLoading, StopLoading } from '../actions/loading.actions';
 import { IBlogEditProperties } from 'src/app/models/editBlog.interface';
 import { AddSuccessMessage } from '../actions/successMessage.action';
+import { DeleteFilteredBlogSuccess } from '../actions/filteredBlogs.action';
 
 /**
  * Injectable blogEffects class
@@ -122,6 +123,8 @@ export class BlogEffects {
                 map(()=>{
                     /**Trigger the DeleteBlogSuccess action to delete the blog with that ID*/
                     this._store.dispatch(new DeleteBlogSuccess({blogId: action.payload.blogId}));
+                    /**Incase the user is has triggered the DeleteBlog while searching delete the equivalent filtered blog*/
+                    this._store.dispatch(new DeleteFilteredBlogSuccess({blogId: action.payload.blogId}))
                     /**Trigger the StopLoading Action*/
                     this._store.dispatch(new StopLoading());
                     /**Add the success message*/
@@ -131,6 +134,8 @@ export class BlogEffects {
                     /**If it fails because some blogs created by the user are not persisted on the db just edit the blog*/
                     /**Trigger the DeleteBlogSuccess action to delete the blog with that ID in the store*/
                     this._store.dispatch(new DeleteBlogSuccess({blogId: action.payload.blogId}));
+                    /**Incase the user is has triggered the DeleteBlog while searching delete the equivalent filtered blog*/
+                    this._store.dispatch(new DeleteFilteredBlogSuccess({blogId: action.payload.blogId}))
                     /**Trigger the StopLoading Action*/
                     this._store.dispatch(new StopLoading());
                     /**Add the success message*/
