@@ -46,4 +46,13 @@ export class BlogService {
     let url: string = `${this.baseUrl}/${blogId}`;
     return this.http.patch(url, blogProperties);
   }
+
+  /**
+   * Delete a blog
+   * @param {string} blogId - The id of the blog
+  */
+ deleteBlog(blogId: string): Observable<Object>{
+    let url: string = `${this.baseUrl}/${blogId}`;
+    return this.http.delete(url)
+ }
 }

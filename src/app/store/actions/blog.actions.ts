@@ -19,7 +19,9 @@ export enum EBlogActions {
     CreateBlogError = '[Add Blog] Create Blog Error',
     EditBlog = '[Blogs] Edit Blog',
     EditBlogSuccess = '[Blogs] Edit Blog Success',
-    AddBlogCommentNumber = '[Blogs] Add Comment Number'
+    AddBlogCommentNumber = '[Blogs] Add Comment Number',
+    DeleteBlog = '[Blogs] Delete Blog',
+    DeleteBlogSuccess = '[Blogs] Delete Blog success'
 }
 
 /**
@@ -148,9 +150,44 @@ export class AddBlogCommentNumber implements Action {
     constructor (public payload: {blogId: string}){}
 }
 
+/**
+ * @class
+ * @implements {Action}
+ * Delete Blog Action. Action for deleting the blogs on the server which will be handled by deleteBlog$ effect.
+*/
+
+export class DeleteBlog implements Action {
+    /**
+     * Holds the action type constant
+    */
+    public readonly type = EBlogActions.DeleteBlog
+    /**
+     * @param {blogId: string} - The blog Id
+     * Delete Blog Action. Action for deleting the blogs on the server which will be handled by deleteBlog$ effect.
+    */
+    constructor(public payload: {blogId: string} ){}
+}
+
+/**
+ * @class
+ * @implements {Action}
+ * The DeleteBlogSuccess. Action to be triggered after a successful deleteBlog action.
+*/
+export class DeleteBlogSuccess implements Action{
+    /**
+     * Holds the action type constant
+    */
+    public readonly type = EBlogActions.DeleteBlogSuccess
+    /**
+     * @param {blogId: string} - The blog Id
+     * The DeleteBlogSuccess. Action to be triggered after a successful deleteBlog action.
+    */
+    constructor(public payload:{blogId: string}){}
+}
+
 
 /** 
  * The Type for the BlogAction.
 */
-export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess | EditBlogSuccess | AddBlogCommentNumber;
+export type BlogActions = GetBlogs | GetBlogsSuccess | CreateBlog | CreateBlogSuccess | EditBlogSuccess | AddBlogCommentNumber | DeleteBlogSuccess;
 

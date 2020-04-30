@@ -7,10 +7,15 @@
             <!-- For displaying Filtered Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of filteredBlog$ | async" >
                 <mat-card-header class="row">
-                    <div class="col-1 offset-10">
-                        <a [routerLink]="['/blogs', blog.id, 'edit']" *ngIf="loggedIn" class="editIconLink"> 
-                            <mat-icon class="editIcon">edit</mat-icon> 
-                        </a>
+                    <div class="col-2 offset-10" *ngIf="loggedIn">
+                        <div class="d-flex flex-row justify-content-end">
+                            <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink col-1"> 
+                                <mat-icon class="editIcon">edit</mat-icon> 
+                            </a>
+                            <a (click)='deleteBlog(blog.id)' class="deleteIconLink col-1">
+                                <mat-icon>delete</mat-icon> 
+                            </a>
+                        </div>
                     </div>
                     <hr>
                     <div class="col-12">
@@ -36,10 +41,23 @@
             <!-- For Displaying Regular Blogs -->
             <mat-card class="mb-5 col-sm-10 col-md-7 offset-md-2" *ngFor="let blog of blogs$ | async" >
                 <mat-card-header class="row">
-                    <div class="col-1 offset-10" *ngIf="loggedIn">
-                        <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink"> 
-                            <mat-icon class="editIcon">edit</mat-icon> 
-                        </a>
+                    <div class="col-2 offset-10" *ngIf="loggedIn">
+                        <div class="d-flex flex-row justify-content-end">
+                            <a [routerLink]="['/blogs', blog.id, 'edit']" class="editIconLink col-1 mr-2"> 
+                                <mat-icon class="editIcon">edit</mat-icon> 
+                            </a>
+                            <!-- Show the delete button if loading state is equal to false -->
+                            <a (click)='deleteBlog(blog.id)' class="deleteIconLink col-1" *ngIf="!(loading$ | async) ;else spinner">
+                                <mat-icon>delete</mat-icon> 
+                            </a>
+                            <!-- Show the spinner if the loading state is equal to true -->
+                            <ng-template #spinner>
+                                <div class="col-1">
+                                    <mat-spinner diameter="22" class="spinner">
+                                    </mat-spinner>
+                                </div>
+                            </ng-template>
+                        </div>
                     </div>
                     <hr>
                     <div class="col-12">

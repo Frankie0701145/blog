@@ -13,6 +13,8 @@ import { selectSuccessMessageList } from 'src/app/store/selectors/successMessage
 import { ISuccessMessage } from 'src/app/models/successMessage.interface';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { RemoveSuccessMessages } from 'src/app/store/actions/successMessage.action';
+import { DeleteBlogSuccess, DeleteBlog } from 'src/app/store/actions/blog.actions';
+import { selectLoadingState } from 'src/app/store/selectors/loading.selector';
 
 @Component({
   selector: 'app-blogs',
@@ -28,10 +30,13 @@ export class BlogsComponent implements OnInit {
   blogs$: Observable<IBlog[]> = this._store.pipe(select(selectBlogList));
   /**The filteredBlogs observable for retrieving the filteredBlogs from the state*/
   filteredBlog$: Observable<IBlog[]> = this._store.pipe(select(selectFilteredBlogList ))
-  /**Property to keep track when the user is searching */
+  /**Variable to keep track when the user is searching */
   isSearching: boolean;
-  /**Property to check the loggedIn state*/
+  /**Variable to check the loggedIn state*/
   loggedIn: boolean;
+  /**Retrieve the loading state from the store*/
+  loading$: Observable<boolean> = this._store.pipe(select(selectLoadingState));
+  
   constructor(
     /**Inject the dialog from MatDialog*/
     private dialog: MatDialog,
@@ -87,5 +92,12 @@ export class BlogsComponent implements OnInit {
     /**Open up the comment dialog*/
     let dialogRef = this.dialog.open(CommentsComponent, dialogConfig);
 
+  }
+  /**
+   * @param {string} blogId
+   * Method to make Http call to delete blog
+  */
+  deleteBlog(blogId: string): void{
+      this._store.dispatch(new DeleteBlog({blogId}));
   }
 }

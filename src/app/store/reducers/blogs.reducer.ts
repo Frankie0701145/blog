@@ -66,7 +66,13 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                     return blog
                 })
             }
-
+        case EBlogActions.DeleteBlogSuccess:
+            return {
+                /**Filter out the blog with the passed blog id*/
+                blogs: state.blogs.filter((blog)=>{
+                    return blog.id !== action.payload.blogId
+                })
+            }
         /**return the initialBlogState*/
         default:
             return state;

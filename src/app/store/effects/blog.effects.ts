@@ -5,7 +5,9 @@ import { IAppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
 import { switchMap, map, tap, catchError } from 'rxjs/operators';
 import {
-    GetBlogs, EBlogActions, GetBlogsSuccess, CreateBlogSuccess, CreateBlog, EditBlog, EditBlogSuccess
+    GetBlogs, EBlogActions, GetBlogsSuccess, CreateBlogSuccess, CreateBlog, EditBlog, EditBlogSuccess,
+    DeleteBlog,
+    DeleteBlogSuccess
 } from '../actions/blog.actions';
 import { of, Observable } from 'rxjs';
 import { IBlog } from 'src/app/models/blog.interface';
@@ -70,7 +72,7 @@ export class BlogEffects {
         ofType<EditBlog>(EBlogActions.EditBlog),
         map(action => action),
         switchMap((action) => {
-            /**Action to change the state loading to true*/
+            /**Action to change the loading state to true*/
             this._store.dispatch(new StartLoading());
             /**Edit the blog from the server*/
             return this._blogService.editBlog(action.payload.blogId, action.payload.blogProperties).pipe(
@@ -109,6 +111,35 @@ export class BlogEffects {
             )
         }),
     )
+
+    @Effect()
+    deleteBlog$ = this._action$.pipe(
+        ofType<DeleteBlog>(EBlogActions.DeleteBlog),
+        map(action =>action),
+        switchMap((action)=>{
+            this._store.dispatch(new StartLoading());
+            return this._blogService.deleteBlog(action.payload.blogId).pipe(
+                map(()=>{
+                    /**Trigger the DeleteBlogSuccess action to delete the blog with that ID*/
+                    this._store.dispatch(new DeleteBlogSuccess({blogId: action.payload.blogId}));
+                    /**Trigger the StopLoading Action*/
+                    this._store.dispatch(new StopLoading());
+                    /**Add the success message*/
+                    return new AddSuccessMessage({ message: `Blog deleted successful` });
+                }),
+                catchError((error)=>{
+                    /**If it fails because some blogs created by the user are not persisted on the db just edit the blog*/
+                    /**Trigger the DeleteBlogSuccess action to delete the blog with that ID in the store*/
+                    this._store.dispatch(new DeleteBlogSuccess({blogId: action.payload.blogId}));
+                    /**Trigger the StopLoading Action*/
+                    this._store.dispatch(new StopLoading());
+                    /**Add the success message*/
+                    return of(new AddSuccessMessage({ message: 'Blog deleted successful'}))
+                })
+            )
+        })
+    )
+
     /**
      * Inject following BlogService, Action, store, and router
      * @constructor
