@@ -26,7 +26,7 @@ export class StartLoading implements Action {
  * @class
  * @implements {Action}
  * Toggles the searching state to false
- * Stop loading action
+ * StopLoading action
 */
 export class StopLoading implements Action {
     /**

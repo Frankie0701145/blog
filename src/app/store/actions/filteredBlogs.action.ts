@@ -1,6 +1,6 @@
 /**
  * FilteredBlogActions
- * The filtering of Blog Actions
+ * The filtering of Blog.
 */
 
 import { Action } from '@ngrx/store';
@@ -38,7 +38,7 @@ export class FilterBlogs implements Action {
 /**
  * @class
  * @implements {Action}
- * Remove the blogs in the filteredBlog state
+ * Clear the blogs in the filteredBlogs state
 */
 export class RemoveFilteredBlogs implements Action {
     /**
@@ -51,6 +51,7 @@ export class RemoveFilteredBlogs implements Action {
  * @class
  * @implements {Action}
  * The DeleteFilteredBlogSuccess. Action to be triggered after a successful deleteSuccessBlog action.
+ * Will delete a blog from the filteredBlogs state.
 */
 export class DeleteFilteredBlogSuccess implements Action{
     /**
@@ -60,6 +61,7 @@ export class DeleteFilteredBlogSuccess implements Action{
     /**
      * @param {blogId: string} - The blog Id
      * The DeleteBlogSuccess. Action to be triggered after a successful deleteBlog action.
+     *  Will delete a blog from the filteredBlogs state.
     */
     constructor(public payload:{blogId: string}){}
 }

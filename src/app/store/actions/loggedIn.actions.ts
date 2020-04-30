@@ -7,7 +7,7 @@ import { Action } from '@ngrx/store';
 */
 export enum ELoginActions {
     Login= '[Login] Login',
-    LoginSuccess = '[Blogs] Login Success',
+    LoginSuccess = '[Login] Login Success',
     Logout = '[Blogs]Logout',
     LogoutSuccess= '[Blogs] Logout Success',
 

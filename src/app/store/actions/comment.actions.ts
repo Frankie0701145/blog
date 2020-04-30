@@ -9,15 +9,15 @@ import {IComment} from '../../models/comment.interface';
 export enum ECommentActions {
     GetComments = '[Blogs] Get Comments',
     GetCommentsSuccess = '[Blogs] Get Comments Success',
-    CreateComment= '[Blogs] Create Blog',
-    CreateCommentSuccess = '[Blogs] Create Comment Success',
+    CreateComment= '[Comments] Create Blog',
+    CreateCommentSuccess = '[Comments] Create Comment Success',
 }
 
 /**
  * @class 
  * @implements {Action}
  * A GetComment Action class that implements Action
- * The GetComments Action. Action for retrieving comments from the server which will be handle getComments$ effect.
+ * The GetComments Action. Action for retrieving comments from the server which will be handle by getComments$ effect.
 */
 export class GetComments implements Action {
     /**
@@ -29,7 +29,7 @@ export class GetComments implements Action {
  * @class
  * @implements {Action}
  * A GetCommentsSuccess class that implements Action
- * Action triggered after successful GetComments. Adds comments to the comment state.
+ * Action triggered after successful GetComments. Adds comments to the comments state.
 */
 
 export class GetCommentsSuccess implements Action {
@@ -38,17 +38,11 @@ export class GetCommentsSuccess implements Action {
     */
     public readonly type = ECommentActions.GetCommentsSuccess
     /**
-     * Action triggered after successful GetComments. Adds comments to the comment state.
-     * @param {IComment} - The payload contains comments
+     * Action triggered after successful GetComments. Adds comments to the comments state.
+     * @param {IComment[]} - The payload contains comments
     */
     constructor(public payload: IComment[] ){}
 }
-/**
- * @class
- * @implements {Action}
- * Remove class that implements the Action
- * Remove comments state
-*/
 
 /** 
  * @class
@@ -61,14 +55,15 @@ export class CreateComment implements Action {
     */
     public readonly type = ECommentActions.CreateComment
     /**
-     * @param {IComment} - The payload contains the comment
+     * CreateComment Action class. Action for posting a comment handled by the postComment$ effect
+     * @param {IComment} - The payload contains the comment properties
     */
     constructor(public payload: IComment){}
 }
 /**
  * @class
  * @implements {Action}
- * CreateCommentSuccess Action class. Action that is triggered after a CreateComment Action.
+ * CreateCommentSuccess Action class. Action that is triggered after a successful CreateComment Action.
  * Adds new comments to the comments state
 */
 
@@ -78,6 +73,8 @@ export class CreateCommentSuccess implements Action {
     */
     public readonly type = ECommentActions.CreateCommentSuccess
     /**
+     * CreateCommentSuccess Action class. Action that is triggered after a CreateComment Action.
+     * Adds new comments to the comments state
      * @param {IComment} payload - The payload contains the comment
     */
     constructor(public payload: IComment ){}

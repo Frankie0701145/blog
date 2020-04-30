@@ -6,7 +6,7 @@ import { ISuccessMessage } from 'src/app/models/successMessage.interface';
 
 /**
  * @enum {string}
- * The action constant for the successMessage actions
+ * The action constants for the successMessage actions
 */
 
 export enum ESuccessMessage {

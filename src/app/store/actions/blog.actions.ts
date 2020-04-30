@@ -11,8 +11,8 @@ import { IBlogEditProperties } from 'src/app/models/editBlog.interface';
  * @enum {string}
 */
 export enum EBlogActions {
-    GetBlogs = '[Blogs] Get Blogs',
-    GetBlogsSuccess = '[Blogs] Get Blogs Success',
+    GetBlogs = '[App] Get Blogs',
+    GetBlogsSuccess = '[App] Get Blogs Success',
     GetBlogsError = '[Blogs] Get Blogs Error',
     CreateBlog = '[Add Blog] Create Blog',
     CreateBlogSuccess = '[Add Blog] Create Blog Success',
@@ -42,7 +42,7 @@ export class GetBlogs implements Action {
  * @implements {Action}
  * A GetBlogsSuccess Action class that implements Action
  * The GetBlogs Success. Action to be triggered after a successful GetBlogs Action.
- * Adds the blog state
+ * Populate the blogs state
 */
 export class GetBlogsSuccess implements Action {
     /**
@@ -50,7 +50,7 @@ export class GetBlogsSuccess implements Action {
     */
     public readonly type = EBlogActions.GetBlogsSuccess
     /**
-     * @param {IBlog} payload - The payload contains blog properties and value
+     * @param {IBlog[]} payload - Contains an array of blogs
     */ 
     constructor(public payload: IBlog[]){}
 }
@@ -86,6 +86,9 @@ export class CreateBlogSuccess implements Action {
     */
     public readonly type = EBlogActions.CreateBlogSuccess
     /**
+     * A CreateBlogSuccess Action class that implements Action
+     * The CreateBlogSuccess Action. Action to be triggered after a successful CreateBlog.
+     * Adds a new blog to the blogs state
      *@param {IBlog} payload - The payload contains blog properties and value
     */
     constructor(public payload: IBlog){}
@@ -95,7 +98,7 @@ export class CreateBlogSuccess implements Action {
  * @class
  * @implements {Action}
  * A EditBlog Action class that implements Action
- * Edit Blog Action. Action for editing the blogs on the server which will be handled by  editBlog$ effect.
+ * Edit Blog Action. Action for editing the blogs on the server which will be handled by editBlog$ effect.
 */
 export class EditBlog implements Action {
     /**
@@ -136,7 +139,7 @@ export class EditBlogSuccess implements Action {
 /**
  * @class
  * @implements {Action}
- * Adds Comment Number of a blog after a successful CreateCommentSuccess Action
+ * Adds CommentNo of a blog after a successful CreateCommentSuccess Action
 */
 export class AddBlogCommentNumber implements Action {
     /**
@@ -145,7 +148,7 @@ export class AddBlogCommentNumber implements Action {
     public readonly type = EBlogActions.AddBlogCommentNumber
     /**
      * @param {blogId: string}
-     * Adds Comment Number of a blog after a successful CreateCommentSuccess Action
+     * Adds CommentNo of a blog after a successful CreateCommentSuccess Action
     */
     constructor (public payload: {blogId: string}){}
 }
@@ -180,7 +183,7 @@ export class DeleteBlogSuccess implements Action{
     public readonly type = EBlogActions.DeleteBlogSuccess
     /**
      * @param {blogId: string} - The blog Id
-     * The DeleteBlogSuccess. Action to be triggered after a successful deleteBlog action.
+     * The DeleteBlogSuccess. Action to be triggered after a successful deleteBlog action. Removes a blog from the blogs state.
     */
     constructor(public payload:{blogId: string}){}
 }
