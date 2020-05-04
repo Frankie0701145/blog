@@ -19,10 +19,11 @@ export function filterBlogsReducer(state=initialFilteredBlogsState, action: Filt
                 let searchText = action.payload.searchText
                 /**iterate the blogs and filter blogs that match the search text*/
                 let filteredBlogs = blogs.filter((blog)=>{
-                    /**Create a regular expression from the search text and making sure it is not case sensitive*/
+                    /**Create a regular expression from the search text, making sure it is not case sensitive*/
                     let titleRegx =  new RegExp(searchText, 'i');
-                    /**Check if the current blog matches the regular express*/
+                    /**Check if the current blog matches the regular expression*/
                     let result: boolean = titleRegx.test(blog.title);
+                    /**Return the result of the check above*/
                     return result
                 })
                 /**Return the blogs that match the searchText */
@@ -30,17 +31,20 @@ export function filterBlogsReducer(state=initialFilteredBlogsState, action: Filt
                     ...state,
                     filteredBlogs
                 }
-        /**Remove all the filtered blogs on the filteredBlogs state*/
+        /**Clear the filtered blogs on the filteredBlogs state*/
         case EFilteredBlogActions.RemoveFilteredBlogs:
             return{
                 ...state,
                 filteredBlogs: []
             }
         /**
-         * Delete FilteredBlog by the passed Blog Id
+         * Delete FilteredBlog using the passed Blog Id
         */
         case EFilteredBlogActions.DeleteFilteredBlogsSuccess:
             return {
+                /**
+                 * Filter out blogs using the blogId
+                */
                 filteredBlogs: state.filteredBlogs.filter((filteredBlog)=>{
                     if(filteredBlog.id !== action.payload.blogId){
                         return filteredBlog

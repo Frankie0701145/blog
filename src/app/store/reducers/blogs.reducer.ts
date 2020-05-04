@@ -5,14 +5,14 @@ import {BlogActions, EBlogActions} from  '../actions/blog.actions';
 
 /**
  * @param state - The extracted successMessage state
- * @param {BlogActions} action - The blogsAction
+ * @param {BlogActions} action - The blogsActions
  * @return {IBlogsState} - returns the blog state
 */
 export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBlogsState {
     switch(action.type){
         /*handle GetBlogsSuccess Action*/
         case EBlogActions.GetBlogsSuccess:
-            /**Take the blogs retrieve from a get request and return the new state with the blogs*/
+            /**Take the blogs retrieved from a get request and return the new state with the blogs*/
             return{
                 ...state,
                 blogs: action.payload
@@ -39,7 +39,7 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                     /**edit the blog and return the new blog*/
                     return{...blog,...toEditProperties};
                 }
-                /**if the blogId don't match return the blog unchanged*/
+                /**if the blogIds don't match return the blog unchanged*/
                 return blog;
             });
             /**return the new state*/
@@ -48,15 +48,14 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                 blogs: newBlogs
             }
         /**
-         * Add the Blog state comment number by one
+         * Add the blog commentNo property by one
         */
         case EBlogActions.AddBlogCommentNumber:
-            //  let blogId: string = action.payload.blogId;
             return {
                 blogs: state.blogs.map((blog)=>{
                     /**
                      * Find the blog with that blogId.
-                     * Add one to that blog
+                     * Add one to the commentNo
                     */
                     if(blog.id == action.payload.blogId){
                         /**Add one to the commentNo*/
@@ -67,7 +66,7 @@ export function blogsReducer(state=initialIBlogsState, action: BlogActions): IBl
                 })
             }
         /**
-         * Delete Blog by the passed Blog Id
+         * Delete Blog using the passed Blog Id
         */
         case EBlogActions.DeleteBlogSuccess:
             return {
