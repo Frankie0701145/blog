@@ -19,7 +19,7 @@ Comments
 </div>
 <!-- Only user that are not logged in can post a comment -->
 
-<div mat-dialog-actions class="border-top" id="actionContent" *ngIf="!(loggedIn$ | async)">
+<div mat-dialog-actions class="border-top" id="actionContent">
 
     <form class="row" [formGroup]="commentForm" (ngSubmit)="onSubmit(commentForm)" >
           <!-- Name input -->
