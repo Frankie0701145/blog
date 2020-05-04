@@ -62,6 +62,9 @@ export class AddBlogComponent implements OnInit {
    * To preview the uploaded photo
   */
   preview(){
+    /**
+     * Instantiate the FileReader
+    */
     let reader = new FileReader()
     /**Read the image uploaded*/
     reader.readAsDataURL(this.fileData);

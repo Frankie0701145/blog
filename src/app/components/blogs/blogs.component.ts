@@ -45,11 +45,11 @@ export class BlogsComponent implements OnInit {
     /**inject the snack bar*/
     private _snackBar: MatSnackBar
   ) {
-    /**Set the isSearching property to that of isSearching from the state*/
+    /**Set the isSearching value to that of isSearching from the state*/
     this._store.pipe(select(selectIsSearching)).subscribe((isSearching)=>{
       this.isSearching = isSearching
     })
-    /**Set the loggedIn property to that of the loggedIn from the state*/
+    /**Set the loggedIn value to that of the loggedIn from the state*/
     this._store.pipe(select(selectLoggedIn)).subscribe((loggedIn)=>{
       this.loggedIn = loggedIn
     })
@@ -75,7 +75,7 @@ export class BlogsComponent implements OnInit {
   
   /**
    * @param {string} blogId
-   * Function to open the matDialog and initialize. The matDialog will contain comments
+   * Function to open and initialize the matDialog. The matDialog will contain comments
   */
   openCommentDialog(blogId: string){
     /**Initialize the MatDialogConfig*/
